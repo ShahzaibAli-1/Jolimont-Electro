@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic IA - Jolimont Electronics</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .step {
+            display: none;
+        }
+        .step.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            transition: width 0.3s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="main-header">
+            <div class="container">
+                <div class="flex items-center justify-between">
+                    <a href="../index.html">
+                        <img src="../assets/fb59b76ceb2a0cf3614ca89ca0e669563c96bebc.png" alt="Logo" class="logo">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container" style="max-width: 900px; padding: 3rem 1rem;">
+            <!-- Header -->
+            <div class="text-center" style="margin-bottom: 3rem;">
+                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary) 0%, #2347b8 100%); border-radius: 50%; display: flex; align-items: center; justify-center; margin: 0 auto 1.5rem;">
+                    <i data-lucide="sparkles" style="width: 40px; height: 40px; color: white;"></i>
+                </div>
+                <h1 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem;">Diagnostic IA Intelligent</h1>
+                <p style="color: var(--muted-foreground); font-size: 1.125rem;">Trouvez la panne en quelques questions seulement</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div style="margin-bottom: 3rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.875rem;">
+                    <span>Progression</span>
+                    <span id="progress-text">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill" style="width: 0%;"></div>
+                </div>
+            </div>
+
+            <!-- Diagnostic Steps -->
+            <div id="diagnostic-container">
+                <!-- Step 1: Choose Appliance -->
+                <div class="step active" id="step-1">
+                    <h2 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1.5rem;">Quel type d'appareil avez-vous?</h2>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <button onclick="selectAppliance('washing-machine')" class="btn btn-outline" style="padding: 2rem; flex-direction: column; height: auto;">
+                            <i data-lucide="washing-machine" style="width: 48px; height: 48px; margin-bottom: 0.5rem;"></i>
+                            Lave-linge
+                        </button>
+                        <button onclick="selectAppliance('dishwasher')" class="btn btn-outline" style="padding: 2rem; flex-direction: column; height: auto;">
+                            <i data-lucide="refrigerator" style="width: 48px; height: 48px; margin-bottom: 0.5rem;"></i>
+                            Lave-vaisselle
+                        </button>
+                        <button onclick="selectAppliance('oven')" class="btn btn-outline" style="padding: 2rem; flex-direction: column; height: auto;">
+                            <i data-lucide="microwave" style="width: 48px; height: 48px; margin-bottom: 0.5rem;"></i>
+                            Four
+                        </button>
+                        <button onclick="selectAppliance('fridge')" class="btn btn-outline" style="padding: 2rem; flex-direction: column; height: auto;">
+                            <i data-lucide="refrigerator" style="width: 48px; height: 48px; margin-bottom: 0.5rem;"></i>
+                            Réfrigérateur
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Brand -->
+                <div class="step" id="step-2">
+                    <h2 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1.5rem;">Quelle est la marque de votre appareil?</h2>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
+                        <button onclick="selectBrand('bosch')" class="btn btn-outline" style="padding: 1.5rem;">
+                            <img src="../assets/520a487a6d1b0355afdaebaa6147405947f5ce50.png" alt="Bosch" style="width: 100%; height: 60px; object-fit: contain;">
+                        </button>
+                        <button onclick="selectBrand('siemens')" class="btn btn-outline" style="padding: 1.5rem;">
+                            <img src="../assets/480e6a07858ac4d35221ea2789e5c06239ee2e0e.png" alt="Siemens" style="width: 100%; height: 60px; object-fit: contain;">
+                        </button>
+                        <button onclick="selectBrand('samsung')" class="btn btn-outline" style="padding: 1.5rem;">
+                            <img src="../assets/79f8ae3dd17c139504f9ac05813a1d2fdf2d44a1.png" alt="Samsung" style="width: 100%; height: 60px; object-fit: contain;">
+                        </button>
+                        <button onclick="selectBrand('lg')" class="btn btn-outline" style="padding: 1.5rem;">
+                            <img src="../assets/02ab6d2362f2b27023125804934c0efb85c9e49f.png" alt="LG" style="width: 100%; height: 60px; object-fit: contain;">
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Problem -->
+                <div class="step" id="step-3">
+                    <h2 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1.5rem;">Quel est le problème?</h2>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <button onclick="selectProblem('leak')" class="btn btn-outline" style="padding: 1.5rem; justify-content: flex-start; text-align: left;">
+                            <i data-lucide="droplet" style="width: 24px; height: 24px; margin-right: 1rem; color: var(--primary);"></i>
+                            <div>
+                                <div style="font-weight: 600; margin-bottom: 0.25rem;">Fuite d'eau</div>
+                                <div style="font-size: 0.875rem; color: var(--muted-foreground);">L'appareil laisse échapper de l'eau</div>
+                            </div>
+                        </button>
+                        <button onclick="selectProblem('noise')" class="btn btn-outline" style="padding: 1.5rem; justify-content: flex-start; text-align: left;">
+                            <i data-lucide="volume-2" style="width: 24px; height: 24px; margin-right: 1rem; color: var(--primary);"></i>
+                            <div>
+                                <div style="font-weight: 600; margin-bottom: 0.25rem;">Bruit anormal</div>
+                                <div style="font-size: 0.875rem; color: var(--muted-foreground);">Des bruits inhabituels pendant le fonctionnement</div>
+                            </div>
+                        </button>
+                        <button onclick="selectProblem('power')" class="btn btn-outline" style="padding: 1.5rem; justify-content: flex-start; text-align: left;">
+                            <i data-lucide="power" style="width: 24px; height: 24px; margin-right: 1rem; color: var(--primary);"></i>
+                            <div>
+                                <div style="font-weight: 600; margin-bottom: 0.25rem;">Ne s'allume pas</div>
+                                <div style="font-size: 0.875rem; color: var(--muted-foreground);">L'appareil ne démarre pas ou ne s'allume pas</div>
+                            </div>
+                        </button>
+                        <button onclick="selectProblem('drain')" class="btn btn-outline" style="padding: 1.5rem; justify-content: flex-start; text-align: left;">
+                            <i data-lucide="anchor" style="width: 24px; height: 24px; margin-right: 1rem; color: var(--primary);"></i>
+                            <div>
+                                <div style="font-weight: 600; margin-bottom: 0.25rem;">Ne vidange pas</div>
+                                <div style="font-size: 0.875rem; color: var(--muted-foreground);">L'eau reste au fond de l'appareil</div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Results -->
+                <div class="step" id="step-4">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <div style="width: 100px; height: 100px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                            <i data-lucide="check" style="width: 60px; height: 60px; color: white;"></i>
+                        </div>
+                        <h2 style="font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem;">Diagnostic terminé!</h2>
+                        <p style="color: var(--muted-foreground);">Nous avons identifié les causes probables</p>
+                    </div>
+
+                    <!-- Causes -->
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Causes probables</h3>
+                        
+                        <div style="border: 2px solid #10b981; border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 1rem; background: #f0fdf4;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                                <h4 style="font-weight: 600;">Pompe de vidange défectueuse</h4>
+                                <span class="badge badge-success">85% probable</span>
+                            </div>
+                            <p style="font-size: 0.875rem; color: #166534; margin-bottom: 1rem;">La pompe ne parvient plus à évacuer l'eau correctement, causant une fuite.</p>
+                            <a href="product-detail.html" class="btn btn-primary">
+                                Voir la pièce (24,90€)
+                            </a>
+                        </div>
+
+                        <div style="border: 2px solid #fbbf24; border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 1rem; background: #fef3c7;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                                <h4 style="font-weight: 600;">Durite de vidange percée</h4>
+                                <span class="badge badge-warning">60% probable</span>
+                            </div>
+                            <p style="font-size: 0.875rem; color: #92400e;">Une durite usée peut laisser passer l'eau et causer une fuite.</p>
+                        </div>
+
+                        <div style="border: 2px solid var(--border); border-radius: 0.75rem; padding: 1.5rem; background: white;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                                <h4 style="font-weight: 600;">Joint de porte usé</h4>
+                                <span class="badge" style="background: #e5e7eb; color: #374151;">30% probable</span>
+                            </div>
+                            <p style="font-size: 0.875rem; color: var(--muted-foreground);">Le joint peut être abîmé et laisser fuir de l'eau pendant le cycle.</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem;">
+                        <button onclick="restartDiagnostic()" class="btn btn-outline" style="flex: 1;">
+                            <i data-lucide="refresh-cw" style="width: 18px; height: 18px;"></i>
+                            Refaire le diagnostic
+                        </button>
+                        <a href="catalog.html" class="btn btn-outline" style="flex: 1;">
+                            Voir toutes les pièces
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div style="display: flex; justify-content: space-between; margin-top: 2rem;" id="nav-buttons">
+                <button onclick="previousStep()" id="prev-btn" class="btn btn-outline" style="display: none;">
+                    <i data-lucide="arrow-left" style="width: 18px; height: 18px;"></i>
+                    Retour
+                </button>
+                <a href="../index.html" class="btn btn-outline">
+                    <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+                    Annuler
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/main.js"></script>
+    <script>
+        lucide.createIcons();
+
+        let currentStep = 1;
+        const totalSteps = 4;
+        const diagnosticData = {
+            appliance: '',
+            brand: '',
+            problem: ''
+        };
+
+        function updateProgress() {
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progress-fill').style.width = progress + '%';
+            document.getElementById('progress-text').textContent = Math.round(progress) + '%';
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById(`step-${step}`).classList.add('active');
+            
+            // Update prev button visibility
+            const prevBtn = document.getElementById('prev-btn');
+            if (step > 1 && step < totalSteps) {
+                prevBtn.style.display = 'flex';
+            } else {
+                prevBtn.style.display = 'none';
+            }
+
+            updateProgress();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function selectAppliance(appliance) {
+            diagnosticData.appliance = appliance;
+            currentStep = 2;
+            showStep(2);
+        }
+
+        function selectBrand(brand) {
+            diagnosticData.brand = brand;
+            currentStep = 3;
+            showStep(3);
+        }
+
+        function selectProblem(problem) {
+            diagnosticData.problem = problem;
+            currentStep = 4;
+            showStep(4);
+            
+            // Simulate AI processing
+            document.getElementById('nav-buttons').style.display = 'none';
+            setTimeout(() => {
+                document.getElementById('nav-buttons').style.display = 'flex';
+            }, 1000);
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        function restartDiagnostic() {
+            currentStep = 1;
+            diagnosticData.appliance = '';
+            diagnosticData.brand = '';
+            diagnosticData.problem = '';
+            showStep(1);
+        }
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>

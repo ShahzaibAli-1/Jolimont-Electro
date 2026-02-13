@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Client - Jolimont Electronics</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <header>
+        <div class="main-header">
+            <div class="container">
+                <div class="flex items-center justify-between">
+                    <a href="../index.html">
+                        <img src="../assets/fb59b76ceb2a0cf3614ca89ca0e669563c96bebc.png" alt="Logo" class="logo">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container" style="max-width: 1200px; padding: 3rem 1rem;">
+            <!-- Header -->
+            <div class="text-center" style="margin-bottom: 3rem;">
+                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary) 0%, #2347b8 100%); border-radius: 50%; display: flex; align-items: center; justify-center; margin: 0 auto 1.5rem;">
+                    <i data-lucide="headphones" style="width: 40px; height: 40px; color: white;"></i>
+                </div>
+                <h1 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem;">Service Client</h1>
+                <p style="color: var(--muted-foreground); font-size: 1.125rem;">Notre équipe est à votre écoute pour vous accompagner</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem;">
+                <!-- Contact Methods -->
+                <div>
+                    <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem;">Nous contacter</h2>
+                    
+                    <!-- Phone -->
+                    <div style="border: 2px solid var(--border); border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 1rem; background: white;">
+                        <div style="display: flex; align-items: start; gap: 1rem;">
+                            <div style="width: 48px; height: 48px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i data-lucide="phone" style="width: 24px; height: 24px; color: white;"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Par téléphone</h3>
+                                <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 0.5rem;">
+                                    Du lundi au vendredi, 9h-18h
+                                </p>
+                                <a href="tel:0123456789" style="font-size: 1.25rem; font-weight: 600; color: var(--primary); text-decoration: none;">
+                                    01 23 45 67 89
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div style="border: 2px solid var(--border); border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 1rem; background: white;">
+                        <div style="display: flex; align-items: start; gap: 1rem;">
+                            <div style="width: 48px; height: 48px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i data-lucide="mail" style="width: 24px; height: 24px; color: white;"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Par email</h3>
+                                <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 0.5rem;">
+                                    Réponse sous 24h
+                                </p>
+                                <a href="mailto:contact@jolimont.fr" style="font-size: 1rem; font-weight: 600; color: var(--primary); text-decoration: none;">
+                                    contact@jolimont.fr
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat -->
+                    <div style="border: 2px solid var(--border); border-radius: 0.75rem; padding: 1.5rem; background: white;">
+                        <div style="display: flex; align-items: start; gap: 1rem;">
+                            <div style="width: 48px; height: 48px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i data-lucide="message-circle" style="width: 24px; height: 24px; color: white;"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Chat en ligne</h3>
+                                <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 1rem;">
+                                    Assistance instantanée
+                                </p>
+                                <button onclick="toggleChatbot()" class="btn btn-primary">
+                                    Démarrer le chat
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div>
+                    <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem;">Envoyez-nous un message</h2>
+                    
+                    <div style="border: 2px solid var(--border); border-radius: 0.75rem; padding: 2rem; background: white;">
+                        <form onsubmit="handleContactSubmit(event)">
+                            <div style="margin-bottom: 1rem;">
+                                <label style="display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Nom complet *</label>
+                                <input type="text" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 0.375rem;">
+                            </div>
+
+                            <div style="margin-bottom: 1rem;">
+                                <label style="display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Email *</label>
+                                <input type="email" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 0.375rem;">
+                            </div>
+
+                            <div style="margin-bottom: 1rem;">
+                                <label style="display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Sujet *</label>
+                                <select required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 0.375rem;">
+                                    <option value="">Sélectionner un sujet</option>
+                                    <option>Question sur une commande</option>
+                                    <option>Problème de livraison</option>
+                                    <option>Demande de retour</option>
+                                    <option>Question technique</option>
+                                    <option>Autre</option>
+                                </select>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <label style="display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Message *</label>
+                                <textarea required rows="6" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 0.375rem; resize: vertical;"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 1rem;">
+                                <i data-lucide="send" style="width: 18px; height: 18px;"></i>
+                                Envoyer le message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div style="background: var(--secondary); border-radius: 0.75rem; padding: 2rem;">
+                <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; text-align: center;">Questions fréquentes</h2>
+                <p style="text-align: center; color: var(--muted-foreground); margin-bottom: 2rem;">
+                    Trouvez rapidement des réponses à vos questions
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <a href="faq.html" style="text-decoration: none; color: inherit;">
+                        <div style="padding: 1.5rem; background: white; border-radius: 0.5rem; border: 2px solid transparent; transition: all 0.3s;">
+                            <i data-lucide="package" style="width: 32px; height: 32px; color: var(--primary); margin-bottom: 1rem;"></i>
+                            <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Commandes</h3>
+                            <p style="font-size: 0.875rem; color: var(--muted-foreground);">Suivre, modifier ou annuler une commande</p>
+                        </div>
+                    </a>
+                    <a href="faq.html" style="text-decoration: none; color: inherit;">
+                        <div style="padding: 1.5rem; background: white; border-radius: 0.5rem; border: 2px solid transparent; transition: all 0.3s;">
+                            <i data-lucide="truck" style="width: 32px; height: 32px; color: var(--primary); margin-bottom: 1rem;"></i>
+                            <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Livraison</h3>
+                            <p style="font-size: 0.875rem; color: var(--muted-foreground);">Délais et frais de livraison</p>
+                        </div>
+                    </a>
+                    <a href="faq.html" style="text-decoration: none; color: inherit;">
+                        <div style="padding: 1.5rem; background: white; border-radius: 0.5rem; border: 2px solid transparent; transition: all 0.3s;">
+                            <i data-lucide="rotate-ccw" style="width: 32px; height: 32px; color: var(--primary); margin-bottom: 1rem;"></i>
+                            <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Retours</h3>
+                            <p style="font-size: 0.875rem; color: var(--muted-foreground);">Politique de retour et remboursement</p>
+                        </div>
+                    </a>
+                    <a href="faq.html" style="text-decoration: none; color: inherit;">
+                        <div style="padding: 1.5rem; background: white; border-radius: 0.5rem; border: 2px solid transparent; transition: all 0.3s;">
+                            <i data-lucide="wrench" style="width: 32px; height: 32px; color: var(--primary); margin-bottom: 1rem;"></i>
+                            <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Installation</h3>
+                            <p style="font-size: 0.875rem; color: var(--muted-foreground);">Guides et tutoriels</p>
+                        </div>
+                    </a>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="faq.html" class="btn btn-outline">
+                        Voir toutes les questions
+                        <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/main.js"></script>
+    <script>
+        lucide.createIcons();
+
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            showToast('Message envoyé avec succès! Nous vous répondrons dans les 24h.');
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pompe de vidange - Jolimont Electronics</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Simple Header -->
+    <header>
+        <div class="main-header">
+            <div class="container">
+                <div class="flex items-center justify-between">
+                    <a href="../index.html">
+                        <img src="../assets/fb59b76ceb2a0cf3614ca89ca0e669563c96bebc.png" alt="Logo" class="logo">
+                    </a>
+                    <div class="flex items-center gap-3">
+                        <button id="cart-btn" class="btn-icon" style="position: relative;">
+                            <i data-lucide="shopping-cart" style="width: 20px; height: 20px;"></i>
+                            <span id="cart-count" style="position: absolute; top: -4px; right: -4px; width: 20px; height: 20px; background: var(--primary); color: white; border-radius: 50%; font-size: 0.75rem; display: none; align-items: center; justify-content: center;">0</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container" style="padding: 2rem 1rem;">
+            <!-- Breadcrumb -->
+            <div style="margin-bottom: 2rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: var(--muted-foreground);">
+                    <a href="../index.html" style="color: inherit; text-decoration: none;">Accueil</a>
+                    <i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i>
+                    <a href="catalog.html" style="color: inherit; text-decoration: none;">Catalogue</a>
+                    <i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i>
+                    <span>Pompe de vidange</span>
+                </div>
+            </div>
+
+            <!-- Product Detail -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem;" class="fade-in">
+                <!-- Product Image -->
+                <div>
+                    <div style="border: 2px solid var(--border); border-radius: 0.75rem; padding: 2rem; background: white;">
+                        <img src="../assets/392ded11266269b334c66232f3a2ce4446dccd83.png" alt="Pompe de vidange" style="width: 100%; height: auto;">
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div>
+                    <div style="margin-bottom: 1rem;">
+                        <span class="badge badge-primary">IA Recommandé</span>
+                    </div>
+                    <h1 style="font-size: 2rem; font-weight: bold; margin-bottom: 1rem;">Pompe de vidange universelle pour lave-linge</h1>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="display: flex; align-items: center;">
+                            <span style="color: #fbbf24; margin-right: 0.25rem;">★★★★★</span>
+                            <span style="font-size: 0.875rem; color: var(--muted-foreground);">(127 avis)</span>
+                        </div>
+                        <span style="color: var(--muted-foreground);">Marque: <strong>Bosch</strong></span>
+                    </div>
+
+                    <div style="padding: 1.5rem; background: #f0f9ff; border-left: 4px solid var(--primary); border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                        <h3 style="font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i data-lucide="sparkles" style="width: 20px; height: 20px; color: var(--primary);"></i>
+                            Recommandation IA
+                        </h3>
+                        <p style="font-size: 0.875rem;">La pompe de vidange est responsable de l'évacuation de l'eau. Si votre machine fuit ou ne vidange pas correctement, c'est probablement la cause principale.</p>
+                    </div>
+
+                    <div style="font-size: 3rem; font-weight: bold; color: var(--primary); margin-bottom: 1.5rem;">24,90€</div>
+
+                    <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                        <span class="badge badge-success">En stock</span>
+                        <span style="font-size: 0.875rem; display: flex; align-items: center; gap: 0.25rem;">
+                            <i data-lucide="truck" style="width: 16px; height: 16px; color: var(--primary);"></i>
+                            Livraison 24h
+                        </span>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                        <button onclick="addToCart('1')" class="btn btn-primary" style="flex: 1; justify-content: center; font-size: 1rem; padding: 1rem;">
+                            <i data-lucide="shopping-cart" style="width: 20px; height: 20px;"></i>
+                            Ajouter au panier
+                        </button>
+                        <button class="btn btn-outline" style="padding: 1rem;">
+                            <i data-lucide="heart" style="width: 20px; height: 20px;"></i>
+                        </button>
+                    </div>
+
+                    <div style="border-top: 1px solid var(--border); padding-top: 1.5rem;">
+                        <h3 style="font-weight: 600; margin-bottom: 1rem;">Symptômes compatibles</h3>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <span class="badge" style="background: #fef3c7; color: #92400e;">Fuite d'eau</span>
+                            <span class="badge" style="background: #fef3c7; color: #92400e;">Eau stagnante</span>
+                            <span class="badge" style="background: #fef3c7; color: #92400e;">Bruit de gargouillement</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div style="border-bottom: 2px solid var(--border); margin-bottom: 2rem;">
+                <div style="display: flex; gap: 2rem;">
+                    <button class="tab-button active" data-tab="description" style="padding: 1rem; border: none; background: none; font-weight: 600; border-bottom: 2px solid var(--primary); cursor: pointer;">
+                        Description
+                    </button>
+                    <button class="tab-button" data-tab="compatibility" style="padding: 1rem; border: none; background: none; font-weight: 600; cursor: pointer;">
+                        Compatibilité
+                    </button>
+                    <button class="tab-button" data-tab="installation" style="padding: 1rem; border: none; background: none; font-weight: 600; cursor: pointer;">
+                        Installation
+                    </button>
+                    <button class="tab-button" data-tab="reviews" style="padding: 1rem; border: none; background: none; font-weight: 600; cursor: pointer;">
+                        Avis (127)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Content -->
+            <div id="tab-description" class="tab-content" style="padding: 2rem; background: white; border-radius: 0.75rem; border: 2px solid var(--border);">
+                <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">Description du produit</h3>
+                <p style="color: var(--muted-foreground); line-height: 1.8; margin-bottom: 1rem;">
+                    Cette pompe de vidange universelle est compatible avec la plupart des lave-linge Bosch série 6 et 7. 
+                    Elle assure l'évacuation efficace de l'eau pendant le cycle de lavage.
+                </p>
+                <h4 style="font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem;">Caractéristiques techniques:</h4>
+                <ul style="color: var(--muted-foreground); line-height: 1.8; margin-left: 1.5rem;">
+                    <li>Puissance: 30W</li>
+                    <li>Voltage: 220-240V</li>
+                    <li>Débit: 18L/min</li>
+                    <li>Garantie: 12 mois</li>
+                </ul>
+            </div>
+
+            <div id="tab-compatibility" class="tab-content" style="display: none; padding: 2rem; background: white; border-radius: 0.75rem; border: 2px solid var(--border);">
+                <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">Compatibilité</h3>
+                <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Marques compatibles:</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
+                    <span class="badge" style="background: var(--secondary);">Bosch</span>
+                    <span class="badge" style="background: var(--secondary);">Siemens</span>
+                    <span class="badge" style="background: var(--secondary);">Neff</span>
+                </div>
+                <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Modèles compatibles:</h4>
+                <ul style="color: var(--muted-foreground); line-height: 1.8; margin-left: 1.5rem;">
+                    <li>WAW28750FF Serie 8</li>
+                    <li>WAW32540FF Serie 8</li>
+                    <li>WAT28619FF Serie 6</li>
+                    <li>WAQ28482FF Serie 6</li>
+                    <li>WAN28280FF Serie 4</li>
+                </ul>
+            </div>
+
+            <div id="tab-installation" class="tab-content" style="display: none; padding: 2rem; background: white; border-radius: 0.75rem; border: 2px solid var(--border);">
+                <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">Guide d'installation</h3>
+                <div style="padding: 1rem; background: #fef3c7; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <div style="display: flex; gap: 1rem;">
+                        <div>
+                            <strong>Difficulté:</strong> Moyenne<br>
+                            <strong>Durée:</strong> 20-30 minutes
+                        </div>
+                    </div>
+                </div>
+                <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Outils nécessaires:</h4>
+                <ul style="color: var(--muted-foreground); line-height: 1.8; margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                    <li>Tournevis cruciforme</li>
+                    <li>Pince multiprise</li>
+                    <li>Seau</li>
+                </ul>
+                <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Étapes:</h4>
+                <ol style="color: var(--muted-foreground); line-height: 1.8; margin-left: 1.5rem;">
+                    <li>Débrancher l'appareil et couper l'arrivée d'eau</li>
+                    <li>Incliner légèrement la machine vers l'arrière</li>
+                    <li>Retirer le panneau avant avec un tournevis</li>
+                    <li>Débrancher les durites de la pompe</li>
+                    <li>Dévisser et retirer l'ancienne pompe</li>
+                    <li>Installer la nouvelle pompe en sens inverse</li>
+                </ol>
+            </div>
+
+            <div id="tab-reviews" class="tab-content" style="display: none; padding: 2rem; background: white; border-radius: 0.75rem; border: 2px solid var(--border);">
+                <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">Avis clients</h3>
+                
+                <!-- Review 1 -->
+                <div style="padding: 1.5rem; border-bottom: 1px solid var(--border);">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <strong>Marie D.</strong>
+                        <span style="color: #fbbf24;">★★★★★</span>
+                    </div>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem;">
+                        Parfaitement compatible avec mon lave-linge Bosch. Installation facile en suivant le tuto vidéo.
+                    </p>
+                    <div style="font-size: 0.75rem; color: var(--muted-foreground); margin-top: 0.5rem;">15 janvier 2026</div>
+                </div>
+
+                <!-- Review 2 -->
+                <div style="padding: 1.5rem; border-bottom: 1px solid var(--border);">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <strong>Thomas L.</strong>
+                        <span style="color: #fbbf24;">★★★★☆</span>
+                    </div>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem;">
+                        Bonne qualité, fonctionne parfaitement. Dommage que les instructions ne soient qu'en anglais.
+                    </p>
+                    <div style="font-size: 0.75rem; color: var(--muted-foreground); margin-top: 0.5rem;">3 janvier 2026</div>
+                </div>
+
+                <!-- Review 3 -->
+                <div style="padding: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <strong>Sophie M.</strong>
+                        <span style="color: #fbbf24;">★★★★★</span>
+                    </div>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem;">
+                        Machine réparée en 25 min ! Le diagnostic IA m'a fait gagner un temps fou.
+                    </p>
+                    <div style="font-size: 0.75rem; color: var(--muted-foreground); margin-top: 0.5rem;">28 décembre 2025</div>
+                </div>
+            </div>
+
+            <!-- Related Products -->
+            <div style="margin-top: 4rem;">
+                <h2 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1.5rem;">Produits similaires</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="../assets/a810ff5212790b6b3fa9f185f1c2754b2082d7bc.png" alt="Résistance" class="product-image">
+                        <h3 class="product-name">Résistance chauffante</h3>
+                        <p style="color: var(--muted-foreground); font-size: 0.875rem;">Siemens</p>
+                        <span class="product-price">32,50€</span>
+                    </div>
+                    <div class="product-card">
+                        <img src="../assets/b1cf5194e2bbea342f9621c357e30343d65454bf.png" alt="Joint" class="product-image">
+                        <h3 class="product-name">Joint de porte universel</h3>
+                        <p style="color: var(--muted-foreground); font-size: 0.875rem;">Whirlpool</p>
+                        <span class="product-price">18,90€</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Cart Drawer (same as index) -->
+    <div id="cart-overlay" class="modal-overlay" onclick="closeCart()"></div>
+    <div id="cart-drawer" class="cart-drawer">
+        <div class="cart-header">
+            <h2 style="font-size: 1.25rem; font-weight: 600;">Votre panier</h2>
+            <button id="cart-close" class="btn-icon">
+                <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+            </button>
+        </div>
+        
+        <div id="empty-cart" style="display: none; padding: 3rem; text-align: center;">
+            <i data-lucide="shopping-cart" style="width: 64px; height: 64px; color: var(--muted-foreground); margin: 0 auto 1rem;"></i>
+            <p style="color: var(--muted-foreground);">Votre panier est vide</p>
+        </div>
+
+        <div id="cart-items" class="cart-items"></div>
+
+        <div id="cart-footer" class="cart-footer" style="display: none;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);">
+                <span style="font-weight: 600;">Total:</span>
+                <span id="cart-total" style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">0,00€</span>
+            </div>
+            <a href="checkout.html" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                Passer la commande
+            </a>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script>
+        lucide.createIcons();
+
+        // Tab switching
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const tab = this.dataset.tab;
+                
+                // Update buttons
+                document.querySelectorAll('.tab-button').forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.style.borderBottom = 'none';
+                });
+                this.classList.add('active');
+                this.style.borderBottom = '2px solid var(--primary)';
+                
+                // Update content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                document.getElementById(`tab-${tab}`).style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

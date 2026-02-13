@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Jolimont Electronics</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .faq-item {
+            border: 2px solid var(--border);
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .faq-item:hover {
+            border-color: var(--primary);
+        }
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+        }
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s;
+            background: var(--secondary);
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 1.5rem;
+        }
+        .faq-icon {
+            transition: transform 0.3s;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="main-header">
+            <div class="container">
+                <div class="flex items-center justify-between">
+                    <a href="../index.html">
+                        <img src="../assets/fb59b76ceb2a0cf3614ca89ca0e669563c96bebc.png" alt="Logo" class="logo">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container" style="max-width: 900px; padding: 3rem 1rem;">
+            <!-- Header -->
+            <div class="text-center" style="margin-bottom: 3rem;">
+                <h1 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem;">Questions Fréquentes</h1>
+                <p style="color: var(--muted-foreground); font-size: 1.125rem;">Trouvez rapidement les réponses à vos questions</p>
+            </div>
+
+            <!-- Search -->
+            <div style="margin-bottom: 3rem;">
+                <div style="display: flex; align-items: center; border: 2px solid var(--border); border-radius: 0.75rem; padding: 1rem; background: white;">
+                    <i data-lucide="search" style="width: 24px; height: 24px; margin-right: 1rem; color: var(--muted-foreground);"></i>
+                    <input type="text" placeholder="Rechercher une question..." style="flex: 1; border: none; outline: none; font-size: 1rem;">
+                </div>
+            </div>
+
+            <!-- FAQ Categories -->
+            <div style="margin-bottom: 3rem;">
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                    <button class="btn btn-primary">Toutes</button>
+                    <button class="btn btn-outline">Commande</button>
+                    <button class="btn btn-outline">Livraison</button>
+                    <button class="btn btn-outline">Retours</button>
+                    <button class="btn btn-outline">Produits</button>
+                </div>
+            </div>
+
+            <!-- FAQ Items -->
+            <div>
+                <!-- Question 1 -->
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <h3 style="font-weight: 600; font-size: 1.125rem;">Comment suivre ma commande?</h3>
+                        <i data-lucide="chevron-down" class="faq-icon" style="width: 24px; height: 24px; color: var(--primary);"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p style="color: var(--muted-foreground); line-height: 1.8;">
+                            Vous pouvez suivre votre commande en utilisant notre page de suivi. Vous aurez besoin de votre numéro de commande 
+                            (commençant par "JE") que vous avez reçu par email lors de la confirmation de votre achat. Vous recevrez également 
+                            des notifications par email à chaque étape importante de la livraison.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <h3 style="font-weight: 600; font-size: 1.125rem;">Quels sont les délais de livraison?</h3>
+                        <i data-lucide="chevron-down" class="faq-icon" style="width: 24px; height: 24px; color: var(--primary);"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p style="color: var(--muted-foreground); line-height: 1.8;">
+                            Nous proposons une livraison express en 24h pour toutes les commandes passées avant 17h. 
+                            Pour les zones non couvertes par notre service express, la livraison standard prend 2-3 jours ouvrés.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <h3 style="font-weight: 600; font-size: 1.125rem;">Comment retourner un produit?</h3>
+                        <i data-lucide="chevron-down" class="faq-icon" style="width: 24px; height: 24px; color: var(--primary);"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p style="color: var(--muted-foreground); line-height: 1.8;">
+                            Vous disposez de 30 jours pour retourner un produit. Il suffit de nous contacter via notre formulaire de contact 
+                            ou par téléphone pour obtenir une étiquette de retour gratuite. Le produit doit être dans son emballage d'origine 
+                            et non utilisé.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <h3 style="font-weight: 600; font-size: 1.125rem;">Comment savoir quelle pièce acheter?</h3>
+                        <i data-lucide="chevron-down" class="faq-icon" style="width: 24px; height: 24px; color: var(--primary);"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p style="color: var(--muted-foreground); line-height: 1.8;">
+                            Utilisez notre outil de diagnostic IA gratuit ! Il vous posera quelques questions sur votre appareil et 
+                            identifiera automatiquement la pièce dont vous avez besoin. Vous pouvez également nous contacter directement 
+                            avec le modèle de votre appareil, et nos experts vous conseilleront.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <h3 style="font-weight: 600; font-size: 1.125rem;">Les pièces sont-elles garanties?</h3>
+                        <i data-lucide="chevron-down" class="faq-icon" style="width: 24px; height: 24px; color: var(--primary);"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p style="color: var(--muted-foreground); line-height: 1.8;">
+                            Oui, toutes nos pièces sont garanties 12 mois contre les défauts de fabrication. Si vous rencontrez 
+                            un problème avec une pièce dans les 12 mois suivant l'achat, nous la remplacerons gratuitement.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <h3 style="font-weight: 600; font-size: 1.125rem;">Proposez-vous des guides d'installation?</h3>
+                        <i data-lucide="chevron-down" class="faq-icon" style="width: 24px; height: 24px; color: var(--primary);"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p style="color: var(--muted-foreground); line-height: 1.8;">
+                            Absolument! Chaque produit est accompagné d'un guide d'installation détaillé en français. 
+                            Nous proposons également des tutoriels vidéo pour les pièces les plus courantes. Si vous avez besoin 
+                            d'aide supplémentaire, notre équipe technique est disponible par téléphone.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Question 7 -->
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <h3 style="font-weight: 600; font-size: 1.125rem;">Quels modes de paiement acceptez-vous?</h3>
+                        <i data-lucide="chevron-down" class="faq-icon" style="width: 24px; height: 24px; color: var(--primary);"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p style="color: var(--muted-foreground); line-height: 1.8;">
+                            Nous acceptons les cartes bancaires (Visa, Mastercard), PayPal, et les virements bancaires. 
+                            Tous les paiements sont 100% sécurisés avec cryptage SSL.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Question 8 -->
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <h3 style="font-weight: 600; font-size: 1.125rem;">Puis-je annuler ma commande?</h3>
+                        <i data-lucide="chevron-down" class="faq-icon" style="width: 24px; height: 24px; color: var(--primary);"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p style="color: var(--muted-foreground); line-height: 1.8;">
+                            Vous pouvez annuler votre commande gratuitement tant qu'elle n'a pas été expédiée. 
+                            Contactez-nous rapidement après avoir passé la commande. Une fois expédiée, vous devrez suivre 
+                            la procédure de retour standard.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div style="margin-top: 4rem; padding: 2rem; background: linear-gradient(135deg, var(--primary) 0%, #2347b8 100%); border-radius: 0.75rem; color: white; text-align: center;">
+                <h2 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 1rem;">Vous n'avez pas trouvé votre réponse?</h2>
+                <p style="opacity: 0.9; margin-bottom: 1.5rem;">Notre équipe est là pour vous aider</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="customer-service.html" class="btn" style="background: white; color: var(--primary); border: none;">
+                        <i data-lucide="headphones" style="width: 18px; height: 18px;"></i>
+                        Contacter le support
+                    </a>
+                    <a href="tel:0123456789" class="btn btn-outline" style="border-color: white; color: white;">
+                        <i data-lucide="phone" style="width: 18px; height: 18px;"></i>
+                        01 23 45 67 89
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/main.js"></script>
+    <script>
+        lucide.createIcons();
+
+        function toggleFaq(element) {
+            const isActive = element.classList.contains('active');
+            
+            // Close all FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked FAQ if it wasn't active
+            if (!isActive) {
+                element.classList.add('active');
+            }
+            
+            // Re-initialize lucide icons
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>

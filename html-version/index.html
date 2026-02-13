@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jolimont Electronics - Pièces détachées électroménager</title>
+    <meta name="description" content="Trouvez toutes vos pièces détachées pour électroménager. Livraison rapide 24h, diagnostic IA, et plus de 50 000 références disponibles.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/fb59b76ceb2a0cf3614ca89ca0e669563c96bebc.png">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="container">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="flex items-center gap-2 text-sm">
+                            <i data-lucide="phone" style="width: 16px; height: 16px;"></i>
+                            <span>01 23 45 67 89</span>
+                        </a>
+                        <a href="#" class="flex items-center gap-2 text-sm">
+                            <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                            <span>contact@jolimont.fr</span>
+                        </a>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <a href="pages/order-tracking.html" class="flex items-center gap-2 text-sm">
+                            <i data-lucide="package" style="width: 16px; height: 16px;"></i>
+                            <span>Suivi de commande</span>
+                        </a>
+                        <a href="pages/login.html" class="flex items-center gap-2 text-sm">
+                            <i data-lucide="user" style="width: 16px; height: 16px;"></i>
+                            <span>Mon compte</span>
+                        </a>
+                        <select style="background: transparent; border: none; font-size: 0.875rem;">
+                            <option>🇫🇷 FR</option>
+                            <option>🇬🇧 EN</option>
+                            <option>🇩🇪 DE</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Header -->
+        <div class="main-header">
+            <div class="container">
+                <div class="flex items-center justify-between">
+                    <!-- Logo -->
+                    <a href="index.html">
+                        <img src="assets/fb59b76ceb2a0cf3614ca89ca0e669563c96bebc.png" alt="Jolimont Electronics Logo" class="logo">
+                    </a>
+
+                    <!-- Desktop Navigation -->
+                    <nav class="hidden md:flex">
+                        <a href="pages/catalog.html" class="flex items-center gap-2">
+                            <i data-lucide="grid-3x3" style="width: 18px; height: 18px;"></i>
+                            Catalogue
+                        </a>
+                        <a href="pages/diagnostic.html" class="flex items-center gap-2 text-primary">
+                            <i data-lucide="sparkles" style="width: 18px; height: 18px;"></i>
+                            Diagnostic IA
+                        </a>
+                        <a href="pages/customer-service.html" class="flex items-center gap-2">
+                            <i data-lucide="headphones" style="width: 18px; height: 18px;"></i>
+                            Support
+                        </a>
+                    </nav>
+
+                    <!-- Right Actions -->
+                    <div class="flex items-center gap-3">
+                        <button id="mobile-menu-btn" class="btn-icon md:hidden">
+                            <i data-lucide="menu" style="width: 20px; height: 20px;"></i>
+                        </button>
+                        <button onclick="handleSearch()" class="btn-outline btn-icon">
+                            <i data-lucide="search" style="width: 20px; height: 20px;"></i>
+                        </button>
+                        <button id="cart-btn" class="btn-icon" style="position: relative; transition: transform 0.2s;">
+                            <i data-lucide="shopping-cart" style="width: 20px; height: 20px;"></i>
+                            <span id="cart-count" style="position: absolute; top: -4px; right: -4px; width: 20px; height: 20px; background: var(--primary); color: white; border-radius: 50%; font-size: 0.75rem; display: none; align-items: center; justify-content: center; font-weight: 600;">0</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Trust Bar -->
+    <div class="trust-bar">
+        <!-- Desktop Version -->
+        <div class="container hidden md:block">
+            <div class="trust-items">
+                <!-- Best Price -->
+                <div class="trust-item" data-trust-item="price">
+                    <span style="font-size: 1.25rem; color: var(--primary); font-weight: bold;">€</span>
+                    <span style="font-weight: 500; font-size: 0.8125rem;">Meilleur prix garanti</span>
+                    <div id="trust-popup-price" class="trust-popup">
+                        <button onclick="closeAllTrustPopups()" style="position: absolute; top: 0.5rem; right: 0.5rem; border: none; background: none; cursor: pointer;">
+                            <i data-lucide="x" style="width: 16px; height: 16px;"></i>
+                        </button>
+                        <p style="font-size: 0.875rem; color: #374151;">Prix compétitifs sur toutes nos pièces de marque</p>
+                    </div>
+                </div>
+
+                <!-- Fast Shipping -->
+                <div class="trust-item" data-trust-item="shipping">
+                    <svg style="width: 1.5rem; height: 1.5rem; flex-shrink: 0;" fill="none" viewBox="0 0 24 24">
+                        <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke="#305CDE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span style="font-weight: 500; font-size: 0.8125rem;">Livraison express 24h</span>
+                    <div id="trust-popup-shipping" class="trust-popup">
+                        <button onclick="closeAllTrustPopups()" style="position: absolute; top: 0.5rem; right: 0.5rem; border: none; background: none; cursor: pointer;">
+                            <i data-lucide="x" style="width: 16px; height: 16px;"></i>
+                        </button>
+                        <p style="font-size: 0.875rem; color: #374151;">Expédition le jour même pour toute commande passée avant 17h</p>
+                    </div>
+                </div>
+
+                <!-- Free Returns -->
+                <div class="trust-item" data-trust-item="returns">
+                    <svg style="width: 1.25rem; height: 1.25rem; flex-shrink: 0; color: #305CDE;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    <span style="font-weight: 500; font-size: 0.8125rem;">Retours gratuits 30 jours</span>
+                    <div id="trust-popup-returns" class="trust-popup">
+                        <button onclick="closeAllTrustPopups()" style="position: absolute; top: 0.5rem; right: 0.5rem; border: none; background: none; cursor: pointer;">
+                            <i data-lucide="x" style="width: 16px; height: 16px;"></i>
+                        </button>
+                        <p style="font-size: 0.875rem; color: #374151;">Retour gratuit sous 30 jours si la pièce ne convient pas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Version - Carousel -->
+        <div class="md:hidden" style="display: flex; justify-content: center; align-items: center; min-height: 32px;">
+            <div id="trust-mobile-slide" style="transition: opacity 0.3s;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;">
+                    <span style="font-size: 1.25rem; color: #305CDE; font-weight: bold;">€</span>
+                    <span style="font-weight: 500;">Meilleur prix garanti</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-bg">
+                <picture>
+                    <source media="(max-width: 640px)" srcset="assets/314012da235ac6400a8de8c3d00cb46ecd304487.png">
+                    <img src="assets/13c4ab82dfa5e37ba74d95cf59b5494c20197227.png" alt="Hero Background">
+                </picture>
+            </div>
+            
+            <div class="hero-content fade-in">
+                <h1 class="hero-title">Trouvez la pièce détachée parfaite pour votre électroménager</h1>
+                <p class="hero-subtitle">Plus de 50 000 pièces disponibles • Livraison express • Diagnostic IA gratuit</p>
+                
+                <!-- Search Form -->
+                <div class="search-form">
+                    <select class="search-select">
+                        <option>Sélectionner votre appareil</option>
+                        <option>Lave-linge</option>
+                        <option>Lave-vaisselle</option>
+                        <option>Réfrigérateur</option>
+                        <option>Four</option>
+                        <option>Sèche-linge</option>
+                    </select>
+                    <select class="search-select">
+                        <option>Sélectionner votre marque</option>
+                        <option>Bosch</option>
+                        <option>Siemens</option>
+                        <option>Samsung</option>
+                        <option>LG</option>
+                        <option>Whirlpool</option>
+                    </select>
+                    <input type="text" class="search-select" placeholder="Référence du modèle">
+                    <button class="btn btn-primary" style="white-space: nowrap;">Rechercher</button>
+                </div>
+
+                <div style="display: flex; align-items: center; justify-center; gap: 0.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                    <span style="color: rgba(255,255,255,0.7); font-size: 0.875rem;">Vous ne trouvez pas la référence ?</span>
+                    <a href="pages/diagnostic.html" class="btn btn-outline" style="color: white; border-color: rgba(255,255,255,0.3);">
+                        <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>
+                        Diagnostic IA
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sustainability Section -->
+        <section class="py-8 scroll-reveal" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+            <div class="container">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; color: white;">
+                    <div class="text-center">
+                        <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-center; margin: 0 auto 1rem;">
+                            <i data-lucide="leaf" style="width: 32px; height: 32px;"></i>
+                        </div>
+                        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Réparer plutôt que remplacer</h3>
+                        <p style="opacity: 0.9;">Économisez jusqu'à 70% par rapport à l'achat d'un nouvel appareil</p>
+                    </div>
+                    <div class="text-center">
+                        <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-center; margin: 0 auto 1rem;">
+                            <i data-lucide="recycle" style="width: 32px; height: 32px;"></i>
+                        </div>
+                        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Impact environnemental</h3>
+                        <p style="opacity: 0.9;">Réduisez les déchets électroniques et votre empreinte carbone</p>
+                    </div>
+                    <div class="text-center">
+                        <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-center; margin: 0 auto 1rem;">
+                            <i data-lucide="award" style="width: 32px; height: 32px;"></i>
+                        </div>
+                        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Garantie qualité</h3>
+                        <p style="opacity: 0.9;">Toutes nos pièces sont certifiées et garanties 12 mois</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shop by Appliance -->
+        <section class="py-8 scroll-reveal">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 style="font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem;">Achetez par appareil</h2>
+                    <p style="color: var(--muted-foreground);">Trouvez rapidement les pièces pour votre électroménager</p>
+                </div>
+
+                <div class="brand-grid">
+                    <a href="pages/category-parts.html?category=washing-machine" class="brand-card">
+                        <i data-lucide="washing-machine" style="width: 60px; height: 60px; color: var(--primary);"></i>
+                    </a>
+                    <a href="pages/category-parts.html?category=dishwasher" class="brand-card">
+                        <i data-lucide="refrigerator" style="width: 60px; height: 60px; color: var(--primary);"></i>
+                    </a>
+                    <a href="pages/category-parts.html?category=oven" class="brand-card">
+                        <i data-lucide="microwave" style="width: 60px; height: 60px; color: var(--primary);"></i>
+                    </a>
+                    <a href="pages/category-parts.html?category=dryer" class="brand-card">
+                        <i data-lucide="wind" style="width: 60px; height: 60px; color: var(--primary);"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- OR Divider -->
+        <div class="py-8 scroll-reveal">
+            <div class="container">
+                <div style="display: flex; align-items: center; justify-center;">
+                    <div style="flex: 1; height: 1px; background: #d1d5db;"></div>
+                    <span style="padding: 0 1.5rem; font-size: 1.5rem; font-weight: bold; color: #9ca3af;">OU</span>
+                    <div style="flex: 1; height: 1px; background: #d1d5db;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Find by Brand -->
+        <section class="py-8 scroll-reveal">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 style="font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem;">Trouvez par marque</h2>
+                    <p style="color: var(--muted-foreground);">Sélectionnez votre marque pour voir toutes les pièces compatibles</p>
+                </div>
+
+                <div class="brand-grid">
+                    <a href="pages/brand-products.html?brand=bosch" class="brand-card">
+                        <img src="assets/520a487a6d1b0355afdaebaa6147405947f5ce50.png" alt="Bosch">
+                    </a>
+                    <a href="pages/brand-products.html?brand=siemens" class="brand-card">
+                        <img src="assets/480e6a07858ac4d35221ea2789e5c06239ee2e0e.png" alt="Siemens">
+                    </a>
+                    <a href="pages/brand-products.html?brand=samsung" class="brand-card">
+                        <img src="assets/79f8ae3dd17c139504f9ac05813a1d2fdf2d44a1.png" alt="Samsung">
+                    </a>
+                    <a href="pages/brand-products.html?brand=lg" class="brand-card">
+                        <img src="assets/02ab6d2362f2b27023125804934c0efb85c9e49f.png" alt="LG">
+                    </a>
+                    <a href="pages/brand-products.html?brand=whirlpool" class="brand-card">
+                        <img src="assets/3c3c9a028e00a0b64228193f8e389fd33e4ca255.png" alt="Whirlpool">
+                    </a>
+                    <a href="pages/brand-products.html?brand=miele" class="brand-card">
+                        <img src="assets/fdec5156a57eb6b9116e943e3b8ba9ffd8f9fd84.png" alt="Miele">
+                    </a>
+                    <a href="pages/brand-products.html?brand=beko" class="brand-card">
+                        <img src="assets/429a63c30e79034f4e2014828962054efcd102d2.png" alt="Beko">
+                    </a>
+                    <a href="pages/brand-products.html?brand=thomson" class="brand-card">
+                        <img src="assets/32d0a2f0a34045d0726d13d0c9a6cc0d38de1b39.png" alt="Thomson">
+                    </a>
+                    <a href="pages/brand-products.html?brand=hotpoint" class="brand-card">
+                        <img src="assets/a9eb3b3e3f0d20fe8b959c75f830d1f8a608f9c5.png" alt="Hotpoint">
+                    </a>
+                    <a href="pages/brand-products.html?brand=electrolux" class="brand-card">
+                        <img src="assets/f6a2bfe664c145da64bb06ecf1e2f594e24290ac.png" alt="Electrolux">
+                    </a>
+                    <a href="pages/brand-products.html?brand=zanussi" class="brand-card">
+                        <img src="assets/7e0a67cbd42d085ddb4e7c93bd623089ec421ef7.png" alt="Zanussi">
+                    </a>
+                    <a href="pages/brand-products.html?brand=aeg" class="brand-card">
+                        <img src="assets/df0a0b29ead28472826bb8655127ff4a57b1657f.png" alt="AEG">
+                    </a>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn btn-outline">
+                        Voir plus de marques
+                        <i data-lucide="chevron-down" style="width: 16px; height: 16px;"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Products -->
+        <section class="py-8 scroll-reveal" style="background: var(--secondary);">
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <div>
+                        <h2 style="font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem;">Produits populaires</h2>
+                        <p style="color: var(--muted-foreground);">Les pièces les plus commandées ce mois-ci</p>
+                    </div>
+                    <a href="pages/catalog.html" class="btn btn-outline">Voir tout</a>
+                </div>
+
+                <div class="product-grid" id="product-carousel">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <span class="badge badge-primary product-badge">IA Recommandé</span>
+                        <img src="assets/392ded11266269b334c66232f3a2ce4446dccd83.png" alt="Pompe de vidange" class="product-image">
+                        <h3 class="product-name">Pompe de vidange universelle pour lave-linge</h3>
+                        <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 0.5rem;">Bosch</p>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <span class="badge badge-success">En stock</span>
+                            <span style="font-size: 0.75rem; color: var(--muted-foreground);">⚡ Livraison 24h</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="product-price">24,90€</span>
+                            <button onclick="addToCart('1')" class="btn btn-primary" style="padding: 0.5rem 1rem;">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <img src="assets/a810ff5212790b6b3fa9f185f1c2754b2082d7bc.png" alt="Résistance chauffante" class="product-image">
+                        <h3 class="product-name">Résistance chauffante lave-vaisselle</h3>
+                        <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 0.5rem;">Siemens</p>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <span class="badge badge-success">En stock</span>
+                            <span style="font-size: 0.75rem; color: var(--muted-foreground);">⚡ Livraison 24h</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="product-price">32,50€</span>
+                            <button onclick="addToCart('2')" class="btn btn-primary" style="padding: 0.5rem 1rem;">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <img src="assets/0174da8e1f21942cc40c4ee01d8d6046c8adb990.png" alt="Thermostat" class="product-image">
+                        <h3 class="product-name">Thermostat électronique four</h3>
+                        <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 0.5rem;">Samsung</p>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <span class="badge badge-success">En stock</span>
+                            <span style="font-size: 0.75rem; color: var(--muted-foreground);">⚡ Livraison 24h</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="product-price">45,00€</span>
+                            <button onclick="addToCart('3')" class="btn btn-primary" style="padding: 0.5rem 1rem;">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <span class="badge badge-primary product-badge">IA Recommandé</span>
+                        <img src="assets/b1cf5194e2bbea342f9621c357e30343d65454bf.png" alt="Joint de porte" class="product-image">
+                        <h3 class="product-name">Joint de porte lave-linge universel</h3>
+                        <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 0.5rem;">Whirlpool</p>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <span class="badge badge-success">En stock</span>
+                            <span style="font-size: 0.75rem; color: var(--muted-foreground);">⚡ Livraison 24h</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="product-price">18,90€</span>
+                            <button onclick="addToCart('4')" class="btn btn-primary" style="padding: 0.5rem 1rem;">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 5 -->
+                    <div class="product-card">
+                        <img src="assets/0756cd198c9136bad27f0c23ce38fce085c25f47.png" alt="Filtre à eau" class="product-image">
+                        <h3 class="product-name">Filtre à eau frigo américain</h3>
+                        <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 0.5rem;">LG</p>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <span class="badge badge-success">En stock</span>
+                            <span style="font-size: 0.75rem; color: var(--muted-foreground);">⚡ Livraison 24h</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="product-price">28,00€</span>
+                            <button onclick="addToCart('5')" class="btn btn-primary" style="padding: 0.5rem 1rem;">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 6 -->
+                    <div class="product-card">
+                        <img src="assets/4bba82a3eff065e6c7d1e5ce7f00580c48bc753b.png" alt="Courroie" class="product-image">
+                        <h3 class="product-name">Courroie de tambour sèche-linge</h3>
+                        <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 0.5rem;">Miele</p>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <span class="badge badge-success">En stock</span>
+                            <span style="font-size: 0.75rem; color: var(--muted-foreground);">⚡ Livraison 24h</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="product-price">15,50€</span>
+                            <button onclick="addToCart('6')" class="btn btn-primary" style="padding: 0.5rem 1rem;">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trusted Delivery Partners -->
+        <section class="py-8 scroll-reveal">
+            <div class="container text-center">
+                <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 2rem;">Nos partenaires de confiance</h3>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 4rem; flex-wrap: wrap;">
+                    <img src="assets/dpd-logo.png" alt="DPD" style="height: 40px; filter: grayscale(100%); opacity: 0.6;" onerror="this.style.display='none'">
+                    <img src="assets/trusted-shops-logo.png" alt="Trusted Shops" style="height: 40px; filter: grayscale(100%); opacity: 0.6;" onerror="this.style.display='none'">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <i data-lucide="shield-check" style="width: 40px; height: 40px; color: #10b981;"></i>
+                        <span style="font-weight: 600; color: var(--foreground);">Paiement Sécurisé</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Company Info -->
+                <div class="footer-section">
+                    <h3>À propos</h3>
+                    <p style="opacity: 0.8; font-size: 0.875rem; margin-bottom: 1rem;">
+                        Jolimont Electronics, votre spécialiste en pièces détachées pour électroménager depuis 1995.
+                    </p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#" style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="facebook" style="width: 20px; height: 20px;"></i>
+                        </a>
+                        <a href="#" style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
+                        </a>
+                        <a href="#" style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-center;">
+                            <i data-lucide="twitter" style="width: 20px; height: 20px;"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="pages/catalog.html">Catalogue</a></li>
+                        <li><a href="pages/diagnostic.html">Diagnostic IA</a></li>
+                        <li><a href="pages/customer-service.html">Service client</a></li>
+                        <li><a href="pages/order-tracking.html">Suivi de commande</a></li>
+                    </ul>
+                </div>
+
+                <!-- Help -->
+                <div class="footer-section">
+                    <h3>Aide</h3>
+                    <ul>
+                        <li><a href="pages/faq.html">FAQ</a></li>
+                        <li><a href="pages/warranty.html">Garantie</a></li>
+                        <li><a href="pages/returns.html">Retours</a></li>
+                        <li><a href="pages/terms.html">CGV</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="tel:0123456789">
+                            <i data-lucide="phone" style="width: 16px; height: 16px; display: inline;"></i>
+                            01 23 45 67 89
+                        </a></li>
+                        <li><a href="mailto:contact@jolimont.fr">
+                            <i data-lucide="mail" style="width: 16px; height: 16px; display: inline;"></i>
+                            contact@jolimont.fr
+                        </a></li>
+                        <li>
+                            <i data-lucide="map-pin" style="width: 16px; height: 16px; display: inline;"></i>
+                            123 Rue de la République, Paris
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Jolimont Electronics. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div id="cart-overlay" class="modal-overlay" onclick="closeCart()"></div>
+    <div id="cart-drawer" class="cart-drawer">
+        <div class="cart-header">
+            <h2 style="font-size: 1.25rem; font-weight: 600;">Votre panier</h2>
+            <button id="cart-close" class="btn-icon">
+                <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+            </button>
+        </div>
+        
+        <div id="empty-cart" style="display: none; padding: 3rem; text-align: center;">
+            <i data-lucide="shopping-cart" style="width: 64px; height: 64px; color: var(--muted-foreground); margin: 0 auto 1rem;"></i>
+            <p style="color: var(--muted-foreground);">Votre panier est vide</p>
+        </div>
+
+        <div id="cart-items" class="cart-items"></div>
+
+        <div id="cart-footer" class="cart-footer" style="display: none;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);">
+                <span style="font-weight: 600;">Total:</span>
+                <span id="cart-total" style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">0,00€</span>
+            </div>
+            <a href="pages/checkout.html" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                Passer la commande
+            </a>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <h2 style="font-size: 1.25rem; font-weight: 600;">Menu</h2>
+            <button onclick="toggleMobileMenu()" class="btn-icon">
+                <i data-lucide="x" style="width: 24px; height: 24px;"></i>
+            </button>
+        </div>
+
+        <nav style="display: flex; flex-direction: column; gap: 1rem;">
+            <a href="pages/catalog.html" class="btn btn-outline" style="justify-content: flex-start;">
+                <i data-lucide="grid-3x3" style="width: 18px; height: 18px;"></i>
+                Catalogue
+            </a>
+            <a href="pages/diagnostic.html" class="btn btn-outline" style="justify-content: flex-start;">
+                <i data-lucide="sparkles" style="width: 18px; height: 18px;"></i>
+                Diagnostic IA
+            </a>
+            <a href="pages/customer-service.html" class="btn btn-outline" style="justify-content: flex-start;">
+                <i data-lucide="headphones" style="width: 18px; height: 18px;"></i>
+                Support
+            </a>
+            <a href="pages/order-tracking.html" class="btn btn-outline" style="justify-content: flex-start;">
+                <i data-lucide="package" style="width: 18px; height: 18px;"></i>
+                Suivi de commande
+            </a>
+            <a href="pages/login.html" class="btn btn-outline" style="justify-content: flex-start;">
+                <i data-lucide="user" style="width: 18px; height: 18px;"></i>
+                Mon compte
+            </a>
+        </nav>
+    </div>
+
+    <!-- Chatbot Button -->
+    <button id="chatbot-btn" class="chatbot-button">
+        <i data-lucide="message-circle" style="width: 28px; height: 28px;"></i>
+    </button>
+
+    <!-- Chatbot Window -->
+    <div id="chatbot-window" class="chatbot-window">
+        <div style="padding: 1rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="font-weight: 600;">Assistant virtuel</h3>
+            <button id="chatbot-close" class="btn-icon">
+                <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+            </button>
+        </div>
+        <div style="flex: 1; padding: 1rem; overflow-y: auto;">
+            <div style="background: var(--secondary); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                <p style="font-size: 0.875rem;">Bonjour! Comment puis-je vous aider aujourd'hui?</p>
+            </div>
+        </div>
+        <div style="padding: 1rem; border-top: 1px solid var(--border);">
+            <div style="display: flex; gap: 0.5rem;">
+                <input type="text" placeholder="Tapez votre message..." style="flex: 1; padding: 0.5rem; border: 1px solid var(--border); border-radius: 0.375rem;">
+                <button class="btn btn-primary">
+                    <i data-lucide="send" style="width: 18px; height: 18px;"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

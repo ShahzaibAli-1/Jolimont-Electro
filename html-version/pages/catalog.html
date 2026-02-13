@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogue - Jolimont Electronics</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <header>
+        <div class="main-header">
+            <div class="container">
+                <div class="flex items-center justify-between">
+                    <a href="../index.html">
+                        <img src="../assets/fb59b76ceb2a0cf3614ca89ca0e669563c96bebc.png" alt="Logo" class="logo">
+                    </a>
+                    <div class="flex items-center gap-3">
+                        <div style="display: flex; align-items: center; border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.5rem 1rem;">
+                            <i data-lucide="search" style="width: 18px; height: 18px; margin-right: 0.5rem; color: var(--muted-foreground);"></i>
+                            <input type="text" placeholder="Rechercher..." style="border: none; outline: none; width: 200px;">
+                        </div>
+                        <button id="cart-btn" class="btn-icon" style="position: relative;">
+                            <i data-lucide="shopping-cart" style="width: 20px; height: 20px;"></i>
+                            <span id="cart-count" style="position: absolute; top: -4px; right: -4px; width: 20px; height: 20px; background: var(--primary); color: white; border-radius: 50%; font-size: 0.75rem; display: none; align-items: center; justify-content: center;">0</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container" style="padding: 2rem 1rem;">
+            <!-- Header -->
+            <div style="margin-bottom: 2rem;">
+                <h1 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 0.5rem;">Catalogue de pièces</h1>
+                <p style="color: var(--muted-foreground);">Plus de 50 000 pièces détachées disponibles</p>
+            </div>
+
+            <!-- Filters -->
+            <div style="display: grid; grid-template-columns: 250px 1fr; gap: 2rem;">
+                <!-- Sidebar Filters -->
+                <div>
+                    <div style="border: 2px solid var(--border); border-radius: 0.75rem; padding: 1.5rem; background: white; position: sticky; top: 100px;">
+                        <h3 style="font-weight: 600; margin-bottom: 1rem;">Filtres</h3>
+                        
+                        <!-- Category -->
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">Catégorie</h4>
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <label style="display: flex; align-items: center; cursor: pointer;">
+                                    <input type="checkbox" style="margin-right: 0.5rem;">
+                                    <span style="font-size: 0.875rem;">Lave-linge</span>
+                                </label>
+                                <label style="display: flex; align-items: center; cursor: pointer;">
+                                    <input type="checkbox" style="margin-right: 0.5rem;">
+                                    <span style="font-size: 0.875rem;">Lave-vaisselle</span>
+                                </label>
+                                <label style="display: flex; align-items: center; cursor: pointer;">
+                                    <input type="checkbox" style="margin-right: 0.5rem;">
+                                    <span style="font-size: 0.875rem;">Four</span>
+                                </label>
+                                <label style="display: flex; align-items: center; cursor: pointer;">
+                                    <input type="checkbox" style="margin-right: 0.5rem;">
+                                    <span style="font-size: 0.875rem;">Réfrigérateur</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Brand -->
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">Marque</h4>
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <label style="display: flex; align-items: center; cursor: pointer;">
+                                    <input type="checkbox" style="margin-right: 0.5rem;">
+                                    <span style="font-size: 0.875rem;">Bosch</span>
+                                </label>
+                                <label style="display: flex; align-items: center; cursor: pointer;">
+                                    <input type="checkbox" style="margin-right: 0.5rem;">
+                                    <span style="font-size: 0.875rem;">Siemens</span>
+                                </label>
+                                <label style="display: flex; align-items: center; cursor: pointer;">
+                                    <input type="checkbox" style="margin-right: 0.5rem;">
+                                    <span style="font-size: 0.875rem;">Samsung</span>
+                                </label>
+                                <label style="display: flex; align-items: center; cursor: pointer;">
+                                    <input type="checkbox" style="margin-right: 0.5rem;">
+                                    <span style="font-size: 0.875rem;">LG</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Price -->
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">Prix</h4>
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <label style="display: flex; align-items: center; cursor: pointer;">
+                                    <input type="checkbox" style="margin-right: 0.5rem;">
+                                    <span style="font-size: 0.875rem;">Moins de 20€</span>
+                                </label>
+                                <label style="display: flex; align-items: center; cursor: pointer;">
+                                    <input type="checkbox" style="margin-right: 0.5rem;">
+                                    <span style="font-size: 0.875rem;">20€ - 50€</span>
+                                </label>
+                                <label style="display: flex; align-items: center; cursor: pointer;">
+                                    <input type="checkbox" style="margin-right: 0.5rem;">
+                                    <span style="font-size: 0.875rem;">Plus de 50€</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Availability -->
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">Disponibilité</h4>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" style="margin-right: 0.5rem;">
+                                <span style="font-size: 0.875rem;">En stock seulement</span>
+                            </label>
+                        </div>
+
+                        <button class="btn btn-outline" style="width: 100%; justify-content: center;">
+                            Réinitialiser
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <p style="color: var(--muted-foreground);">243 produits trouvés</p>
+                        <select style="padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 0.375rem;">
+                            <option>Plus populaires</option>
+                            <option>Prix croissant</option>
+                            <option>Prix décroissant</option>
+                            <option>Les mieux notés</option>
+                        </select>
+                    </div>
+
+                    <div class="product-grid">
+                        <!-- Product 1 -->
+                        <div class="product-card">
+                            <span class="badge badge-primary product-badge">IA Recommandé</span>
+                            <img src="../assets/392ded11266269b334c66232f3a2ce4446dccd83.png" alt="Pompe" class="product-image">
+                            <h3 class="product-name">Pompe de vidange universelle pour lave-linge</h3>
+                            <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 0.5rem;">Bosch</p>
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                <span class="badge badge-success">En stock</span>
+                                <span style="font-size: 0.75rem; color: var(--muted-foreground);">⚡ Livraison 24h</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="product-price">24,90€</span>
+                                <button onclick="addToCart('1')" class="btn btn-primary" style="padding: 0.5rem 1rem;">
+                                    Ajouter
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product 2 -->
+                        <div class="product-card">
+                            <img src="../assets/a810ff5212790b6b3fa9f185f1c2754b2082d7bc.png" alt="Résistance" class="product-image">
+                            <h3 class="product-name">Résistance chauffante lave-vaisselle</h3>
+                            <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 0.5rem;">Siemens</p>
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                <span class="badge badge-success">En stock</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="product-price">32,50€</span>
+                                <button onclick="addToCart('2')" class="btn btn-primary" style="padding: 0.5rem 1rem;">
+                                    Ajouter
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product 3 -->
+                        <div class="product-card">
+                            <img src="../assets/0174da8e1f21942cc40c4ee01d8d6046c8adb990.png" alt="Thermostat" class="product-image">
+                            <h3 class="product-name">Thermostat électronique four</h3>
+                            <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 0.5rem;">Samsung</p>
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                <span class="badge badge-success">En stock</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="product-price">45,00€</span>
+                                <button onclick="addToCart('3')" class="btn btn-primary" style="padding: 0.5rem 1rem;">
+                                    Ajouter
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product 4 -->
+                        <div class="product-card">
+                            <span class="badge badge-primary product-badge">IA Recommandé</span>
+                            <img src="../assets/b1cf5194e2bbea342f9621c357e30343d65454bf.png" alt="Joint" class="product-image">
+                            <h3 class="product-name">Joint de porte lave-linge universel</h3>
+                            <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 0.5rem;">Whirlpool</p>
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                <span class="badge badge-success">En stock</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="product-price">18,90€</span>
+                                <button onclick="addToCart('4')" class="btn btn-primary" style="padding: 0.5rem 1rem;">
+                                    Ajouter
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product 5 -->
+                        <div class="product-card">
+                            <img src="../assets/0756cd198c9136bad27f0c23ce38fce085c25f47.png" alt="Filtre" class="product-image">
+                            <h3 class="product-name">Filtre à eau frigo américain</h3>
+                            <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 0.5rem;">LG</p>
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                <span class="badge badge-success">En stock</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="product-price">28,00€</span>
+                                <button onclick="addToCart('5')" class="btn btn-primary" style="padding: 0.5rem 1rem;">
+                                    Ajouter
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product 6 -->
+                        <div class="product-card">
+                            <img src="../assets/4bba82a3eff065e6c7d1e5ce7f00580c48bc753b.png" alt="Courroie" class="product-image">
+                            <h3 class="product-name">Courroie de tambour sèche-linge</h3>
+                            <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 0.5rem;">Miele</p>
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                <span class="badge badge-success">En stock</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="product-price">15,50€</span>
+                                <button onclick="addToCart('6')" class="btn btn-primary" style="padding: 0.5rem 1rem;">
+                                    Ajouter
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin-top: 3rem;">
+                        <button class="btn btn-outline">
+                            <i data-lucide="chevron-left" style="width: 18px; height: 18px;"></i>
+                        </button>
+                        <button class="btn btn-primary">1</button>
+                        <button class="btn btn-outline">2</button>
+                        <button class="btn btn-outline">3</button>
+                        <button class="btn btn-outline">4</button>
+                        <button class="btn btn-outline">
+                            <i data-lucide="chevron-right" style="width: 18px; height: 18px;"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Cart Drawer -->
+    <div id="cart-overlay" class="modal-overlay" onclick="closeCart()"></div>
+    <div id="cart-drawer" class="cart-drawer">
+        <div class="cart-header">
+            <h2 style="font-size: 1.25rem; font-weight: 600;">Votre panier</h2>
+            <button id="cart-close" class="btn-icon">
+                <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+            </button>
+        </div>
+        
+        <div id="empty-cart" style="display: none; padding: 3rem; text-align: center;">
+            <i data-lucide="shopping-cart" style="width: 64px; height: 64px; color: var(--muted-foreground); margin: 0 auto 1rem;"></i>
+            <p style="color: var(--muted-foreground);">Votre panier est vide</p>
+        </div>
+
+        <div id="cart-items" class="cart-items"></div>
+
+        <div id="cart-footer" class="cart-footer" style="display: none;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);">
+                <span style="font-weight: 600;">Total:</span>
+                <span id="cart-total" style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">0,00€</span>
+            </div>
+            <a href="checkout.html" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                Passer la commande
+            </a>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

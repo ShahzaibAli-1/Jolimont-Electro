@@ -1,0 +1,3401 @@
+openapi: 3.0.3
+info:
+  title: Jolimont Electronics API
+  version: 1.0.0
+  description: E-commerce API for appliance parts and repair services
+paths:
+  /api/auth/change-password/:
+    put:
+      operationId: api_auth_change_password_update
+      description: API view for changing password
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+        required: true
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangePassword'
+          description: ''
+    patch:
+      operationId: api_auth_change_password_partial_update
+      description: API view for changing password
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedChangePassword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedChangePassword'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedChangePassword'
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangePassword'
+          description: ''
+  /api/auth/login/:
+    post:
+      operationId: api_auth_login_create
+      description: API view for user login
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Login'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Login'
+        required: true
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Login'
+          description: ''
+  /api/auth/logout/:
+    post:
+      operationId: api_auth_logout_create
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          description: No response body
+  /api/auth/logoutall/:
+    post:
+      operationId: api_auth_logoutall_create
+      description: |-
+        Log the user out of all sessions
+        I.E. deletes all auth tokens for the user
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          description: No response body
+  /api/auth/register/:
+    post:
+      operationId: api_auth_register_create
+      description: API view for user registration
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Register'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Register'
+        required: true
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Register'
+          description: ''
+  /api/auth/user/:
+    get:
+      operationId: api_auth_user_retrieve
+      description: API view for getting and updating user profile
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    put:
+      operationId: api_auth_user_update
+      description: API view for getting and updating user profile
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    patch:
+      operationId: api_auth_user_partial_update
+      description: API view for getting and updating user profile
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+  /api/content/blog/:
+    get:
+      operationId: api_content_blog_list
+      description: API endpoints for blog articles
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedBlogArticleListList'
+          description: ''
+  /api/content/blog/{slug}/:
+    get:
+      operationId: api_content_blog_retrieve
+      description: Get blog article detail and increment view count
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogArticleDetail'
+          description: ''
+  /api/content/blog/latest/:
+    get:
+      operationId: api_content_blog_latest_retrieve
+      description: Get latest blog articles
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogArticleDetail'
+          description: ''
+  /api/content/faq/:
+    get:
+      operationId: api_content_faq_list
+      description: API endpoints for FAQs
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedFAQList'
+          description: ''
+  /api/content/faq/{id}/:
+    get:
+      operationId: api_content_faq_retrieve
+      description: API endpoints for FAQs
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this FAQ.
+        required: true
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FAQ'
+          description: ''
+  /api/content/faq/by_category/:
+    get:
+      operationId: api_content_faq_by_category_retrieve
+      description: Get FAQs grouped by category
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FAQ'
+          description: ''
+  /api/content/newsletter/subscribe/:
+    post:
+      operationId: api_content_newsletter_subscribe_create
+      description: Subscribe to newsletter
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Newsletter'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Newsletter'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Newsletter'
+        required: true
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Newsletter'
+          description: ''
+  /api/content/newsletter/unsubscribe/:
+    post:
+      operationId: api_content_newsletter_unsubscribe_create
+      description: Unsubscribe from newsletter
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Newsletter'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Newsletter'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Newsletter'
+        required: true
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Newsletter'
+          description: ''
+  /api/content/pages/:
+    get:
+      operationId: api_content_pages_list
+      description: API endpoints for static pages
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPageList'
+          description: ''
+  /api/content/pages/{page_type}/:
+    get:
+      operationId: api_content_pages_retrieve
+      description: API endpoints for static pages
+      parameters:
+      - in: path
+        name: page_type
+        schema:
+          enum:
+          - warranty
+          - returns
+          - terms
+          - privacy
+          - shipping
+          type: string
+          description: |-
+            * `warranty` - Warranty Policy
+            * `returns` - Returns & Refunds
+            * `terms` - Terms & Conditions
+            * `privacy` - Privacy Policy
+            * `shipping` - Shipping Information
+        required: true
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+          description: ''
+  /api/customer-service/chatbot/get_conversation/:
+    get:
+      operationId: api_customer_service_chatbot_get_conversation_retrieve
+      description: Get conversation history
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatMessage'
+          description: ''
+  /api/customer-service/chatbot/send_message/:
+    post:
+      operationId: api_customer_service_chatbot_send_message_create
+      description: Send a message to chatbot
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatMessage'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ChatMessage'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ChatMessage'
+        required: true
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatMessage'
+          description: ''
+  /api/customer-service/contact/:
+    get:
+      operationId: api_customer_service_contact_list
+      description: API endpoints for contact messages
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedContactMessageList'
+          description: ''
+    post:
+      operationId: api_customer_service_contact_create
+      description: Create a new contact message
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactMessage'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ContactMessage'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ContactMessage'
+        required: true
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactMessage'
+          description: ''
+  /api/customer-service/contact/{id}/:
+    get:
+      operationId: api_customer_service_contact_retrieve
+      description: API endpoints for contact messages
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Contact Message.
+        required: true
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactMessage'
+          description: ''
+    put:
+      operationId: api_customer_service_contact_update
+      description: API endpoints for contact messages
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Contact Message.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactMessage'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ContactMessage'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ContactMessage'
+        required: true
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactMessage'
+          description: ''
+    patch:
+      operationId: api_customer_service_contact_partial_update
+      description: API endpoints for contact messages
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Contact Message.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedContactMessage'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedContactMessage'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedContactMessage'
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactMessage'
+          description: ''
+    delete:
+      operationId: api_customer_service_contact_destroy
+      description: API endpoints for contact messages
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Contact Message.
+        required: true
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/customer-service/diagnostic/:
+    get:
+      operationId: api_customer_service_diagnostic_list
+      description: API endpoints for diagnostic tool
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedDiagnosticList'
+          description: ''
+    post:
+      operationId: api_customer_service_diagnostic_create
+      description: Create a new diagnostic
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Diagnostic'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Diagnostic'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Diagnostic'
+        required: true
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Diagnostic'
+          description: ''
+  /api/customer-service/diagnostic/{id}/:
+    get:
+      operationId: api_customer_service_diagnostic_retrieve
+      description: API endpoints for diagnostic tool
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Diagnostic.
+        required: true
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Diagnostic'
+          description: ''
+    put:
+      operationId: api_customer_service_diagnostic_update
+      description: API endpoints for diagnostic tool
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Diagnostic.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Diagnostic'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Diagnostic'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Diagnostic'
+        required: true
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Diagnostic'
+          description: ''
+    patch:
+      operationId: api_customer_service_diagnostic_partial_update
+      description: API endpoints for diagnostic tool
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Diagnostic.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDiagnostic'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDiagnostic'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDiagnostic'
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Diagnostic'
+          description: ''
+    delete:
+      operationId: api_customer_service_diagnostic_destroy
+      description: API endpoints for diagnostic tool
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Diagnostic.
+        required: true
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/orders/cart/:
+    get:
+      operationId: api_orders_cart_list
+      description: Get current cart
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cart'
+          description: ''
+  /api/orders/cart/add_item/:
+    post:
+      operationId: api_orders_cart_add_item_create
+      description: Add item to cart
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Cart'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Cart'
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: ''
+  /api/orders/cart/clear/:
+    post:
+      operationId: api_orders_cart_clear_create
+      description: Clear all items from cart
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Cart'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Cart'
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: ''
+  /api/orders/cart/remove_item/:
+    post:
+      operationId: api_orders_cart_remove_item_create
+      description: Remove item from cart
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Cart'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Cart'
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: ''
+  /api/orders/cart/update_item/:
+    post:
+      operationId: api_orders_cart_update_item_create
+      description: Update cart item quantity
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Cart'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Cart'
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: ''
+  /api/orders/orders/:
+    get:
+      operationId: api_orders_orders_list
+      description: API endpoints for orders
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedOrderList'
+          description: ''
+    post:
+      operationId: api_orders_orders_create
+      description: Create a new order from cart
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Order'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Order'
+        required: true
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: ''
+  /api/orders/orders/{id}/:
+    get:
+      operationId: api_orders_orders_retrieve
+      description: API endpoints for orders
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Order.
+        required: true
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: ''
+    put:
+      operationId: api_orders_orders_update
+      description: API endpoints for orders
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Order.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Order'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Order'
+        required: true
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: ''
+    patch:
+      operationId: api_orders_orders_partial_update
+      description: API endpoints for orders
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Order.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedOrder'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedOrder'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedOrder'
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: ''
+    delete:
+      operationId: api_orders_orders_destroy
+      description: API endpoints for orders
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Order.
+        required: true
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/orders/orders/{id}/cancel/:
+    post:
+      operationId: api_orders_orders_cancel_create
+      description: Cancel an order
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Order.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Order'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Order'
+        required: true
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: ''
+  /api/orders/orders/{id}/track/:
+    get:
+      operationId: api_orders_orders_track_retrieve
+      description: Track order status
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Order.
+        required: true
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: ''
+  /api/products/:
+    get:
+      operationId: api_products_list
+      description: API endpoints for products
+      parameters:
+      - in: query
+        name: ai_recommended
+        schema:
+          type: boolean
+      - in: query
+        name: brand
+        schema:
+          type: integer
+      - in: query
+        name: category
+        schema:
+          type: integer
+      - in: query
+        name: fast_delivery
+        schema:
+          type: boolean
+      - in: query
+        name: is_compatible
+        schema:
+          type: boolean
+      - in: query
+        name: is_original
+        schema:
+          type: boolean
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedProductListList'
+          description: ''
+    post:
+      operationId: api_products_create
+      description: API endpoints for products
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductCreateUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProductCreateUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProductCreateUpdate'
+        required: true
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductCreateUpdate'
+          description: ''
+  /api/products/{slug}/:
+    get:
+      operationId: api_products_retrieve
+      description: Get product detail and increment view count
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+          description: ''
+    put:
+      operationId: api_products_update
+      description: API endpoints for products
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductCreateUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProductCreateUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProductCreateUpdate'
+        required: true
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductCreateUpdate'
+          description: ''
+    patch:
+      operationId: api_products_partial_update
+      description: API endpoints for products
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProductCreateUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProductCreateUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProductCreateUpdate'
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductCreateUpdate'
+          description: ''
+    delete:
+      operationId: api_products_destroy
+      description: API endpoints for products
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/products/{slug}/add_review/:
+    post:
+      operationId: api_products_add_review_create
+      description: Add a review for a product
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDetail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProductDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProductDetail'
+        required: true
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+          description: ''
+  /api/products/ai_search/:
+    post:
+      operationId: api_products_ai_search_create
+      description: AI-powered search for products
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDetail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProductDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProductDetail'
+        required: true
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+          description: ''
+  /api/products/bestsellers/:
+    get:
+      operationId: api_products_bestsellers_retrieve
+      description: Get best-selling products
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+          description: ''
+  /api/products/brands/:
+    get:
+      operationId: api_products_brands_list
+      description: API endpoints for brands
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedBrandList'
+          description: ''
+  /api/products/brands/{slug}/:
+    get:
+      operationId: api_products_brands_retrieve
+      description: API endpoints for brands
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+          description: ''
+  /api/products/brands/{slug}/products/:
+    get:
+      operationId: api_products_brands_products_retrieve
+      description: Get all products for a specific brand
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+          description: ''
+  /api/products/categories/:
+    get:
+      operationId: api_products_categories_list
+      description: API endpoints for categories
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCategoryList'
+          description: ''
+  /api/products/categories/{slug}/:
+    get:
+      operationId: api_products_categories_retrieve
+      description: API endpoints for categories
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+  /api/products/categories/{slug}/products/:
+    get:
+      operationId: api_products_categories_products_retrieve
+      description: Get all products for a specific category
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+  /api/products/featured/:
+    get:
+      operationId: api_products_featured_retrieve
+      description: Get featured products
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+          description: ''
+  /api/products/new_arrivals/:
+    get:
+      operationId: api_products_new_arrivals_retrieve
+      description: Get new arrival products
+      tags:
+      - api
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+          description: ''
+  /api/products/search_by_model/:
+    post:
+      operationId: api_products_search_by_model_create
+      description: Search products by appliance model
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDetail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProductDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProductDetail'
+        required: true
+      security:
+      - knoxApiToken: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+          description: ''
+components:
+  schemas:
+    ApplianceTypeEnum:
+      enum:
+      - washing_machine
+      - dishwasher
+      - oven
+      - refrigerator
+      - dryer
+      type: string
+      description: |-
+        * `washing_machine` - Washing Machine
+        * `dishwasher` - Dishwasher
+        * `oven` - Oven
+        * `refrigerator` - Refrigerator
+        * `dryer` - Dryer
+    BlogArticleDetail:
+      type: object
+      description: Detailed serializer for single blog article view
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        slug:
+          type: string
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        excerpt:
+          type: string
+        content:
+          type: string
+        featured_image:
+          type: string
+          format: uri
+          nullable: true
+        author_name:
+          type: string
+          readOnly: true
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+        views_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - author_name
+      - content
+      - created_at
+      - excerpt
+      - id
+      - title
+      - updated_at
+    BlogArticleList:
+      type: object
+      description: Compact serializer for blog article listings
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        slug:
+          type: string
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        excerpt:
+          type: string
+        featured_image:
+          type: string
+          format: uri
+          nullable: true
+        author_name:
+          type: string
+          readOnly: true
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+        views_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+      required:
+      - author_name
+      - excerpt
+      - id
+      - title
+    Brand:
+      type: object
+      description: Serializer for Brand model
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        slug:
+          type: string
+          maxLength: 100
+          pattern: ^[-a-zA-Z0-9_]+$
+        logo:
+          type: string
+          format: uri
+          nullable: true
+        description:
+          type: string
+        website:
+          type: string
+          format: uri
+          maxLength: 200
+      required:
+      - id
+      - name
+    Cart:
+      type: object
+      description: Serializer for Cart
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CartItem'
+          readOnly: true
+        subtotal:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          readOnly: true
+        item_count:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - item_count
+      - items
+      - subtotal
+      - updated_at
+    CartItem:
+      type: object
+      description: Serializer for CartItem
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        product:
+          allOf:
+          - $ref: '#/components/schemas/ProductList'
+          readOnly: true
+        product_id:
+          type: integer
+          writeOnly: true
+        quantity:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        total:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - product
+      - product_id
+      - total
+    Category:
+      type: object
+      description: Serializer for Category model
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        slug:
+          type: string
+          maxLength: 100
+          pattern: ^[-a-zA-Z0-9_]+$
+        description:
+          type: string
+        icon:
+          type: string
+          description: Lucide icon name
+          maxLength: 50
+        parent:
+          type: integer
+          nullable: true
+        subcategories:
+          type: string
+          readOnly: true
+      required:
+      - id
+      - name
+      - subcategories
+    CategoryEnum:
+      enum:
+      - general
+      - orders
+      - products
+      - returns
+      - technical
+      type: string
+      description: |-
+        * `general` - General
+        * `orders` - Orders & Delivery
+        * `products` - Products
+        * `returns` - Returns & Refunds
+        * `technical` - Technical Support
+    ChangePassword:
+      type: object
+      description: Serializer for password change
+      properties:
+        old_password:
+          type: string
+        new_password:
+          type: string
+          minLength: 8
+      required:
+      - new_password
+      - old_password
+    ChatMessage:
+      type: object
+      description: Serializer for ChatMessage
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        message:
+          type: string
+        is_bot:
+          type: boolean
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - is_bot
+      - message
+    ContactMessage:
+      type: object
+      description: Serializer for ContactMessage
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        phone:
+          type: string
+          maxLength: 20
+        subject:
+          $ref: '#/components/schemas/SubjectEnum'
+        message:
+          type: string
+        order_number:
+          type: string
+          description: If related to an order
+          maxLength: 50
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ContactMessageStatusEnum'
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - email
+      - id
+      - message
+      - name
+      - status
+      - subject
+    ContactMessageStatusEnum:
+      enum:
+      - new
+      - in_progress
+      - resolved
+      - closed
+      type: string
+      description: |-
+        * `new` - New
+        * `in_progress` - In Progress
+        * `resolved` - Resolved
+        * `closed` - Closed
+    DeliveryMethodEnum:
+      enum:
+      - express
+      - standard
+      - relay
+      - eco
+      type: string
+      description: |-
+        * `express` - Express Delivery
+        * `standard` - Standard Delivery
+        * `relay` - Relay Point
+        * `eco` - Eco Delivery
+    Diagnostic:
+      type: object
+      description: Serializer for Diagnostic
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        appliance_type:
+          $ref: '#/components/schemas/ApplianceTypeEnum'
+        appliance_brand:
+          type: string
+          maxLength: 100
+        appliance_model:
+          type: string
+          maxLength: 100
+        problem:
+          type: string
+        symptoms:
+          description: List of symptoms selected
+        diagnosis:
+          type: string
+          readOnly: true
+        recommended_parts:
+          readOnly: true
+          description: List of recommended product IDs
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - appliance_brand
+      - appliance_model
+      - appliance_type
+      - created_at
+      - diagnosis
+      - id
+      - problem
+      - recommended_parts
+    FAQ:
+      type: object
+      description: Serializer for FAQ
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        question:
+          type: string
+          maxLength: 255
+        answer:
+          type: string
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+      required:
+      - answer
+      - id
+      - question
+    Login:
+      type: object
+      description: Serializer for user login
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          writeOnly: true
+      required:
+      - email
+      - password
+    Newsletter:
+      type: object
+      description: Serializer for newsletter subscriptions
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        name:
+          type: string
+          maxLength: 200
+      required:
+      - email
+    Order:
+      type: object
+      description: Serializer for Order
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        order_number:
+          type: string
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/OrderStatusEnum'
+        payment_status:
+          $ref: '#/components/schemas/PaymentStatusEnum'
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        phone:
+          type: string
+          maxLength: 20
+        first_name:
+          type: string
+          maxLength: 100
+        last_name:
+          type: string
+          maxLength: 100
+        shipping_address:
+          type: string
+          maxLength: 255
+        shipping_city:
+          type: string
+          maxLength: 100
+        shipping_postal_code:
+          type: string
+          maxLength: 20
+        shipping_country:
+          type: string
+          maxLength: 100
+        delivery_method:
+          $ref: '#/components/schemas/DeliveryMethodEnum'
+        tracking_number:
+          type: string
+          maxLength: 100
+        payment_method:
+          type: string
+          maxLength: 20
+        subtotal:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        shipping_cost:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        tax:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        discount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        total:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        customer_notes:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        paid_at:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        shipped_at:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        delivered_at:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+      required:
+      - created_at
+      - delivered_at
+      - email
+      - first_name
+      - id
+      - items
+      - last_name
+      - order_number
+      - paid_at
+      - phone
+      - shipped_at
+      - shipping_address
+      - shipping_city
+      - shipping_postal_code
+      - subtotal
+      - total
+    OrderItem:
+      type: object
+      description: Serializer for OrderItem
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        product:
+          type: integer
+          nullable: true
+        product_name:
+          type: string
+          readOnly: true
+        product_sku:
+          type: string
+          readOnly: true
+        product_image:
+          type: string
+          readOnly: true
+        quantity:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          readOnly: true
+        total:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          readOnly: true
+      required:
+      - id
+      - price
+      - product_image
+      - product_name
+      - product_sku
+      - total
+    OrderStatusEnum:
+      enum:
+      - pending
+      - processing
+      - shipped
+      - delivered
+      - cancelled
+      - refunded
+      type: string
+      description: |-
+        * `pending` - Pending
+        * `processing` - Processing
+        * `shipped` - Shipped
+        * `delivered` - Delivered
+        * `cancelled` - Cancelled
+        * `refunded` - Refunded
+    Page:
+      type: object
+      description: Serializer for static pages
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        page_type:
+          $ref: '#/components/schemas/PageTypeEnum'
+        title:
+          type: string
+          maxLength: 255
+        content:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - content
+      - id
+      - page_type
+      - title
+      - updated_at
+    PageTypeEnum:
+      enum:
+      - warranty
+      - returns
+      - terms
+      - privacy
+      - shipping
+      type: string
+      description: |-
+        * `warranty` - Warranty Policy
+        * `returns` - Returns & Refunds
+        * `terms` - Terms & Conditions
+        * `privacy` - Privacy Policy
+        * `shipping` - Shipping Information
+    PaginatedBlogArticleListList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlogArticleList'
+    PaginatedBrandList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Brand'
+    PaginatedCategoryList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+    PaginatedContactMessageList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactMessage'
+    PaginatedDiagnosticList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Diagnostic'
+    PaginatedFAQList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FAQ'
+    PaginatedOrderList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+    PaginatedPageList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Page'
+    PaginatedProductListList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductList'
+    PatchedChangePassword:
+      type: object
+      description: Serializer for password change
+      properties:
+        old_password:
+          type: string
+        new_password:
+          type: string
+          minLength: 8
+    PatchedContactMessage:
+      type: object
+      description: Serializer for ContactMessage
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        phone:
+          type: string
+          maxLength: 20
+        subject:
+          $ref: '#/components/schemas/SubjectEnum'
+        message:
+          type: string
+        order_number:
+          type: string
+          description: If related to an order
+          maxLength: 50
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ContactMessageStatusEnum'
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedDiagnostic:
+      type: object
+      description: Serializer for Diagnostic
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        appliance_type:
+          $ref: '#/components/schemas/ApplianceTypeEnum'
+        appliance_brand:
+          type: string
+          maxLength: 100
+        appliance_model:
+          type: string
+          maxLength: 100
+        problem:
+          type: string
+        symptoms:
+          description: List of symptoms selected
+        diagnosis:
+          type: string
+          readOnly: true
+        recommended_parts:
+          readOnly: true
+          description: List of recommended product IDs
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedOrder:
+      type: object
+      description: Serializer for Order
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        order_number:
+          type: string
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/OrderStatusEnum'
+        payment_status:
+          $ref: '#/components/schemas/PaymentStatusEnum'
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        phone:
+          type: string
+          maxLength: 20
+        first_name:
+          type: string
+          maxLength: 100
+        last_name:
+          type: string
+          maxLength: 100
+        shipping_address:
+          type: string
+          maxLength: 255
+        shipping_city:
+          type: string
+          maxLength: 100
+        shipping_postal_code:
+          type: string
+          maxLength: 20
+        shipping_country:
+          type: string
+          maxLength: 100
+        delivery_method:
+          $ref: '#/components/schemas/DeliveryMethodEnum'
+        tracking_number:
+          type: string
+          maxLength: 100
+        payment_method:
+          type: string
+          maxLength: 20
+        subtotal:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        shipping_cost:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        tax:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        discount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        total:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        customer_notes:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        paid_at:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        shipped_at:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        delivered_at:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+    PatchedProductCreateUpdate:
+      type: object
+      description: Serializer for creating and updating products
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        sku:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        brand:
+          type: integer
+        category:
+          type: integer
+          nullable: true
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        sale_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        stock_quantity:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        low_stock_threshold:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        is_compatible:
+          type: boolean
+          description: Compatible with multiple appliances
+        is_original:
+          type: boolean
+          description: Original manufacturer part
+        fast_delivery:
+          type: boolean
+        ai_recommended:
+          type: boolean
+        image:
+          type: string
+          format: uri
+        image_2:
+          type: string
+          format: uri
+          nullable: true
+        image_3:
+          type: string
+          format: uri
+          nullable: true
+        image_4:
+          type: string
+          format: uri
+          nullable: true
+        meta_title:
+          type: string
+          maxLength: 255
+        meta_description:
+          type: string
+        is_active:
+          type: boolean
+        is_featured:
+          type: boolean
+    PatchedUser:
+      type: object
+      description: Serializer for User
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        phone:
+          type: string
+          nullable: true
+          maxLength: 20
+        address:
+          type: string
+          nullable: true
+          maxLength: 255
+        city:
+          type: string
+          nullable: true
+          maxLength: 100
+        postal_code:
+          type: string
+          nullable: true
+          maxLength: 20
+        country:
+          type: string
+          maxLength: 100
+        newsletter:
+          type: boolean
+        marketing_emails:
+          type: boolean
+        profile:
+          allOf:
+          - $ref: '#/components/schemas/UserProfile'
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PaymentStatusEnum:
+      enum:
+      - pending
+      - paid
+      - failed
+      - refunded
+      type: string
+      description: |-
+        * `pending` - Pending
+        * `paid` - Paid
+        * `failed` - Failed
+        * `refunded` - Refunded
+    PreferredLanguageEnum:
+      enum:
+      - en
+      - fr
+      - de
+      - es
+      type: string
+      description: |-
+        * `en` - English
+        * `fr` - Français
+        * `de` - Deutsch
+        * `es` - Español
+    ProductCompatibility:
+      type: object
+      description: Serializer for ProductCompatibility model
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        appliance_type:
+          type: string
+          description: e.g., Washing Machine, Dishwasher
+          maxLength: 100
+        appliance_model:
+          type: string
+          maxLength: 100
+        brand:
+          type: integer
+        brand_name:
+          type: string
+          readOnly: true
+      required:
+      - appliance_model
+      - appliance_type
+      - brand
+      - brand_name
+      - id
+    ProductCreateUpdate:
+      type: object
+      description: Serializer for creating and updating products
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        sku:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        brand:
+          type: integer
+        category:
+          type: integer
+          nullable: true
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        sale_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        stock_quantity:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        low_stock_threshold:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        is_compatible:
+          type: boolean
+          description: Compatible with multiple appliances
+        is_original:
+          type: boolean
+          description: Original manufacturer part
+        fast_delivery:
+          type: boolean
+        ai_recommended:
+          type: boolean
+        image:
+          type: string
+          format: uri
+        image_2:
+          type: string
+          format: uri
+          nullable: true
+        image_3:
+          type: string
+          format: uri
+          nullable: true
+        image_4:
+          type: string
+          format: uri
+          nullable: true
+        meta_title:
+          type: string
+          maxLength: 255
+        meta_description:
+          type: string
+        is_active:
+          type: boolean
+        is_featured:
+          type: boolean
+      required:
+      - brand
+      - description
+      - image
+      - name
+      - price
+      - sku
+    ProductDetail:
+      type: object
+      description: Detailed serializer for single product view
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        slug:
+          type: string
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        sku:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        brand:
+          allOf:
+          - $ref: '#/components/schemas/Brand'
+          readOnly: true
+        category:
+          allOf:
+          - $ref: '#/components/schemas/Category'
+          readOnly: true
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        sale_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        effective_price:
+          type: string
+          readOnly: true
+        stock_quantity:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        in_stock:
+          type: string
+          readOnly: true
+        is_low_stock:
+          type: string
+          readOnly: true
+        is_compatible:
+          type: boolean
+          description: Compatible with multiple appliances
+        is_original:
+          type: boolean
+          description: Original manufacturer part
+        fast_delivery:
+          type: boolean
+        ai_recommended:
+          type: boolean
+        images:
+          type: string
+          readOnly: true
+        specifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductSpecification'
+          readOnly: true
+        compatibilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductCompatibility'
+          readOnly: true
+        reviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductReview'
+          readOnly: true
+        average_rating:
+          type: string
+          readOnly: true
+        review_count:
+          type: string
+          readOnly: true
+        views_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        sales_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - average_rating
+      - brand
+      - category
+      - compatibilities
+      - created_at
+      - description
+      - effective_price
+      - id
+      - images
+      - in_stock
+      - is_low_stock
+      - name
+      - price
+      - review_count
+      - reviews
+      - sku
+      - specifications
+      - updated_at
+    ProductList:
+      type: object
+      description: Compact serializer for product listings
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        slug:
+          type: string
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        sku:
+          type: string
+          maxLength: 100
+        brand_name:
+          type: string
+          readOnly: true
+        category_name:
+          type: string
+          readOnly: true
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        sale_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        effective_price:
+          type: string
+          readOnly: true
+        image:
+          type: string
+          format: uri
+        in_stock:
+          type: string
+          readOnly: true
+        is_compatible:
+          type: boolean
+          description: Compatible with multiple appliances
+        fast_delivery:
+          type: boolean
+        ai_recommended:
+          type: boolean
+        average_rating:
+          type: string
+          readOnly: true
+        review_count:
+          type: string
+          readOnly: true
+      required:
+      - average_rating
+      - brand_name
+      - category_name
+      - effective_price
+      - id
+      - image
+      - in_stock
+      - name
+      - price
+      - review_count
+      - sku
+    ProductReview:
+      type: object
+      description: Serializer for ProductReview model
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+          readOnly: true
+        user_name:
+          type: string
+          readOnly: true
+        rating:
+          allOf:
+          - $ref: '#/components/schemas/RatingEnum'
+          minimum: -9223372036854775808
+          maximum: 9223372036854775807
+        title:
+          type: string
+          maxLength: 200
+        comment:
+          type: string
+        is_verified_purchase:
+          type: boolean
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - comment
+      - created_at
+      - id
+      - is_verified_purchase
+      - rating
+      - title
+      - user
+      - user_name
+    ProductSpecification:
+      type: object
+      description: Serializer for ProductSpecification model
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        value:
+          type: string
+          maxLength: 255
+        order:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+      required:
+      - id
+      - name
+      - value
+    RatingEnum:
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      type: integer
+      description: |-
+        * `1` - 1
+        * `2` - 2
+        * `3` - 3
+        * `4` - 4
+        * `5` - 5
+    Register:
+      type: object
+      description: Serializer for user registration
+      properties:
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        password:
+          type: string
+          writeOnly: true
+          minLength: 8
+        password2:
+          type: string
+          writeOnly: true
+          minLength: 8
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        phone:
+          type: string
+          nullable: true
+          maxLength: 20
+        newsletter:
+          type: boolean
+      required:
+      - email
+      - password
+      - password2
+      - username
+    SubjectEnum:
+      enum:
+      - order_inquiry
+      - product_info
+      - returns
+      - technical_support
+      - other
+      type: string
+      description: |-
+        * `order_inquiry` - Order Inquiry
+        * `product_info` - Product Information
+        * `returns` - Returns & Refunds
+        * `technical_support` - Technical Support
+        * `other` - Other
+    User:
+      type: object
+      description: Serializer for User
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        phone:
+          type: string
+          nullable: true
+          maxLength: 20
+        address:
+          type: string
+          nullable: true
+          maxLength: 255
+        city:
+          type: string
+          nullable: true
+          maxLength: 100
+        postal_code:
+          type: string
+          nullable: true
+          maxLength: 20
+        country:
+          type: string
+          maxLength: 100
+        newsletter:
+          type: boolean
+        marketing_emails:
+          type: boolean
+        profile:
+          allOf:
+          - $ref: '#/components/schemas/UserProfile'
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - email
+      - id
+      - profile
+      - username
+    UserProfile:
+      type: object
+      description: Serializer for UserProfile
+      properties:
+        preferred_language:
+          $ref: '#/components/schemas/PreferredLanguageEnum'
+        total_orders:
+          type: integer
+          readOnly: true
+        total_spent:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          readOnly: true
+        loyalty_points:
+          type: integer
+          readOnly: true
+      required:
+      - loyalty_points
+      - total_orders
+      - total_spent
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
+    knoxApiToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"

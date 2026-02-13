@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi de commande - Jolimont Electronics</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <header>
+        <div class="main-header">
+            <div class="container">
+                <div class="flex items-center justify-between">
+                    <a href="../index.html">
+                        <img src="../assets/fb59b76ceb2a0cf3614ca89ca0e669563c96bebc.png" alt="Logo" class="logo">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container" style="max-width: 800px; padding: 3rem 1rem;">
+            <div class="text-center" style="margin-bottom: 3rem;">
+                <div style="width: 80px; height: 80px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                    <i data-lucide="package-search" style="width: 40px; height: 40px; color: white;"></i>
+                </div>
+                <h1 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem;">Suivi de commande</h1>
+                <p style="color: var(--muted-foreground); font-size: 1.125rem;">Entrez votre numéro de commande pour suivre votre colis</p>
+            </div>
+
+            <!-- Tracking Form -->
+            <div style="border: 2px solid var(--border); border-radius: 0.75rem; padding: 2rem; background: white; margin-bottom: 2rem;">
+                <form onsubmit="trackOrder(event)" style="display: flex; gap: 1rem;">
+                    <input 
+                        id="order-number" 
+                        type="text" 
+                        placeholder="Numéro de commande (ex: JE20240123456)" 
+                        required 
+                        style="flex: 1; padding: 1rem; border: 1px solid var(--border); border-radius: 0.5rem; font-size: 1rem;"
+                    >
+                    <button type="submit" class="btn btn-primary" style="padding: 1rem 2rem; white-space: nowrap;">
+                        <i data-lucide="search" style="width: 20px; height: 20px;"></i>
+                        Suivre
+                    </button>
+                </form>
+            </div>
+
+            <!-- Tracking Result (hidden by default) -->
+            <div id="tracking-result" style="display: none;">
+                <!-- Order Info -->
+                <div style="border: 2px solid var(--border); border-radius: 0.75rem; padding: 1.5rem; background: white; margin-bottom: 2rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem;">
+                        <div>
+                            <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Commande #JE20240123456</h2>
+                            <p style="font-size: 0.875rem; color: var(--muted-foreground);">Passée le 10 février 2026</p>
+                        </div>
+                        <span class="badge badge-success" style="font-size: 0.875rem;">En livraison</span>
+                    </div>
+
+                    <div style="padding: 1rem; background: #f0f9ff; border-radius: 0.5rem; border-left: 4px solid var(--primary);">
+                        <p style="font-size: 0.875rem; margin-bottom: 0.5rem;"><strong>Livraison estimée:</strong> Demain, 14 février 2026</p>
+                        <p style="font-size: 0.875rem;"><strong>Transporteur:</strong> DPD Express</p>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div style="border: 2px solid var(--border); border-radius: 0.75rem; padding: 2rem; background: white;">
+                    <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem;">Statut de livraison</h3>
+
+                    <div style="position: relative; padding-left: 2.5rem;">
+                        <!-- Timeline Line -->
+                        <div style="position: absolute; left: 0.875rem; top: 0; bottom: 0; width: 2px; background: var(--border);"></div>
+
+                        <!-- Timeline Item 1 - Active -->
+                        <div style="position: relative; margin-bottom: 2rem;">
+                            <div style="position: absolute; left: -2.5rem; width: 2rem; height: 2rem; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 0 0 2px var(--primary);">
+                                <i data-lucide="truck" style="width: 14px; height: 14px; color: white;"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-weight: 600; margin-bottom: 0.25rem;">En cours de livraison</h4>
+                                <p style="font-size: 0.875rem; color: var(--muted-foreground); margin-bottom: 0.25rem;">Votre colis est en route</p>
+                                <p style="font-size: 0.75rem; color: var(--muted-foreground);">Aujourd'hui à 09:30</p>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 2 - Completed -->
+                        <div style="position: relative; margin-bottom: 2rem;">
+                            <div style="position: absolute; left: -2.5rem; width: 2rem; height: 2rem; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 0 0 2px #10b981;">
+                                <i data-lucide="check" style="width: 14px; height: 14px; color: white;"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-weight: 600; margin-bottom: 0.25rem;">Colis expédié</h4>
+                                <p style="font-size: 0.875rem; color: var(--muted-foreground); margin-bottom: 0.25rem;">Le colis a quitté notre entrepôt</p>
+                                <p style="font-size: 0.75rem; color: var(--muted-foreground);">Hier à 15:20</p>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 3 - Completed -->
+                        <div style="position: relative; margin-bottom: 2rem;">
+                            <div style="position: absolute; left: -2.5rem; width: 2rem; height: 2rem; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 0 0 2px #10b981;">
+                                <i data-lucide="check" style="width: 14px; height: 14px; color: white;"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-weight: 600; margin-bottom: 0.25rem;">Commande préparée</h4>
+                                <p style="font-size: 0.875rem; color: var(--muted-foreground); margin-bottom: 0.25rem;">Votre commande a été emballée</p>
+                                <p style="font-size: 0.75rem; color: var(--muted-foreground);">10 février à 11:45</p>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 4 - Completed -->
+                        <div style="position: relative;">
+                            <div style="position: absolute; left: -2.5rem; width: 2rem; height: 2rem; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 0 0 2px #10b981;">
+                                <i data-lucide="check" style="width: 14px; height: 14px; color: white;"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-weight: 600; margin-bottom: 0.25rem;">Commande confirmée</h4>
+                                <p style="font-size: 0.875rem; color: var(--muted-foreground); margin-bottom: 0.25rem;">Paiement accepté</p>
+                                <p style="font-size: 0.75rem; color: var(--muted-foreground);">10 février à 10:15</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Items -->
+                <div style="border: 2px solid var(--border); border-radius: 0.75rem; padding: 1.5rem; background: white; margin-top: 2rem;">
+                    <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Articles commandés</h3>
+                    
+                    <div style="display: flex; gap: 1rem; padding: 1rem; border: 1px solid var(--border); border-radius: 0.5rem;">
+                        <img src="../assets/392ded11266269b334c66232f3a2ce4446dccd83.png" alt="Product" style="width: 80px; height: 80px; object-fit: contain;">
+                        <div style="flex: 1;">
+                            <h4 style="font-weight: 600; margin-bottom: 0.25rem;">Pompe de vidange universelle pour lave-linge</h4>
+                            <p style="font-size: 0.875rem; color: var(--muted-foreground);">Bosch</p>
+                            <p style="font-weight: 600; color: var(--primary); margin-top: 0.5rem;">24,90€</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <p style="font-size: 0.875rem; color: var(--muted-foreground);">Quantité: 1</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button onclick="window.print()" class="btn btn-outline" style="flex: 1;">
+                        <i data-lucide="printer" style="width: 18px; height: 18px;"></i>
+                        Imprimer
+                    </button>
+                    <a href="customer-service.html" class="btn btn-outline" style="flex: 1;">
+                        <i data-lucide="headphones" style="width: 18px; height: 18px;"></i>
+                        Support
+                    </a>
+                </div>
+            </div>
+
+            <!-- Help Section -->
+            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: var(--secondary); border-radius: 0.75rem;">
+                <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Besoin d'aide?</h3>
+                <p style="color: var(--muted-foreground); margin-bottom: 1rem;">Notre équipe est là pour vous assister</p>
+                <a href="customer-service.html" class="btn btn-primary">
+                    Contacter le support
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/main.js"></script>
+    <script>
+        lucide.createIcons();
+
+        function trackOrder(event) {
+            event.preventDefault();
+            const orderNumber = document.getElementById('order-number').value;
+            
+            // Simulate API call
+            showToast('Recherche de la commande...');
+            
+            setTimeout(() => {
+                document.getElementById('tracking-result').style.display = 'block';
+                document.getElementById('tracking-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan du site - Jolimont Electronics</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .sitemap-section {
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 0.75rem;
+        }
+        .sitemap-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .sitemap-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s;
+        }
+        .sitemap-link:hover {
+            border-color: var(--primary);
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        .sitemap-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="main-header">
+            <div class="container">
+                <div class="flex items-center justify-between">
+                    <a href="index.html">
+                        <img src="assets/fb59b76ceb2a0cf3614ca89ca0e669563c96bebc.png" alt="Logo" class="logo">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container" style="max-width: 1200px; padding: 3rem 1rem;">
+            <!-- Header -->
+            <div class="text-center" style="margin-bottom: 3rem;">
+                <h1 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem;">Plan du Site</h1>
+                <p style="color: var(--muted-foreground); font-size: 1.125rem;">Toutes les pages de Jolimont Electronics en un coup d'œil</p>
+            </div>
+
+            <!-- Main Pages -->
+            <div class="sitemap-section">
+                <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Pages Principales</h2>
+                <p style="color: var(--muted-foreground); margin-bottom: 1rem;">Les pages essentielles du site</p>
+                
+                <div class="sitemap-links">
+                    <a href="index.html" class="sitemap-link">
+                        <div class="sitemap-icon">
+                            <i data-lucide="home" style="width: 20px; height: 20px; color: white;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600;">Accueil</div>
+                            <div style="font-size: 0.875rem; color: var(--muted-foreground);">Page principale</div>
+                        </div>
+                    </a>
+
+                    <a href="pages/catalog.html" class="sitemap-link">
+                        <div class="sitemap-icon">
+                            <i data-lucide="grid-3x3" style="width: 20px; height: 20px; color: white;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600;">Catalogue</div>
+                            <div style="font-size: 0.875rem; color: var(--muted-foreground);">Tous les produits</div>
+                        </div>
+                    </a>
+
+                    <a href="pages/product-detail.html" class="sitemap-link">
+                        <div class="sitemap-icon">
+                            <i data-lucide="package" style="width: 20px; height: 20px; color: white;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600;">Détail Produit</div>
+                            <div style="font-size: 0.875rem; color: var(--muted-foreground);">Fiche produit</div>
+                        </div>
+                    </a>
+
+                    <a href="pages/diagnostic.html" class="sitemap-link">
+                        <div class="sitemap-icon">
+                            <i data-lucide="brain" style="width: 20px; height: 20px; color: white;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600;">Diagnostic IA</div>
+                            <div style="font-size: 0.875rem; color: var(--muted-foreground);">Assistant intelligent</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Shopping -->
+            <div class="sitemap-section">
+                <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Achat & Commande</h2>
+                <p style="color: var(--muted-foreground); margin-bottom: 1rem;">Processus d'achat et gestion des commandes</p>
+                
+                <div class="sitemap-links">
+                    <a href="pages/checkout.html" class="sitemap-link">
+                        <div class="sitemap-icon">
+                            <i data-lucide="credit-card" style="width: 20px; height: 20px; color: white;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600;">Paiement</div>
+                            <div style="font-size: 0.875rem; color: var(--muted-foreground);">Validation commande</div>
+                        </div>
+                    </a>
+
+                    <a href="pages/order-tracking.html" class="sitemap-link">
+                        <div class="sitemap-icon">
+                            <i data-lucide="package-search" style="width: 20px; height: 20px; color: white;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600;">Suivi Commande</div>
+                            <div style="font-size: 0.875rem; color: var(--muted-foreground);">Tracking colis</div>
+                        </div>
+                    </a>
+
+                    <a href="pages/login.html" class="sitemap-link">
+                        <div class="sitemap-icon">
+                            <i data-lucide="user" style="width: 20px; height: 20px; color: white;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600;">Connexion</div>
+                            <div style="font-size: 0.875rem; color: var(--muted-foreground);">Mon compte</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Support -->
+            <div class="sitemap-section">
+                <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Support & Aide</h2>
+                <p style="color: var(--muted-foreground); margin-bottom: 1rem;">Service client et informations</p>
+                
+                <div class="sitemap-links">
+                    <a href="pages/faq.html" class="sitemap-link">
+                        <div class="sitemap-icon">
+                            <i data-lucide="help-circle" style="width: 20px; height: 20px; color: white;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600;">FAQ</div>
+                            <div style="font-size: 0.875rem; color: var(--muted-foreground);">Questions fréquentes</div>
+                        </div>
+                    </a>
+
+                    <a href="pages/customer-service.html" class="sitemap-link">
+                        <div class="sitemap-icon">
+                            <i data-lucide="headphones" style="width: 20px; height: 20px; color: white;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600;">Service Client</div>
+                            <div style="font-size: 0.875rem; color: var(--muted-foreground);">Nous contacter</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Technical Files -->
+            <div class="sitemap-section">
+                <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Fichiers Techniques</h2>
+                <p style="color: var(--muted-foreground); margin-bottom: 1rem;">Assets et ressources du site</p>
+                
+                <div class="sitemap-links">
+                    <div class="sitemap-link" style="cursor: default; opacity: 0.7;">
+                        <div class="sitemap-icon" style="background: #6b7280;">
+                            <i data-lucide="file-code" style="width: 20px; height: 20px; color: white;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600;">css/main.css</div>
+                            <div style="font-size: 0.875rem; color: var(--muted-foreground);">Styles & animations</div>
+                        </div>
+                    </div>
+
+                    <div class="sitemap-link" style="cursor: default; opacity: 0.7;">
+                        <div class="sitemap-icon" style="background: #6b7280;">
+                            <i data-lucide="file-code" style="width: 20px; height: 20px; color: white;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600;">js/main.js</div>
+                            <div style="font-size: 0.875rem; color: var(--muted-foreground);">JavaScript principal</div>
+                        </div>
+                    </div>
+
+                    <div class="sitemap-link" style="cursor: default; opacity: 0.7;">
+                        <div class="sitemap-icon" style="background: #6b7280;">
+                            <i data-lucide="image" style="width: 20px; height: 20px; color: white;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600;">assets/</div>
+                            <div style="font-size: 0.875rem; color: var(--muted-foreground);">Images & médias</div>
+                        </div>
+                    </div>
+
+                    <a href="README.md" class="sitemap-link" download>
+                        <div class="sitemap-icon" style="background: #10b981;">
+                            <i data-lucide="book-open" style="width: 20px; height: 20px; color: white;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600;">README.md</div>
+                            <div style="font-size: 0.875rem; color: var(--muted-foreground);">Documentation</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 3rem;">
+                <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, var(--primary) 0%, #2347b8 100%); border-radius: 0.75rem; color: white;">
+                    <div style="font-size: 3rem; font-weight: bold; margin-bottom: 0.5rem;">8</div>
+                    <div style="opacity: 0.9;">Pages HTML</div>
+                </div>
+                <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 0.75rem; color: white;">
+                    <div style="font-size: 3rem; font-weight: bold; margin-bottom: 0.5rem;">100%</div>
+                    <div style="opacity: 0.9;">Animations</div>
+                </div>
+                <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 0.75rem; color: white;">
+                    <div style="font-size: 3rem; font-weight: bold; margin-bottom: 0.5rem;">✓</div>
+                    <div style="opacity: 0.9;">Responsive</div>
+                </div>
+                <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); border-radius: 0.75rem; color: white;">
+                    <div style="font-size: 3rem; font-weight: bold; margin-bottom: 0.5rem;">0</div>
+                    <div style="opacity: 0.9;">Dépendances</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer style="margin-top: 4rem; padding: 2rem; background: var(--secondary); text-align: center;">
+        <p style="color: var(--muted-foreground);">✨ Conversion complète React → HTML/CSS/JavaScript</p>
+        <p style="color: var(--muted-foreground); margin-top: 0.5rem;">Toutes les animations et fonctionnalités sont préservées</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

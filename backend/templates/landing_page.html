@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jolimont Dépannage - Service de Réparation Électroménager dans le Hainaut</title>
+    <meta name="description" content="Dépannage électroménager rapide à Mons, Binche et La Louvière. Intervention sous 48h. Plus de 40 ans d'expérience.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Slick Carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    
+    <style>
+        /* ========== ANIMATIONS PREMIUM ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUpLarge {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Classes pour Hero - animations au chargement */
+        .hero-title-main {
+            animation: fadeInUp 450ms ease-out 80ms both;
+        }
+
+        .hero-title-highlight {
+            animation: fadeInUp 450ms ease-out 160ms both;
+        }
+
+        .hero-subtitle {
+            animation: fadeInUp 400ms ease-out 240ms both;
+        }
+
+        .hero-cta {
+            animation: fadeInScale 350ms ease-out 320ms both;
+        }
+
+        .hero-badge {
+            animation: fadeIn 350ms ease-out 400ms both;
+        }
+
+        .hero-footer-text {
+            animation: fadeInUp 350ms ease-out 280ms both;
+        }
+
+        /* Classes pour sections au scroll */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 450ms ease-out, transform 450ms ease-out;
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-animate-subtitle {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 400ms ease-out 120ms, transform 400ms ease-out 120ms;
+        }
+
+        .scroll-animate-subtitle.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animations en cascade pour cartes */
+        .scroll-animate-card {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 400ms ease-out, transform 400ms ease-out;
+        }
+
+        .scroll-animate-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger delays pour cartes */
+        .scroll-animate-card:nth-child(1) { transition-delay: 0ms; }
+        .scroll-animate-card:nth-child(2) { transition-delay: 80ms; }
+        .scroll-animate-card:nth-child(3) { transition-delay: 160ms; }
+        .scroll-animate-card:nth-child(4) { transition-delay: 240ms; }
+        .scroll-animate-card:nth-child(5) { transition-delay: 320ms; }
+        .scroll-animate-card:nth-child(6) { transition-delay: 400ms; }
+        .scroll-animate-card:nth-child(7) { transition-delay: 480ms; }
+        .scroll-animate-card:nth-child(8) { transition-delay: 560ms; }
+
+        /* Custom Slider Styles */
+        .testimonials-slider .slick-dots {
+            bottom: -40px;
+        }
+
+        .testimonials-slider .slick-dots li button:before {
+            font-size: 12px;
+            color: #cbd5e1;
+            opacity: 0.5;
+        }
+
+        .testimonials-slider .slick-dots li.slick-active button:before {
+            color: #305CDE;
+            opacity: 1;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hide mobile menu by default */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .mobile-menu.open {
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-white">
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="header-content" class="flex items-center justify-between transition-all duration-300 h-20">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <img 
+                        src="assets/b82b27ea95c2011a5c75a889a54b259c2c33c6c6.png" 
+                        alt="Jolimont Dépannage" 
+                        id="logo"
+                        class="h-44 md:h-48 w-auto -ml-8"
+                        style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); object-fit: contain; object-position: left center;"
+                    />
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#accueil" class="nav-link font-medium transition-colors duration-300 text-white hover:text-gray-200">
+                        Accueil
+                    </a>
+                    <a href="#services" class="nav-link font-medium transition-colors duration-300 text-white hover:text-gray-200">
+                        Services
+                    </a>
+                    <a href="#tarifs" class="nav-link font-medium transition-colors duration-300 text-white hover:text-gray-200">
+                        Tarifs
+                    </a>
+                    <a href="#notre-histoire" class="nav-link font-medium transition-colors duration-300 text-white hover:text-gray-200">
+                        Qui sommes-nous
+                    </a>
+                    <a href="#demande-depannage" class="nav-link font-medium transition-colors duration-300 text-white hover:text-gray-200">
+                        Contact
+                    </a>
+                    <a href="#demande-depannage" id="cta-button" class="hidden px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300" style="background-color: #305CDE;">
+                        Demandez un dépannage
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 transition-colors duration-300 text-white">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="mobile-menu md:hidden space-y-2 bg-white rounded-b-lg shadow-lg">
+                <a href="#accueil" class="mobile-menu-item block py-2 px-4 text-gray-700 hover:text-blue-600 hover:bg-gray-50">
+                    Accueil
+                </a>
+                <a href="#services" class="mobile-menu-item block py-2 px-4 text-gray-700 hover:text-blue-600 hover:bg-gray-50">
+                    Services
+                </a>
+                <a href="#tarifs" class="mobile-menu-item block py-2 px-4 text-gray-700 hover:text-blue-600 hover:bg-gray-50">
+                    Tarifs
+                </a>
+                <a href="#notre-histoire" class="mobile-menu-item block py-2 px-4 text-gray-700 hover:text-blue-600 hover:bg-gray-50">
+                    Qui sommes-nous
+                </a>
+                <a href="#demande-depannage" class="mobile-menu-item block py-2 px-4 text-gray-700 hover:text-blue-600 hover:bg-gray-50">
+                    Contact
+                </a>
+                <a href="#demande-depannage" class="mobile-menu-item block mx-4 my-2 py-2 px-4 text-white font-semibold rounded-lg text-center" style="background-color: #305CDE;">
+                    Demandez un dépannage
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="relative bg-gradient-to-br from-gray-900 to-gray-800 min-h-screen flex items-center">
+        <!-- Desktop Background Image -->
+        <div class="absolute inset-0 opacity-40 hidden md:block">
+            <img src="assets/efd8b92dc1a996f0a2dbb043cbe834e7c23eb12a.png" alt="Technicien en intervention" class="w-full h-full object-cover">
+        </div>
+        
+        <!-- Mobile Background Image -->
+        <div class="absolute inset-0 opacity-40 md:hidden">
+            <img src="assets/141f71e31a1ca1f71dcf78be605f2da1a8fa1638.png" alt="Technicien en intervention" class="w-full h-full object-cover object-center">
+        </div>
+
+        <!-- Dark overlay -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 pt-40">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 text-center hero-title-main">
+                    Panne d'appareil ? <span class="hero-title-highlight inline-block" style="color: #305CDE;">Réparé sous 48h</span>
+                </h2>
+                <p class="text-xl text-gray-200 mb-8 text-center hero-subtitle">
+                    Intervention à domicile • Réparation rapide
+                </p>
+                <a href="#demande-depannage" class="inline-flex items-center gap-2 px-8 py-4 text-white font-bold rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hero-cta" style="background-color: #305CDE;">
+                    Demandez un dépannage
+                    <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                </a>
+                <p class="text-sm text-gray-300 mt-4 text-center hero-footer-text">
+                    Réponse sous 24h – Forfait dès 40€
+                </p>
+
+                <!-- Google Reviews Badge -->
+                <div class="mt-10 flex items-center justify-center gap-3 bg-white/10 backdrop-blur-sm rounded-full px-8 py-3 inline-flex mx-auto hero-badge">
+                    <div class="flex items-center gap-1">
+                        <i data-lucide="star" class="w-5 h-5 fill-yellow-400 text-yellow-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-yellow-400 text-yellow-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-yellow-400 text-yellow-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-yellow-400 text-yellow-400"></i>
+                        <div class="relative w-5 h-5">
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 absolute"></i>
+                            <div class="absolute inset-0 overflow-hidden w-1/2">
+                                <i data-lucide="star" class="w-5 h-5 fill-yellow-400 text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="text-white font-bold text-lg">4,4/5</span>
+                    <span class="text-white/60">·</span>
+                    <span class="text-white text-sm whitespace-nowrap flex items-center gap-1.5">
+                        90+ avis 
+                        <svg class="h-3.5 w-3.5 inline-block" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-16 bg-gray-50 section-observe">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl font-bold text-center text-gray-900 mb-4 scroll-animate">
+                Pourquoi nous choisir ?
+            </h3>
+            <p class="text-center text-gray-600 mb-12 scroll-animate-subtitle">
+                Des services professionnels adaptés à vos besoins
+            </p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow scroll-animate-card">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto" style="background-color: #305CDE;">
+                        <i data-lucide="zap" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 text-center mb-3">
+                        Intervention rapide et locale
+                    </h4>
+                    <p class="text-gray-600 text-center leading-relaxed">
+                        Intervention sous 24-48h dans tout le Hainaut. Service de proximité garanti.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow scroll-animate-card">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto" style="background-color: #305CDE;">
+                        <i data-lucide="wrench" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 text-center mb-3">
+                        Techniciens qualifiés depuis 1983
+                    </h4>
+                    <p class="text-gray-600 text-center leading-relaxed">
+                        Plus de 40 ans d'expertise. Équipe certifiée et professionnelle.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow scroll-animate-card">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto" style="background-color: #305CDE;">
+                        <i data-lucide="settings" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 text-center mb-3">
+                        Pièces de rechange disponibles
+                    </h4>
+                    <p class="text-gray-600 text-center leading-relaxed">
+                        Large stock de pièces compatibles avec les principales marques d'électroménager.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow scroll-animate-card">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto" style="background-color: #305CDE;">
+                        <i data-lucide="euro" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 text-center mb-3">
+                        Tarifs transparents et compétitifs
+                    </h4>
+                    <p class="text-gray-600 text-center leading-relaxed">
+                        Forfait fixe dès 40€. Devis gratuit avant toute intervention.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Areas Section -->
+    <section class="py-16 bg-white section-observe">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl font-bold text-center text-gray-900 mb-4 scroll-animate">
+                Nos zones d'intervention dans le Hainaut
+            </h3>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto scroll-animate-subtitle">
+                Intervention rapide à domicile dans les principales communes de la région
+            </p>
+            
+            <!-- Compteurs animés -->
+            <div id="counters-section" class="grid md:grid-cols-3 gap-8 mb-12">
+                <!-- Mons et Environs -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md">
+                        <img 
+                            src="assets/6d903b6ca5cfabf687d1ab74dd319408b334c4af.png"
+                            alt="Carte de Mons" 
+                            class="w-14 h-14 object-contain"
+                            style="filter: drop-shadow(0 0 0.5px white) drop-shadow(0 0 0.5px white) drop-shadow(0 0 0.5px white) drop-shadow(0 0 0.5px white) brightness(1.5) contrast(1.2) saturate(1.1);"
+                        />
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-3">
+                        Mons et Environs
+                    </h4>
+                    <p class="text-6xl font-extrabold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent mb-2">
+                        <span id="counter-mons">0</span>
+                    </p>
+                    <p class="text-gray-500 font-semibold text-lg">
+                        communes desservies
+                    </p>
+                    <p class="text-sm text-gray-600 mt-4">
+                        Jemappes, Cuesmes, Ghlin, Saint-Symphorien...
+                    </p>
+                </div>
+
+                <!-- La Louvière et Région -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md">
+                        <img 
+                            src="assets/16ee284a00666f52a41fc5597a92141f430b70d9.png"
+                            alt="Carte de La Louvière" 
+                            class="w-18 h-18 object-contain"
+                            style="filter: drop-shadow(0 0 0.5px white) drop-shadow(0 0 0.5px white) brightness(1.5);"
+                        />
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-3">
+                        La Louvière et Région
+                    </h4>
+                    <p class="text-6xl font-extrabold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent mb-2">
+                        <span id="counter-laLouviere">0</span>
+                    </p>
+                    <p class="text-gray-500 font-semibold text-lg">
+                        communes desservies
+                    </p>
+                    <p class="text-sm text-gray-600 mt-4">
+                        Houdeng, Maurage, Strépy-Bracquegnies...
+                    </p>
+                </div>
+
+                <!-- Binche et Alentours -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md">
+                        <img 
+                            src="assets/f59e3355f5a6222c5a12e73c313c0ad64604be49.png"
+                            alt="Carte de Mons" 
+                            class="w-16 h-16 object-contain"
+                            style="filter: drop-shadow(0 0 0.5px white) drop-shadow(0 0 0.5px white) drop-shadow(0 0 0.5px white) brightness(1.5);"
+                        />
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-3">
+                        Binche et Alentours
+                    </h4>
+                    <p class="text-6xl font-extrabold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent mb-2">
+                        <span id="counter-binche">0</span>
+                    </p>
+                    <p class="text-gray-500 font-semibold text-lg">
+                        communes desservies
+                    </p>
+                    <p class="text-sm text-gray-600 mt-4">
+                        Morlanwelz, Anderlues, Ressaix...
+                    </p>
+                </div>
+            </div>
+
+            <!-- Autres communes -->
+            <div class="bg-gray-50 rounded-xl p-6 mb-8">
+                <p class="text-center text-gray-700">
+                    <strong class="text-gray-900">Autres communes :</strong> Quaregnon, Soignies, Boussu, Frameries, Manage, Seneffe, Châtelet et bien d'autres
+                </p>
+            </div>
+
+            <!-- Vérification code postal -->
+            <form id="postal-form" class="max-w-md mx-auto">
+                <div class="flex gap-2">
+                    <input
+                        type="text"
+                        id="postal-code"
+                        placeholder="Indiquez votre code postal"
+                        class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                        style="--tw-ring-color: #305CDE;"
+                    />
+                    <button
+                        type="submit"
+                        class="px-6 py-3 text-white font-semibold rounded-lg transition-colors"
+                        style="background-color: #305CDE;"
+                    >
+                        Vérifier
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Appliances Section -->
+    <section id="services" class="py-16 bg-gray-50 section-observe">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl font-bold text-center text-gray-900 mb-4 scroll-animate">
+                Appareils réparés
+            </h3>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto scroll-animate-subtitle">
+                Nous intervenons sur tous vos appareils électroménagers
+            </p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Lave-linge -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow scroll-animate-card">
+                    <div class="h-48 overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXNoaW5nJTIwbWFjaGluZSUyMHJlcGFpciUyMGNsb3NlJTIwdXB8ZW58MXx8fHwxNzcwMjc0MzczfDA&ixlib=rb-4.1.0&q=80&w=1080"
+                            alt="Lave-linge"
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Lave-linge</h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                                <span>Problème de fuite</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                                <span>Essorage défaillant</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                                <span>Vidange bloquée</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                                <span>Problème de tambour</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Lave-vaisselle -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow scroll-animate-card">
+                    <div class="h-48 overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1758631130778-42d518bf13aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaXNod2FzaGVyJTIwa2l0Y2hlbiUyMGFwcGxpYW5jZXxlbnwxfHx8fDE3NzAyNjg2NDF8MA&ixlib=rb-4.1.0&q=80&w=1080"
+                            alt="Lave-vaisselle"
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Lave-vaisselle</h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                                <span>Ne démarre plus</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                                <span>Eau qui reste au fond</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                                <span>Vaisselle mal lavée</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                                <span>Porte défectueuse</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Réfrigérateur -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow scroll-animate-card">
+                    <div class="h-48 overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1758488438758-5e2eedf769ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZWZyaWdlcmF0b3IlMjBtb2Rlcm4lMjBraXRjaGVufGVufDF8fHx8MTc3MDI1NTg4Nnww&ixlib=rb-4.1.0&q=80&w=1080"
+                            alt="Réfrigérateur"
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Réfrigérateur</h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                                <span>Ne refroidit plus</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                                <span>Givre excessif</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                                <span>Bruit anormal</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                                <span>Fuite d'eau</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Four -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow scroll-animate-card">
+                    <div class="h-48 overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1582667407868-07060cb5e61f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvdmVuJTIwc3RvdmUlMjBraXRjaGVuJTIwYXBwbGlhbmNlfGVufDF8fHx8MTc3MDI3NDM3NHww&ixlib=rb-4.1.0&q=80&w=1080"
+                            alt="Four"
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Four & autres</h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                                <span>Ne chauffe plus</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                                <span>Thermostat défectueux</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                                <span>Porte bloquée</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                                <span>Sèche-linge, congélateur...</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="py-16 bg-white section-observe">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl font-bold text-center text-gray-900 mb-4 scroll-animate">
+                Toutes vos marques prises en charge
+            </h3>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto scroll-animate">
+                Nos techniciens sont formés pour intervenir sur toutes les grandes marques d'électroménager. Pièces d'origine disponibles.
+            </p>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6 items-center justify-items-center mb-12">
+                <div class="flex items-center justify-center">
+                    <div class="w-28 h-28 bg-white border-2 border-gray-200 rounded-xl flex items-center justify-center p-4 hover:shadow-lg transition-all duration-300" style="border-color: #e5e7eb;">
+                        <img src="assets/520a487a6d1b0355afdaebaa6147405947f5ce50.png" alt="Bosch" class="w-full h-full object-contain"/>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="w-28 h-28 bg-white border-2 border-gray-200 rounded-xl flex items-center justify-center p-4 hover:shadow-lg transition-all duration-300">
+                        <img src="assets/480e6a07858ac4d35221ea2789e5c06239ee2e0e.png" alt="Siemens" class="w-full h-full object-contain"/>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="w-28 h-28 bg-white border-2 border-gray-200 rounded-xl flex items-center justify-center p-4 hover:shadow-lg transition-all duration-300">
+                        <img src="assets/3c3c9a028e00a0b64228193f8e389fd33e4ca255.png" alt="Whirlpool" class="w-full h-full object-contain"/>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="w-28 h-28 bg-white border-2 border-gray-200 rounded-xl flex items-center justify-center p-4 hover:shadow-lg transition-all duration-300">
+                        <img src="assets/79f8ae3dd17c139504f9ac05813a1d2fdf2d44a1.png" alt="Samsung" class="w-full h-full object-contain"/>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="w-28 h-28 bg-white border-2 border-gray-200 rounded-xl flex items-center justify-center p-4 hover:shadow-lg transition-all duration-300">
+                        <img src="assets/02ab6d2362f2b27023125804934c0efb85c9e49f.png" alt="LG" class="w-full h-full object-contain"/>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="w-28 h-28 bg-white border-2 border-gray-200 rounded-xl flex items-center justify-center p-4 hover:shadow-lg transition-all duration-300">
+                        <img src="assets/fdec5156a57eb6b9116e943e3b8ba9ffd8f9fd84.png" alt="Miele" class="w-full h-full object-contain"/>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="w-28 h-28 bg-white border-2 border-gray-200 rounded-xl flex items-center justify-center p-4 hover:shadow-lg transition-all duration-300">
+                        <img src="assets/429a63c30e79034f4e2014828962054efcd102d2.png" alt="Beko" class="w-full h-full object-contain"/>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center lg:hidden">
+                    <div class="w-28 h-28 bg-white border-2 border-gray-200 rounded-xl flex items-center justify-center p-4 hover:shadow-lg transition-all duration-300">
+                        <img src="assets/32d0a2f0a34045d0726d13d0c9a6cc0d38de1b39.png" alt="Thomson" class="w-full h-full object-contain"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premium "+100 autres marques" counter -->
+            <div id="brand-counter-section" class="flex flex-col md:flex-row items-center justify-center gap-6 py-8 px-6 bg-gradient-to-r rounded-2xl border-2 max-w-2xl mx-auto" style="background: linear-gradient(to right, rgba(48, 92, 222, 0.05), rgba(48, 92, 222, 0.1), rgba(48, 92, 222, 0.05)); border-color: rgba(48, 92, 222, 0.2);">
+                <div class="flex items-center gap-3">
+                    <div class="w-16 h-16 bg-gradient-to-br rounded-full flex items-center justify-center shadow-lg" style="background: linear-gradient(to bottom right, #305CDE, #2548b8);">
+                        <i data-lucide="award" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <div>
+                        <p class="text-4xl font-extrabold leading-none" style="color: #305CDE;">
+                            +<span id="brand-counter">0</span>
+                        </p>
+                        <p class="text-sm text-gray-600 font-medium mt-1">
+                            autres marques
+                        </p>
+                    </div>
+                </div>
+                <div class="hidden md:block h-12 w-px bg-gray-300"></div>
+                <p class="text-gray-700 text-sm max-w-xs leading-relaxed text-center md:text-left">
+                    <span class="font-bold text-gray-900">Toutes marques acceptées</span> – Nous disposons d'un réseau étendu de fournisseurs de pièces détachées
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notre Histoire Section -->
+    <section id="notre-histoire" class="py-16 bg-white section-observe">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="rounded-2xl overflow-hidden" style="background-color: #d4e4fc;">
+                <!-- Mobile Title -->
+                <h3 class="text-3xl font-bold pt-8 pb-4 lg:hidden text-center px-4 scroll-animate" style="background-color: #F4F7FF; color: #305CDE;">
+                    Notre Histoire
+                </h3>
+                
+                <div class="grid lg:grid-cols-2 gap-12 items-stretch p-8" style="background-color: #F4F7FF;">
+                    <!-- Image Column -->
+                    <div class="flex items-center">
+                        <img
+                            src="assets/6f9e7d49e29abc83e9c20621f93fca72bbd1fd3e.png"
+                            alt="Technicien Jolimont Dépannage au travail"
+                            class="w-full h-auto object-contain rounded-lg"
+                        />
+                    </div>
+
+                    <!-- Text Column -->
+                    <div class="flex items-center h-full">
+                        <div class="h-full flex flex-col justify-center">
+                            <!-- Desktop Title -->
+                            <h3 class="hidden lg:block text-3xl font-bold mb-6 scroll-animate" style="color: #305CDE;">
+                                Notre Histoire
+                            </h3>
+                            <div class="space-y-4 text-base leading-relaxed scroll-animate">
+                                <p class="text-gray-800">
+                                    <span class="font-bold text-gray-900">Depuis 1983</span>, <span class="font-bold text-gray-900">Jolimont Electro</span> (anciennement Abelec) accompagne les habitants de la région dans la réparation de leurs appareils électroménagers.
+                                </p>
+                                
+                                <p style="color: rgb(0,0,0);">
+                                    À l'origine spécialisée dans la distribution de pièces détachées, l'entreprise s'appuie aujourd'hui sur un vaste stock, permettant des interventions rapides et efficaces sur la majorité des pannes.
+                                </p>
+                                
+                                <p class="text-gray-800">
+                                    Forts de <span class="font-bold text-gray-900">plus de 40 ans d'expérience</span>, nous collaborons avec des dépanneurs indépendants qualifiés et accordons une importance particulière à la réactivité, avec un <span class="font-bold text-gray-900">rappel le jour même ou le lendemain</span>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="demande-depannage" class="py-16 bg-gray-50 section-observe">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl font-bold text-center text-gray-900 mb-4 scroll-animate">
+                Demandez votre dépannage maintenant
+            </h3>
+            <p class="text-center text-gray-600 mb-12 scroll-animate">
+                Remplissez le formulaire ci-dessous et nous vous recontacterons dans les 24 heures
+            </p>
+
+            <form id="contact-form" class="bg-white rounded-xl shadow-lg p-8 space-y-6 scroll-animate-card">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            Nom *
+                        </label>
+                        <input
+                            type="text"
+                            name="nom"
+                            required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                            style="--tw-ring-color: #305CDE;"
+                            placeholder="Votre nom"
+                        />
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            Prénom *
+                        </label>
+                        <input
+                            type="text"
+                            name="prenom"
+                            required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                            style="--tw-ring-color: #305CDE;"
+                            placeholder="Votre prénom"
+                        />
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            Téléphone *
+                        </label>
+                        <input
+                            type="tel"
+                            name="telephone"
+                            required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                            style="--tw-ring-color: #305CDE;"
+                            placeholder="04XX XX XX XX"
+                        />
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            Code postal *
+                        </label>
+                        <input
+                            type="text"
+                            name="codePostal"
+                            required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                            style="--tw-ring-color: #305CDE;"
+                            placeholder="7000"
+                        />
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">
+                        Adresse complète *
+                    </label>
+                    <input
+                        type="text"
+                        name="adresse"
+                        required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                        style="--tw-ring-color: #305CDE;"
+                        placeholder="Rue, numéro, ville"
+                    />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">
+                        Marque & modèle de l'appareil *
+                    </label>
+                    <input
+                        type="text"
+                        name="marque"
+                        required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
+                        style="--tw-ring-color: #305CDE;"
+                        placeholder="Ex: Bosch WAT28400FF"
+                    />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">
+                        Description de la panne *
+                    </label>
+                    <textarea
+                        name="description"
+                        required
+                        rows="4"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 resize-none"
+                        style="--tw-ring-color: #305CDE;"
+                        placeholder="Décrivez le problème rencontré..."
+                    ></textarea>
+                </div>
+
+                <button
+                    type="submit"
+                    class="w-full px-8 py-4 text-white font-bold rounded-lg shadow-lg transition-all duration-300 hover:scale-105"
+                    style="background-color: #305CDE;"
+                >
+                    Envoyer ma demande
+                </button>
+
+                <p class="text-xs text-gray-500 text-center">
+                    En envoyant ce formulaire, vous acceptez d'être contacté par notre équipe dans les 24 heures.
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="tarifs" class="py-16 bg-white section-observe">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl font-bold text-center text-gray-900 mb-4 scroll-animate">
+                Tarifs clairs & transparents
+            </h3>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto scroll-animate">
+                Pas de surprise, nos tarifs sont communiqués avant toute intervention
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-gray-50 rounded-xl p-8 text-center border-2 border-gray-200">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background-color: #305CDE;">
+                        <i data-lucide="wrench" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-2">Forfait de base</h4>
+                    <p class="text-3xl font-bold mb-4" style="color: #305CDE;">À partir de 40 €</p>
+                    <p class="text-gray-600 mb-6">
+                        Déplacement + intervention + diagnostic de votre appareil
+                    </p>
+                    <ul class="text-sm text-gray-600 space-y-2 text-left">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                            <span>Intervention à domicile</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                            <span>Diagnostic complet</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                            <span>Devis gratuit</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                            <span>Jusqu'à 15 km : 40 €</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                            <span>De 15 à 30 km : 60 €</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="w-4 h-4 flex-shrink-0 mt-0.5 text-orange-500">⚠️</span>
+                            <span class="text-gray-500 text-xs mt-1 inline-block">Prix des pièces non inclus</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="rounded-xl p-8 text-center border-2 shadow-xl transform scale-105" style="background-color: #305CDE; border-color: #305CDE;">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="settings" class="w-8 h-8" style="color: #305CDE;"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-2">Pièces détachées</h4>
+                    <p class="text-3xl font-bold text-white mb-4">Sur devis</p>
+                    <p class="text-gray-100 mb-6">
+                        Fourniture de pièces compatibles ou d'origine selon disponibilité constructeur
+                    </p>
+                    <ul class="text-sm text-white space-y-2 text-left">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-white flex-shrink-0 mt-0.5"></i>
+                            <span>Pièces d'origine ou équivalentes</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-white flex-shrink-0 mt-0.5"></i>
+                            <span>Compatibles avec les principales marques</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-white flex-shrink-0 mt-0.5"></i>
+                            <span>Garantie constructeur</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-white flex-shrink-0 mt-0.5"></i>
+                            <span>Devis validé avant remplacement</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-8 text-center border-2 border-gray-200">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background-color: #305CDE;">
+                        <i data-lucide="zap" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-2">Intervention 24h</h4>
+                    <p class="text-3xl font-bold mb-4" style="color: #305CDE;">+50 €</p>
+                    <p class="text-gray-600 mb-6">
+                        Intervention prioritaire sous 24h
+                    </p>
+                    <ul class="text-sm text-gray-600 space-y-2 text-left">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                            <span>Traitement prioritaire de la demande</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                            <span>Intervention accélérée</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                            <span>Sous réserve de disponibilité de la pièce</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: #305CDE;"></i>
+                            <span>Selon disponibilité planning</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <a
+                    href="#contact"
+                    class="inline-flex items-center gap-2 px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold rounded-lg transition-colors"
+                >
+                    Voir tous les tarifs
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 pb-8 bg-gray-50 section-observe">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-0">
+            <h3 class="text-3xl font-bold text-center text-gray-900 mb-4 scroll-animate">
+                Un gage de confiance
+            </h3>
+            <p class="text-center text-gray-600 mb-12 scroll-animate">
+                Plus de 40 ans d'expérience au service des habitants de Mons, Binche et La Louvière
+            </p>
+
+            <div class="testimonials-slider pb-0 mb-0">
+                <div class="px-2 pb-12 mb-4">
+                    <div class="bg-white rounded-xl p-8 pb-12 shadow-lg h-auto">
+                        <div class="flex items-center gap-1 mb-4">
+                            <i data-lucide="star" class="w-5 h-5 fill-blue-600 text-blue-600"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-blue-600 text-blue-600"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-blue-600 text-blue-600"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-blue-600 text-blue-600"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-blue-600 text-blue-600"></i>
+                        </div>
+                        <p class="text-gray-700 text-lg leading-relaxed mb-6 italic">
+                            "Service impeccable ! Mon lave-linge est réparé en 24h. Technicien professionnel et sympathique."
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-bold text-gray-900">Sophie Martin</p>
+                                <p class="text-sm text-gray-500">Mons</p>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <svg class="h-6 w-6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-2 pb-12 mb-4">
+                    <div class="bg-white rounded-xl p-8 pb-12 shadow-lg h-auto">
+                        <div class="flex items-center gap-1 mb-4">
+                            <i data-lucide="star" class="w-5 h-5 fill-blue-600 text-blue-600"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-blue-600 text-blue-600"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-blue-600 text-blue-600"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-blue-600 text-blue-600"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-blue-600 text-blue-600"></i>
+                        </div>
+                        <p class="text-gray-700 text-lg leading-relaxed mb-6 italic">
+                            "Excellent rapport qualité-prix. Intervention rapide et efficace sur mon réfrigérateur."
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-bold text-gray-900">Pierre Dubois</p>
+                                <p class="text-sm text-gray-500">La Louvière</p>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <svg class="h-6 w-6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-2 pb-12 mb-4">
+                    <div class="bg-white rounded-xl p-8 pb-12 shadow-lg h-auto">
+                        <div class="flex items-center gap-1 mb-4">
+                            <i data-lucide="star" class="w-5 h-5 fill-blue-600 text-blue-600"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-blue-600 text-blue-600"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-blue-600 text-blue-600"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-blue-600 text-blue-600"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-blue-600 text-blue-600"></i>
+                        </div>
+                        <p class="text-gray-700 text-lg leading-relaxed mb-6 italic">
+                            "Très satisfaite du service. Diagnostic clair et réparation immédiate de mon lave-vaisselle."
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-bold text-gray-900">Marie Lambert</p>
+                                <p class="text-sm text-gray-500">Binche</p>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <svg class="h-6 w-6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-white section-observe">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl font-bold text-center text-gray-900 mb-4 scroll-animate">
+                FAQ Dépannage
+            </h3>
+            <p class="text-center text-gray-600 mb-12 scroll-animate">
+                Tout ce que vous devez savoir sur nos services
+            </p>
+
+            <div class="space-y-4">
+                <div class="bg-gray-50 rounded-lg overflow-hidden faq-item">
+                    <button class="faq-button w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-100 transition-colors">
+                        <span class="font-semibold text-gray-900">Intervenez-vous vraiment à domicile à Mons, Binche et La Louvière ?</span>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-gray-600 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 py-4 bg-white border-t border-gray-200" style="display: none;">
+                        <p class="text-gray-600 leading-relaxed">Oui, Jolimont Electro se déplace directement chez vous dans toute la région du Hainaut : Mons, Binche, La Louvière et communes environnantes. Nous intervenons à domicile depuis 1983 avec nos techniciens qualifiés.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg overflow-hidden faq-item">
+                    <button class="faq-button w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-100 transition-colors">
+                        <span class="font-semibold text-gray-900">Combien coûte un dépannage électroménager à domicile ?</span>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-gray-600 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 py-4 bg-white border-t border-gray-200" style="display: none;">
+                        <p class="text-gray-600 leading-relaxed">Nos tarifs sont transparents avec un forfait de base à partir de 40€. Le prix final dépend du diagnostic et des réparations nécessaires. Nous vous communiquons toujours un devis clair avant intervention.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg overflow-hidden faq-item">
+                    <button class="faq-button w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-100 transition-colors">
+                        <span class="font-semibold text-gray-900">Quelles marques d'électroménager réparez-vous ?</span>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-gray-600 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 py-4 bg-white border-t border-gray-200" style="display: none;">
+                        <p class="text-gray-600 leading-relaxed">Nous réparons toutes les grandes marques : Bosch, Siemens, Miele, Whirlpool, Samsung, LG, Electrolux, AEG, Beko et bien d'autres. Nos techniciens sont formés pour intervenir sur tous types d'appareils.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg overflow-hidden faq-item">
+                    <button class="faq-button w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-100 transition-colors">
+                        <span class="font-semibold text-gray-900">Dans quels délais intervenez-vous pour un dépannage ?</span>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-gray-600 transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 py-4 bg-white border-t border-gray-200" style="display: none;">
+                        <p class="text-gray-600 leading-relaxed">Nous nous engageons à vous recontacter sous 24h pour planifier l'intervention. En cas d'urgence, nous adaptons nos délais selon la disponibilité de nos techniciens et la gravité de la panne.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-xl font-bold mb-4">Contact</h4>
+                    <div class="space-y-3">
+                        <a href="tel:+32064263795" class="flex items-center gap-2 transition-colors" style="color: white;">
+                            <i data-lucide="phone" class="w-5 h-5"></i>
+                            <span>+32 064 26 37 95</span>
+                        </a>
+                        <p class="flex items-start gap-2">
+                            <i data-lucide="clock" class="w-5 h-5 flex-shrink-0 mt-0.5"></i>
+                            <span>Lun-Ven: 8h-18h<br>Sam: 9h-13h</span>
+                        </p>
+                        <p class="flex items-start gap-2">
+                            <i data-lucide="map-pin" class="w-5 h-5 flex-shrink-0 mt-0.5"></i>
+                            <span>Service dans tout le Hainaut</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-xl font-bold mb-4">Liens rapides</h4>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="#accueil" class="transition-colors" style="color: white;">
+                                Accueil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#services" class="transition-colors" style="color: white;">
+                                Services
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tarifs" class="transition-colors" style="color: white;">
+                                Tarifs
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#demande-depannage" class="transition-colors" style="color: white;">
+                                Demande de dépannage
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- About -->
+                <div>
+                    <h4 class="text-xl font-bold mb-4">Qui sommes-nous</h4>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        Spécialistes du dépannage électroménager depuis 1983. Notre équipe de techniciens qualifiés intervient rapidement dans tout le Hainaut.
+                    </p>
+                    <div class="flex items-start gap-3">
+                        <img 
+                            src="assets/b82b27ea95c2011a5c75a889a54b259c2c33c6c6.png" 
+                            alt="Jolimont Dépannage" 
+                            class="h-32 w-auto ml-auto"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400 text-sm">
+                    © 2026 Jolimont Dépannage - Tous droits réservés | Mentions légales | Politique de confidentialité
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky CTA Button -->
+    <div id="sticky-cta" class="fixed bottom-6 left-0 right-0 px-6 z-50 pointer-events-none" style="display: none;">
+        <div class="max-w-md mx-auto pointer-events-auto">
+            <a
+                href="tel:+32064263795"
+                class="flex items-center justify-center gap-3 px-6 py-4 text-white font-bold rounded-full shadow-2xl transition-all duration-300 hover:scale-105"
+                style="background-color: #305CDE;"
+            >
+                <i data-lucide="phone" class="w-5 h-5"></i>
+                <span>Demandez un dépannage</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- jQuery (required for Slick) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Slick Carousel JS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-item');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const icon = mobileMenuBtn.querySelector('i');
+            const isOpen = mobileMenu.classList.contains('open');
+            icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+            lucide.createIcons();
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+
+        // Header scroll behavior
+        const header = document.getElementById('header');
+        const headerContent = document.getElementById('header-content');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const logo = document.getElementById('logo');
+        const ctaButton = document.getElementById('cta-button');
+        const stickyCta = document.getElementById('sticky-cta');
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            
+            // Header background and height
+            if (scrollY > 50) {
+                header.classList.add('bg-white', 'shadow-md');
+                header.classList.remove('bg-transparent');
+                headerContent.classList.remove('h-20');
+                headerContent.classList.add('h-16');
+                logo.style.filter = 'none';
+                ctaButton.classList.remove('hidden');
+                
+                // Update nav links color
+                navLinks.forEach(link => {
+                    link.classList.remove('text-white', 'hover:text-gray-200');
+                    link.classList.add('text-gray-700');
+                    link.style.color = '#374151';
+                });
+                
+                // Update mobile menu button color
+                mobileMenuBtn.classList.remove('text-white');
+                mobileMenuBtn.classList.add('text-gray-700');
+            } else {
+                header.classList.remove('bg-white', 'shadow-md');
+                header.classList.add('bg-transparent');
+                headerContent.classList.remove('h-16');
+                headerContent.classList.add('h-20');
+                logo.style.filter = 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))';
+                ctaButton.classList.add('hidden');
+                
+                // Update nav links color
+                navLinks.forEach(link => {
+                    link.classList.remove('text-gray-700');
+                    link.classList.add('text-white', 'hover:text-gray-200');
+                    link.style.color = 'white';
+                });
+                
+                // Update mobile menu button color
+                mobileMenuBtn.classList.remove('text-gray-700');
+                mobileMenuBtn.classList.add('text-white');
+            }
+
+            // Sticky CTA
+            if (scrollY > 600) {
+                stickyCta.style.display = 'block';
+            } else {
+                stickyCta.style.display = 'none';
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const animatedElements = entry.target.querySelectorAll('.scroll-animate, .scroll-animate-subtitle, .scroll-animate-card');
+                    animatedElements.forEach(el => {
+                        el.classList.add('visible');
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section-observe').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Counter animations
+        function animateCounter(element, target, duration = 1500) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start);
+                }
+            }, 16);
+        }
+
+        // Observe counters section
+        const countersSection = document.getElementById('counters-section');
+        let countersAnimated = false;
+
+        const countersObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !countersAnimated) {
+                    animateCounter(document.getElementById('counter-mons'), 15);
+                    animateCounter(document.getElementById('counter-laLouviere'), 12);
+                    animateCounter(document.getElementById('counter-binche'), 8);
+                    countersAnimated = true;
+                }
+            });
+        }, { threshold: 0.5 });
+
+        countersObserver.observe(countersSection);
+
+        // Brand counter animation
+        const brandCounterSection = document.getElementById('brand-counter-section');
+        let brandCounterAnimated = false;
+
+        const brandCounterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !brandCounterAnimated) {
+                    animateCounter(document.getElementById('brand-counter'), 100);
+                    brandCounterAnimated = true;
+                }
+            });
+        }, { threshold: 0.5 });
+
+        brandCounterObserver.observe(brandCounterSection);
+
+        // Initialize Slick Carousel
+        $(document).ready(function(){
+            $('.testimonials-slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 5000,
+                arrows: false
+            });
+
+            // Reinitialize Lucide icons after slider is created
+            lucide.createIcons();
+        });
+
+        // FAQ accordion
+        const faqButtons = document.querySelectorAll('.faq-button');
+        
+        faqButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const answer = faqItem.querySelector('.faq-answer');
+                const icon = button.querySelector('.faq-icon');
+                const isOpen = answer.style.display === 'block';
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-answer').forEach(a => {
+                    a.style.display = 'none';
+                });
+                document.querySelectorAll('.faq-icon').forEach(i => {
+                    i.style.transform = 'rotate(0deg)';
+                });
+                
+                // Toggle current FAQ item
+                if (!isOpen) {
+                    answer.style.display = 'block';
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // Postal code form
+        document.getElementById('postal-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const postalCode = document.getElementById('postal-code').value;
+            if (postalCode) {
+                alert(`Vérification du code postal ${postalCode}...`);
+            }
+        });
+
+        // Contact form
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Merci ! Nous vous contacterons dans les 24 heures.');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
