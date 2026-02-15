@@ -19,8 +19,13 @@ class RegisterAPI(generics.GenericAPIView):
     permission_classes = [permissions.AllowAny]
     
     def post(self, request, *args, **kwargs):
+        print(f"Registration request data: {request.data}")  # Debug logging
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        
+        if not serializer.is_valid():
+            print(f"Validation errors: {serializer.errors}")  # Debug logging
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
         user = serializer.save()
         
         # Create auth token
@@ -32,17 +37,23 @@ class RegisterAPI(generics.GenericAPIView):
         }, status=status.HTTP_201_CREATED)
 
 
-class LoginAPI(KnoxLoginView):
+class LoginAPI(generics.GenericAPIView):
     """API view for user login"""
     permission_classes = [permissions.AllowAny]
     serializer_class = LoginSerializer
     
     def post(self, request, format=None):
-        serializer = LoginSerializer(data=request.data)
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
-        login(request, user)
-        return super(LoginAPI, self).post(request, format=None)
+        
+        # Create auth token
+        _, token = AuthToken.objects.create(user)
+        
+        return Response({
+            'user': UserSerializer(user, context=self.get_serializer_context()).data,
+            'token': token
+        }, status=status.HTTP_200_OK)
 
 
 class UserAPI(generics.RetrieveUpdateAPIView):

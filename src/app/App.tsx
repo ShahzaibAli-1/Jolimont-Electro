@@ -65,7 +65,9 @@ import { DpdLogo } from './components/dpd-logo';
 import { TrustedShopsLogo } from './components/TrustedShopsLogo';
 import { ScrollReveal } from './components/scroll-reveal';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
+import { AuthProvider } from './contexts/AuthContext';
 import { LanguageSelector } from './components/LanguageSelector';
+import { productsAPI } from '../services/api';
 
 // Images
 import logoImage from '../assets/fb59b76ceb2a0cf3614ca89ca0e669563c96bebc.png';
@@ -316,6 +318,8 @@ function AppContent() {
   const { t } = useLanguage();
   const [currentPage, _setCurrentPage] = useState<Page>(() => getPageFromPath(window.location.pathname));
   const [showAIResult, setShowAIResult] = useState(false);
+  const [aiDiagnosticResult, setAiDiagnosticResult] = useState<any>(null);
+  const [isLoadingDiagnostic, setIsLoadingDiagnostic] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState<any[]>([]);
@@ -417,10 +421,33 @@ function AppContent() {
     toast.info('Article retiré du panier');
   };
 
-  const handleDiagnosticComplete = (data: any) => {
+  const handleDiagnosticComplete = async (data: any) => {
     console.log('Diagnostic:', data);
-    setShowAIResult(true);
+    setIsLoadingDiagnostic(true);
     setCurrentPage('home');
+    
+    // Show loading toast
+    const loadingToast = toast.loading('Analyzing your appliance issue...', {
+      description: 'AI is processing the diagnostic information'
+    });
+    
+    try {
+      const response = await productsAPI.aiDiagnostic(data.appliance, data.symptoms);
+      setAiDiagnosticResult(response.data);
+      setShowAIResult(true);
+      toast.dismiss(loadingToast);
+      toast.success('Diagnostic complete', {
+        description: 'AI has identified the issue and recommended parts'
+      });
+    } catch (error: any) {
+      console.error('Diagnostic error:', error);
+      toast.dismiss(loadingToast);
+      toast.error('Diagnostic failed', {
+        description: error.response?.data?.error || 'Failed to process diagnostic. Please try again.'
+      });
+    } finally {
+      setIsLoadingDiagnostic(false);
+    }
   };
 
   // Auto-scroll trust bar on mobile
@@ -1633,25 +1660,27 @@ function AppContent() {
 
       {/* AI Result Modal */}
       <AnimatePresence>
-        {showAIResult && (
+        {showAIResult && aiDiagnosticResult && (
           <AIResultModal
-            query={searchQuery || "Mon lave-vaisselle fuit par le bas"}
-            diagnosis="Votre lave-vaisselle Bosch présente une fuite d'eau par le bas. D'après l'analyse, il s'agit probablement d'un problème de pompe de vidange défectueuse ou d'une durite percée."
-            causes={mockCauses}
-            recommendedProduct={{
-              ...mockProducts[0],
-              installDuration: '20-30 minutes'
+            query={aiDiagnosticResult.query || "Diagnostic"}
+            diagnosis={aiDiagnosticResult.diagnosis || "Analyzing your appliance issue..."}
+            causes={aiDiagnosticResult.causes || []}
+            recommendedProduct={aiDiagnosticResult.recommendedProduct}
+            alternatives={aiDiagnosticResult.alternatives || []}
+            onClose={() => {
+              setShowAIResult(false);
+              setAiDiagnosticResult(null);
             }}
-            alternatives={mockProducts.slice(1)}
-            onClose={() => setShowAIResult(false)}
             onViewProduct={(product) => {
               setShowAIResult(false);
+              setAiDiagnosticResult(null);
               setSelectedProduct(product);
               setCurrentPage('product-detail');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             onAdjustDiagnosis={() => {
               setShowAIResult(false);
+              setAiDiagnosticResult(null);
               setCurrentPage('diagnostic');
             }}
           />
@@ -2179,8 +2208,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <LanguageProvider>
-      <AppContent />
-    </LanguageProvider>
+    <AuthProvider>
+      <LanguageProvider>
+        <AppContent />
+      </LanguageProvider>
+    </AuthProvider>
   );
 }

@@ -3,14 +3,17 @@ import { motion } from 'motion/react';
 import { Mail, Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react';
 import { Button } from './ui/button';
 import { toast } from 'sonner';
+import { useAuth } from '../contexts/AuthContext';
 
 interface LoginProps {
   onBack: () => void;
 }
 
 export function Login({ onBack }: LoginProps) {
+  const { login, register } = useAuth();
   const [isSignUp, setIsSignUp] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -19,19 +22,46 @@ export function Login({ onBack }: LoginProps) {
     lastName: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     
-    if (isSignUp) {
-      if (formData.password !== formData.confirmPassword) {
-        toast.error('Les mots de passe ne correspondent pas');
-        return;
+    try {
+      if (isSignUp) {
+        // Validate passwords match
+        if (formData.password !== formData.confirmPassword) {
+          toast.error('Les mots de passe ne correspondent pas');
+          return;
+        }
+
+        // Validate password length
+        if (formData.password.length < 8) {
+          toast.error('Le mot de passe doit contenir au moins 8 caractères');
+          return;
+        }
+
+        // Register new user
+        await register({
+          email: formData.email,
+          password: formData.password,
+          password2: formData.confirmPassword,
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+        });
+        
+        toast.success('Compte créé avec succès !');
+        setTimeout(() => onBack(), 1500);
+      } else {
+        // Login existing user
+        await login(formData.email, formData.password);
+        
+        toast.success('Connexion réussie !');
+        setTimeout(() => onBack(), 1500);
       }
-      toast.success('Compte créé avec succès !');
-      setTimeout(() => onBack(), 1500);
-    } else {
-      toast.success('Connexion réussie !');
-      setTimeout(() => onBack(), 1500);
+    } catch (error: any) {
+      toast.error(error.message || 'Une erreur est survenue');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -200,8 +230,9 @@ export function Login({ onBack }: LoginProps) {
               type="submit"
               className="w-full py-2.5"
               style={{ backgroundColor: '#305CDE' }}
+              disabled={isLoading}
             >
-              {isSignUp ? 'Créer mon compte' : 'Se connecter'}
+              {isLoading ? 'Chargement...' : (isSignUp ? 'Créer mon compte' : 'Se connecter')}
             </Button>
           </form>
 

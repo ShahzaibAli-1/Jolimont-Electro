@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Button } from './ui/button';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { useLanguage } from '../contexts/LanguageContext';
 import sustainabilityImage from '../../assets/943c25941ad56caaa06164ca3dd68e8877004876.png';
 import customerServiceImage from '../../assets/d07d4950c6179be2f9f1b5b0184107c4b78c0c9f.png';
 import technicianWorkshopImage from '../../assets/4c55c549aa76c9933760180bf37125d5650421fd.png';
@@ -12,32 +13,33 @@ import sustainabilityForestImage from '../../assets/b37ecd35416f784ba521c43ce873
 import aiRepairImage from '../../assets/c20c16e8ecfff658b351d8c8ab18b1c285518fb1.png';
 
 export function SustainabilityHelpSection() {
+  const { t } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
     {
       image: sustainabilityForestImage,
-      title: 'Réparer, c\'est agir pour demain',
-      description: 'Prolonger la durée de vie des appareils, réduire les déchets et favoriser la réparation : un engagement concret pour une consommation plus responsable.',
-      cta: 'Notre engagement environnemental',
+      title: t.sustainabilitySection.slide1Title,
+      description: t.sustainabilitySection.slide1Desc,
+      cta: t.sustainabilitySection.slide1Cta,
     },
     {
       image: aiRepairImage,
-      title: 'L\'intelligence artificielle au service de votre réparation',
-      description: 'Notre IA analyse votre problème, identifie la solution adaptée et transmet les informations à nos experts. Résultat : un accompagnement humain plus rapide, plus précis, plus efficace.',
-      cta: 'Diagnostiquer mon appareil',
+      title: t.sustainabilitySection.slide2Title,
+      description: t.sustainabilitySection.slide2Desc,
+      cta: t.sustainabilitySection.slide2Cta,
     },
     {
       image: expertisePartsImage,
-      title: '40 ans d\'expertise en électroménager',
-      description: 'Depuis plus de 40 ans, Jolimont Electro accompagne particuliers et professionnels dans la réparation, l\'entretien et la maîtrise de leurs appareils électroménagers.',
-      cta: 'Découvrir notre expertise',
+      title: t.sustainabilitySection.slide3Title,
+      description: t.sustainabilitySection.slide3Desc,
+      cta: t.sustainabilitySection.slide3Cta,
     },
     {
       image: technicianWorkshopImage,
-      title: 'Des techniciens, sur le terrain',
-      description: 'Jolimont Dépannage intervient avec des techniciens qualifiés pour diagnostiquer, réparer et remettre vos appareils en service rapidement.',
-      cta: 'Prendre rendez-vous',
+      title: t.sustainabilitySection.slide4Title,
+      description: t.sustainabilitySection.slide4Desc,
+      cta: t.sustainabilitySection.slide4Cta,
     },
   ];
 
@@ -141,17 +143,17 @@ export function SustainabilityHelpSection() {
 
             <div className="p-6 sm:p-8 flex-1 flex flex-col">
               <h4 className="text-xl sm:text-2xl font-bold mb-3 text-gray-900">
-                Comment pouvons-nous vous aider ?
+                {t.sustainabilitySection.helpTitle}
               </h4>
               <p className="text-sm sm:text-base text-gray-600 mb-6 leading-relaxed">
-                Posez votre question à notre service clients et nous vous aiderons dans les plus brefs délais !
+                {t.sustainabilitySection.helpDesc}
               </p>
               <Button
                 className="w-full sm:w-auto font-medium"
                 style={{ backgroundColor: '#305CDE' }}
                 onClick={() => window.dispatchEvent(new CustomEvent('navigate', { detail: 'customer-service' }))}
               >
-                Service clients
+                {t.sustainabilitySection.helpCta}
               </Button>
             </div>
           </div>

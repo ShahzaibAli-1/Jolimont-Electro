@@ -68,6 +68,7 @@ urlpatterns = [
     path('api/auth/', include('users.urls')),
     path('api/products/', include('products.urls')),
     path('api/orders/', include('orders.urls')),
+    path('api/', include('payments.urls')),
     path('api/customer-service/', include('customer_service.urls')),
     path('api/content/', include('content.urls')),
     re_path(r'^(?P<route_path>(?!api/|admin/|health/|media/|static/).*)$', redirect_to_frontend, name='frontend-fallback'),

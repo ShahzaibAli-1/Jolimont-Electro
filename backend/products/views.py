@@ -4,6 +4,9 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Q, Avg
+from django.conf import settings
+import json
+from openai import OpenAI
 from .models import Brand, Category, Product, ProductReview
 from .serializers import (
     BrandSerializer,
@@ -194,4 +197,135 @@ class ProductViewSet(viewsets.ModelViewSet):
             'query': query,
             'results': serializer.data,
             'count': products.count()
-        })
+        })    
+    @action(detail=False, methods=['post'])
+    def ai_diagnostic(self, request):
+        """AI-powered diagnostic to recommend parts based on symptoms"""
+        appliance = request.data.get('appliance', '')
+        symptoms = request.data.get('symptoms', [])
+        
+        if not appliance or not symptoms:
+            return Response(
+                {'error': 'appliance and symptoms are required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        ai_response_text = None
+        try:
+            # Configure OpenAI API
+            openai_api_key = getattr(settings, 'OPENAI_API_KEY', None)
+            if not openai_api_key:
+                return Response(
+                    {'error': 'OPENAI_API_KEY not configured'},
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                )
+            
+            client = OpenAI(api_key=openai_api_key)
+            
+            # Get available products from database
+            products = Product.objects.filter(is_active=True).values('id', 'name', 'description', 'category__name', 'brand__name', 'price')
+            products_list = list(products[:50])  # Limit to 50 products for context
+            
+            # Create prompt for OpenAI
+            prompt = f"""You are an expert appliance repair technician. Based on the following information, provide a detailed diagnosis and recommend the most appropriate spare part.
+
+Appliance Type: {appliance}
+Symptoms: {', '.join(symptoms)}
+
+Available parts in inventory:
+{json.dumps(products_list, indent=2)}
+
+Please provide a response in the following JSON format:
+{{
+    "diagnosis": "A detailed analysis of the problem",
+    "query": "A short summary of the issue",
+    "causes": [
+        {{
+            "id": "cause1",
+            "title": "Title of probable cause",
+            "probability": "high/medium/low",
+            "description": "Detailed description of this cause"
+        }}
+    ],
+    "recommendedProductId": "ID of the most suitable product from the inventory (if available)",
+    "alternativeProductIds": ["IDs of alternative products"],
+    "installationTips": "Brief installation or troubleshooting tips"
+}}
+
+Make sure to return ONLY valid JSON without any markdown formatting or code blocks."""
+            
+            # Get AI response from OpenAI
+            response = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[
+                    {"role": "system", "content": "You are an expert appliance repair technician who provides diagnostic analysis in valid JSON format only."},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.7,
+                max_tokens=2000
+            )
+            ai_response_text = response.choices[0].message.content.strip()
+            
+            # Remove markdown code blocks if present
+            if ai_response_text.startswith('```json'):
+                ai_response_text = ai_response_text.replace('```json', '').replace('```', '').strip()
+            elif ai_response_text.startswith('```'):
+                ai_response_text = ai_response_text.replace('```', '').strip()
+            
+            # Parse AI response
+            ai_data = json.loads(ai_response_text)
+            
+            # Get recommended product details
+            recommended_product = None
+            if ai_data.get('recommendedProductId'):
+                try:
+                    product = Product.objects.get(id=ai_data['recommendedProductId'], is_active=True)
+                    recommended_product = ProductListSerializer(product).data
+                except Product.DoesNotExist:
+                    pass
+            
+            # Get alternative products
+            alternatives = []
+            if ai_data.get('alternativeProductIds'):
+                alt_products = Product.objects.filter(
+                    id__in=ai_data['alternativeProductIds'],
+                    is_active=True
+                )
+                alternatives = ProductListSerializer(alt_products, many=True).data
+            
+            # If no specific recommendations, suggest products based on category/symptoms
+            if not recommended_product:
+                # Simple fallback: search for products related to the appliance
+                fallback_products = Product.objects.filter(
+                    Q(name__icontains=appliance) |
+                    Q(category__name__icontains=appliance) |
+                    Q(description__icontains=appliance),
+                    is_active=True
+                )[:3]
+                
+                if fallback_products.exists():
+                    recommended_product = ProductListSerializer(fallback_products.first()).data
+                    alternatives = ProductListSerializer(fallback_products[1:], many=True).data
+            
+            return Response({
+                'query': ai_data.get('query', f"{appliance}: {', '.join(symptoms)}"),
+                'diagnosis': ai_data.get('diagnosis', ''),
+                'causes': ai_data.get('causes', []),
+                'recommendedProduct': recommended_product,
+                'alternatives': alternatives,
+                'installationTips': ai_data.get('installationTips', '')
+            })
+            
+        except json.JSONDecodeError as e:
+            error_response = {'error': f'Failed to parse AI response: {str(e)}'}
+            if ai_response_text:
+                error_response['raw_response'] = ai_response_text
+            return Response(
+                error_response,
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+        except Exception as e:
+            return Response(
+                {'error': f'Diagnostic failed: {str(e)}'},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )

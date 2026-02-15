@@ -30,6 +30,11 @@ class RegisterSerializer(serializers.ModelSerializer):
     
     password = serializers.CharField(write_only=True, min_length=8)
     password2 = serializers.CharField(write_only=True, min_length=8)
+    username = serializers.CharField(required=False)
+    first_name = serializers.CharField(required=False, allow_blank=True)
+    last_name = serializers.CharField(required=False, allow_blank=True)
+    phone = serializers.CharField(required=False, allow_blank=True)
+    newsletter = serializers.BooleanField(required=False, default=False)
     
     class Meta:
         model = User
@@ -38,13 +43,26 @@ class RegisterSerializer(serializers.ModelSerializer):
     
     def validate(self, data):
         if data['password'] != data['password2']:
-            raise serializers.ValidationError("Passwords don't match")
+            raise serializers.ValidationError({"password2": "Passwords don't match"})
+        
+        # Generate username if not provided
+        if not data.get('username'):
+            email = data.get('email', '')
+            base_username = email.split('@')[0]
+            username = base_username
+            counter = 1
+            while User.objects.filter(username=username).exists():
+                username = f"{base_username}{counter}"
+                counter += 1
+            data['username'] = username
+        
         return data
     
     def create(self, validated_data):
         validated_data.pop('password2')
-        user = User.objects.create_user(**validated_data)
-        UserProfile.objects.create(user=user)
+        password = validated_data.pop('password')
+        user = User.objects.create_user(password=password, **validated_data)
+        # UserProfile is automatically created by the signal in signals.py
         return user
 
 
@@ -60,20 +78,20 @@ class LoginSerializer(serializers.Serializer):
         
         if email and password:
             try:
-                user = User.objects.get(email=email)
-                user = authenticate(username=user.username, password=password)
+                user_obj = User.objects.get(email=email)
+                user = authenticate(username=user_obj.username, password=password)
+                
+                if not user:
+                    raise serializers.ValidationError({"non_field_errors": ["Invalid email or password"]})
+                
+                if not user.is_active:
+                    raise serializers.ValidationError({"non_field_errors": ["User account is disabled"]})
+                
+                data['user'] = user
             except User.DoesNotExist:
-                user = None
-            
-            if not user:
-                raise serializers.ValidationError("Invalid credentials")
-            
-            if not user.is_active:
-                raise serializers.ValidationError("User account is disabled")
-            
-            data['user'] = user
+                raise serializers.ValidationError({"non_field_errors": ["Invalid email or password"]})
         else:
-            raise serializers.ValidationError("Must include email and password")
+            raise serializers.ValidationError({"non_field_errors": ["Must include email and password"]})
         
         return data
 

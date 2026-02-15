@@ -173,8 +173,40 @@ export interface Translations {
   // Diagnostic Stepper
   diagnosticStepper: {
     steps: string[];
-    selectAppliance: string;
-    selectSymptom: string;
+    applianceQuestion: string;
+    applianceSubtitle: string;
+    symptomsQuestion: string;
+    symptomsSubtitle: string;
+    confirmationTitle: string;
+    confirmationSubtitle: string;
+    applianceLabel: string;
+    symptomsLabel: string;
+    customSymptomLabel: string;
+    customSymptomPlaceholder: string;
+    addButton: string;
+    selectedSymptomsLabel: string;
+    aiMessage: string;
+    back: string;
+    next: string;
+    launchDiagnostic: string;
+    appliances: {
+      washingMachine: string;
+      dishwasher: string;
+      dryer: string;
+      fridge: string;
+      oven: string;
+      microwave: string;
+    };
+    symptoms: {
+      waterLeak: string;
+      abnormalNoise: string;
+      doesntStart: string;
+      errorDisplayed: string;
+      badSmell: string;
+      doesntHeat: string;
+      doorBlocked: string;
+      excessiveVibrations: string;
+    };
   };
   // Order Tracking
   orderTracking: {
@@ -217,6 +249,24 @@ export interface Translations {
     article5Title: string;
     article5Desc: string;
     readArticle: string;
+  };
+  // Sustainability & Help Section
+  sustainabilitySection: {
+    slide1Title: string;
+    slide1Desc: string;
+    slide1Cta: string;
+    slide2Title: string;
+    slide2Desc: string;
+    slide2Cta: string;
+    slide3Title: string;
+    slide3Desc: string;
+    slide3Cta: string;
+    slide4Title: string;
+    slide4Desc: string;
+    slide4Cta: string;
+    helpTitle: string;
+    helpDesc: string;
+    helpCta: string;
   };
 }
 
@@ -373,9 +423,41 @@ export const translations: Record<Language, Translations> = {
       },
     },
     diagnosticStepper: {
-      steps: ['Votre appareil', 'Marque', 'Le problème'],
-      selectAppliance: 'Sélectionnez un appareil',
-      selectSymptom: 'Sélectionnez un symptôme',
+      steps: ['Appareil', 'Symptômes', 'Confirmation'],
+      applianceQuestion: 'Quel est votre appareil ?',
+      applianceSubtitle: 'Sélectionnez le type d\'appareil concerné',
+      symptomsQuestion: 'Quels sont les symptômes ?',
+      symptomsSubtitle: 'Sélectionnez tous les symptômes observés',
+      confirmationTitle: 'Récapitulatif',
+      confirmationSubtitle: 'Vérifiez les informations avant de lancer le diagnostic',
+      applianceLabel: 'Appareil',
+      symptomsLabel: 'Symptômes',
+      customSymptomLabel: 'Autre symptôme (facultatif)',
+      customSymptomPlaceholder: 'Décrivez un autre symptôme...',
+      addButton: 'Ajouter',
+      selectedSymptomsLabel: 'Symptômes sélectionnés :',
+      aiMessage: '✨ L\'IA va analyser ces informations pour identifier la cause du problème et vous recommander la pièce adaptée.',
+      back: 'Retour',
+      next: 'Suivant',
+      launchDiagnostic: 'Lancer le diagnostic',
+      appliances: {
+        washingMachine: 'Machine à laver',
+        dishwasher: 'Lave-vaisselle',
+        dryer: 'Sèche-linge',
+        fridge: 'Réfrigérateur',
+        oven: 'Four',
+        microwave: 'Micro-ondes',
+      },
+      symptoms: {
+        waterLeak: 'Fuite d\'eau',
+        abnormalNoise: 'Bruit anormal',
+        doesntStart: 'Ne démarre pas',
+        errorDisplayed: 'Erreur affichée',
+        badSmell: 'Mauvaise odeur',
+        doesntHeat: 'Ne chauffe pas',
+        doorBlocked: 'Porte bloquée',
+        excessiveVibrations: 'Vibrations excessives',
+      },
     },
     orderTracking: {
       expectedDelivery: 'Livraison prévue',
@@ -413,6 +495,23 @@ export const translations: Record<Language, Translations> = {
       article5Title: 'Pièces détachées d\'origine vs compatibles : quelles différences ?',
       article5Desc: 'Guide complet pour faire le bon choix entre qualité, prix et garanties.',
       readArticle: 'En savoir plus',
+    },
+    sustainabilitySection: {
+      slide1Title: 'Réparer, c\'est agir pour demain',
+      slide1Desc: 'Prolonger la durée de vie des appareils, réduire les déchets et favoriser la réparation : un engagement concret pour une consommation plus responsable.',
+      slide1Cta: 'Notre engagement environnemental',
+      slide2Title: 'L\'intelligence artificielle au service de votre réparation',
+      slide2Desc: 'Notre IA analyse votre problème, identifie la solution adaptée et transmet les informations à nos experts. Résultat : un accompagnement humain plus rapide, plus précis, plus efficace.',
+      slide2Cta: 'Diagnostiquer mon appareil',
+      slide3Title: '40 ans d\'expertise en électroménager',
+      slide3Desc: 'Depuis plus de 40 ans, Jolimont Electro accompagne particuliers et professionnels dans la réparation, l\'entretien et la maîtrise de leurs appareils électroménagers.',
+      slide3Cta: 'Découvrir notre expertise',
+      slide4Title: 'Des techniciens, sur le terrain',
+      slide4Desc: 'Jolimont Dépannage intervient avec des techniciens qualifiés pour diagnostiquer, réparer et remettre vos appareils en service rapidement.',
+      slide4Cta: 'Prendre rendez-vous',
+      helpTitle: 'Comment pouvons-nous vous aider ?',
+      helpDesc: 'Posez votre question à notre service clients et nous vous aiderons dans les plus brefs délais !',
+      helpCta: 'Service clients',
     },
   },
   en: {
@@ -567,9 +666,41 @@ export const translations: Record<Language, Translations> = {
       },
     },
     diagnosticStepper: {
-      steps: ['Your Appliance', 'Brand', 'The Problem'],
-      selectAppliance: 'Select an appliance',
-      selectSymptom: 'Select a symptom',
+      steps: ['Appliance', 'Symptoms', 'Confirmation'],
+      applianceQuestion: 'What is your appliance?',
+      applianceSubtitle: 'Select the type of appliance concerned',
+      symptomsQuestion: 'What are the symptoms?',
+      symptomsSubtitle: 'Select all observed symptoms',
+      confirmationTitle: 'Summary',
+      confirmationSubtitle: 'Check the information before launching the diagnostic',
+      applianceLabel: 'Appliance',
+      symptomsLabel: 'Symptoms',
+      customSymptomLabel: 'Other symptom (optional)',
+      customSymptomPlaceholder: 'Describe another symptom...',
+      addButton: 'Add',
+      selectedSymptomsLabel: 'Selected symptoms:',
+      aiMessage: '✨ AI will analyze this information to identify the cause of the problem and recommend the appropriate part.',
+      back: 'Back',
+      next: 'Next',
+      launchDiagnostic: 'Launch diagnostic',
+      appliances: {
+        washingMachine: 'Washing machine',
+        dishwasher: 'Dishwasher',
+        dryer: 'Dryer',
+        fridge: 'Refrigerator',
+        oven: 'Oven',
+        microwave: 'Microwave',
+      },
+      symptoms: {
+        waterLeak: 'Water leak',
+        abnormalNoise: 'Abnormal noise',
+        doesntStart: 'Does not start',
+        errorDisplayed: 'Error displayed',
+        badSmell: 'Bad smell',
+        doesntHeat: 'Does not heat',
+        doorBlocked: 'Door blocked',
+        excessiveVibrations: 'Excessive vibrations',
+      },
     },
     orderTracking: {
       expectedDelivery: 'Expected delivery',
@@ -607,6 +738,23 @@ export const translations: Record<Language, Translations> = {
       article5Title: 'Original vs compatible spare parts: what are the differences?',
       article5Desc: 'Complete guide to make the right choice between quality, price and warranties.',
       readArticle: 'Learn more',
+    },
+    sustainabilitySection: {
+      slide1Title: 'Repairing means acting for tomorrow',
+      slide1Desc: 'Extending the life of appliances, reducing waste and promoting repair: a concrete commitment to more responsible consumption.',
+      slide1Cta: 'Our environmental commitment',
+      slide2Title: 'Artificial intelligence at the service of your repair',
+      slide2Desc: 'Our AI analyzes your problem, identifies the appropriate solution and transmits the information to our experts. Result: faster, more accurate, more efficient human support.',
+      slide2Cta: 'Diagnose my appliance',
+      slide3Title: '40 years of expertise in home appliances',
+      slide3Desc: 'For over 40 years, Jolimont Electro has been supporting individuals and professionals in the repair, maintenance and mastery of their home appliances.',
+      slide3Cta: 'Discover our expertise',
+      slide4Title: 'Technicians in the field',
+      slide4Desc: 'Jolimont Repair intervenes with qualified technicians to diagnose, repair and put your appliances back into service quickly.',
+      slide4Cta: 'Make an appointment',
+      helpTitle: 'How can we help you?',
+      helpDesc: 'Ask your question to our customer service and we will help you as soon as possible!',
+      helpCta: 'Customer service',
     },
   },
   it: {
@@ -761,9 +909,41 @@ export const translations: Record<Language, Translations> = {
       },
     },
     diagnosticStepper: {
-      steps: ['Il tuo elettrodomestico', 'Marca', 'Il problema'],
-      selectAppliance: 'Seleziona un elettrodomestico',
-      selectSymptom: 'Seleziona un sintomo',
+      steps: ['Apparecchio', 'Sintomi', 'Conferma'],
+      applianceQuestion: 'Qual è il tuo apparecchio?',
+      applianceSubtitle: 'Seleziona il tipo di apparecchio interessato',
+      symptomsQuestion: 'Quali sono i sintomi?',
+      symptomsSubtitle: 'Seleziona tutti i sintomi osservati',
+      confirmationTitle: 'Riepilogo',
+      confirmationSubtitle: 'Verifica le informazioni prima di avviare la diagnosi',
+      applianceLabel: 'Apparecchio',
+      symptomsLabel: 'Sintomi',
+      customSymptomLabel: 'Altro sintomo (facoltativo)',
+      customSymptomPlaceholder: 'Descrivi un altro sintomo...',
+      addButton: 'Aggiungi',
+      selectedSymptomsLabel: 'Sintomi selezionati:',
+      aiMessage: '✨ L\'IA analizzerà queste informazioni per identificare la causa del problema e raccomandarti il pezzo adatto.',
+      back: 'Indietro',
+      next: 'Avanti',
+      launchDiagnostic: 'Avvia diagnosi',
+      appliances: {
+        washingMachine: 'Lavatrice',
+        dishwasher: 'Lavastoviglie',
+        dryer: 'Asciugatrice',
+        fridge: 'Frigorifero',
+        oven: 'Forno',
+        microwave: 'Microonde',
+      },
+      symptoms: {
+        waterLeak: 'Perdita d\'acqua',
+        abnormalNoise: 'Rumore anomalo',
+        doesntStart: 'Non si avvia',
+        errorDisplayed: 'Errore visualizzato',
+        badSmell: 'Cattivo odore',
+        doesntHeat: 'Non riscalda',
+        doorBlocked: 'Porta bloccata',
+        excessiveVibrations: 'Vibrazioni eccessive',
+      },
     },
     orderTracking: {
       expectedDelivery: 'Consegna prevista',
@@ -801,6 +981,23 @@ export const translations: Record<Language, Translations> = {
       article5Title: 'Ricambi originali vs compatibili: quali differenze?',
       article5Desc: 'Guida completa per fare la scelta giusta tra qualità, prezzo e garanzie.',
       readArticle: 'Scopri di più',
+    },
+    sustainabilitySection: {
+      slide1Title: 'Ripara anziché sostituire',
+      slide1Description: 'Ogni riparazione riuscita evita la produzione di un nuovo apparecchio, riducendo così l\'impronta di CO₂.',
+      slide1Cta: 'Scopri i nostri ricambi',
+      slide2Title: 'Ricambi sostenibili',
+      slide2Description: 'Privilegiamo i circuiti locali e i materiali durevoli per un\'impronta ecologica ridotta.',
+      slide2Cta: 'I nostri impegni',
+      slide3Title: 'Imballaggio eco-responsabile',
+      slide3Description: 'I nostri pacchi utilizzano cartone riciclato e minimizzano le plastiche.',
+      slide3Cta: 'Saperne di più',
+      slide4Title: 'Raccoltiamo il tuo vecchio materiale',
+      slide4Description: 'Inviacelo gratuitamente, ci occuperemo del riciclaggio conforme.',
+      slide4Cta: 'Procedura di raccolta',
+      helpTitle: 'Bisogno di aiuto per la riparazione?',
+      helpDescription: 'I nostri esperti ti guidano passo dopo passo, video inclusi.',
+      helpCta: 'Accedi alle guide',
     },
   },
   nl: {
@@ -955,9 +1152,41 @@ export const translations: Record<Language, Translations> = {
       },
     },
     diagnosticStepper: {
-      steps: ['Uw apparaat', 'Merk', 'Het probleem'],
-      selectAppliance: 'Selecteer een apparaat',
-      selectSymptom: 'Selecteer een symptoom',
+      steps: ['Apparaat', 'Symptomen', 'Bevestiging'],
+      applianceQuestion: 'Wat is uw apparaat?',
+      applianceSubtitle: 'Selecteer het type apparaat',
+      symptomsQuestion: 'Wat zijn de symptomen?',
+      symptomsSubtitle: 'Selecteer alle waargenomen symptomen',
+      confirmationTitle: 'Samenvatting',
+      confirmationSubtitle: 'Controleer de informatie voordat u de diagnose start',
+      applianceLabel: 'Apparaat',
+      symptomsLabel: 'Symptomen',
+      customSymptomLabel: 'Ander symptoom (optioneel)',
+      customSymptomPlaceholder: 'Beschrijf een ander symptoom...',
+      addButton: 'Toevoegen',
+      selectedSymptomsLabel: 'Geselecteerde symptomen:',
+      aiMessage: '✨ AI zal deze informatie analyseren om de oorzaak van het probleem te identificeren en het juiste onderdeel aan te bevelen.',
+      back: 'Terug',
+      next: 'Volgende',
+      launchDiagnostic: 'Start diagnose',
+      appliances: {
+        washingMachine: 'Wasmachine',
+        dishwasher: 'Vaatwasser',
+        dryer: 'Droger',
+        fridge: 'Koelkast',
+        oven: 'Oven',
+        microwave: 'Magnetron',
+      },
+      symptoms: {
+        waterLeak: 'Waterlek',
+        abnormalNoise: 'Abnormaal geluid',
+        doesntStart: 'Start niet',
+        errorDisplayed: 'Fout weergegeven',
+        badSmell: 'Slechte geur',
+        doesntHeat: 'Verwarmt niet',
+        doorBlocked: 'Deur geblokkeerd',
+        excessiveVibrations: 'Overmatige trillingen',
+      },
     },
     orderTracking: {
       expectedDelivery: 'Verwachte levering',
@@ -995,6 +1224,23 @@ export const translations: Record<Language, Translations> = {
       article5Title: 'Originele vs compatibele onderdelen: wat zijn de verschillen?',
       article5Desc: 'Volledige gids om de juiste keuze te maken tussen kwaliteit, prijs en garanties.',
       readArticle: 'Lees meer',
+    },
+    sustainabilitySection: {
+      slide1Title: 'Repareren in plaats van vervangen',
+      slide1Description: 'Elke succesvolle reparatie voorkomt de productie van een nieuw apparaat en vermindert zo de CO₂-voetafdruk.',
+      slide1Cta: 'Ontdek onze onderdelen',
+      slide2Title: 'Duurzame onderdelen',
+      slide2Description: 'Wij geven prioriteit aan lokale circuits en duurzame materialen voor een verminderde ecologische voetafdruk.',
+      slide2Cta: 'Onze toezeggingen',
+      slide3Title: 'Eco-verantwoordelijke verpakking',
+      slide3Description: 'Onze pakketten gebruiken gerecycled karton en minimaliseren plastics.',
+      slide3Cta: 'Meer weten',
+      slide4Title: 'Wij verzamelen uw oude materiaal',
+      slide4Description: 'Stuur het ons gratis, wij zorgen voor conforme recycling.',
+      slide4Cta: 'Inzamelprocedure',
+      helpTitle: 'Hulp nodig bij reparatie?',
+      helpDescription: 'Onze experts begeleiden u stap voor stap, inclusief video\'s.',
+      helpCta: 'Toegang tot gidsen',
     },
   },
   de: {
@@ -1149,9 +1395,41 @@ export const translations: Record<Language, Translations> = {
       },
     },
     diagnosticStepper: {
-      steps: ['Ihr Gerät', 'Marke', 'Das Problem'],
-      selectAppliance: 'Wählen Sie ein Gerät',
-      selectSymptom: 'Wählen Sie ein Symptom',
+      steps: ['Gerät', 'Symptome', 'Bestätigung'],
+      applianceQuestion: 'Was ist Ihr Gerät?',
+      applianceSubtitle: 'Wählen Sie den Gerätetyp aus',
+      symptomsQuestion: 'Was sind die Symptome?',
+      symptomsSubtitle: 'Wählen Sie alle beobachteten Symptome aus',
+      confirmationTitle: 'Zusammenfassung',
+      confirmationSubtitle: 'Überprüfen Sie die Informationen, bevor Sie die Diagnose starten',
+      applianceLabel: 'Gerät',
+      symptomsLabel: 'Symptome',
+      customSymptomLabel: 'Anderes Symptom (optional)',
+      customSymptomPlaceholder: 'Beschreiben Sie ein anderes Symptom...',
+      addButton: 'Hinzufügen',
+      selectedSymptomsLabel: 'Ausgewählte Symptome:',
+      aiMessage: '✨ KI wird diese Informationen analysieren, um die Ursache des Problems zu identifizieren und das passende Teil zu empfehlen.',
+      back: 'Zurück',
+      next: 'Weiter',
+      launchDiagnostic: 'Diagnose starten',
+      appliances: {
+        washingMachine: 'Waschmaschine',
+        dishwasher: 'Geschirrspüler',
+        dryer: 'Trockner',
+        fridge: 'Kühlschrank',
+        oven: 'Backofen',
+        microwave: 'Mikrowelle',
+      },
+      symptoms: {
+        waterLeak: 'Wasserleck',
+        abnormalNoise: 'Ungewöhnliches Geräusch',
+        doesntStart: 'Startet nicht',
+        errorDisplayed: 'Fehler angezeigt',
+        badSmell: 'Schlechter Geruch',
+        doesntHeat: 'Heizt nicht',
+        doorBlocked: 'Tür blockiert',
+        excessiveVibrations: 'Übermäßige Vibrationen',
+      },
     },
     orderTracking: {
       expectedDelivery: 'Erwartete Lieferung',
@@ -1189,6 +1467,23 @@ export const translations: Record<Language, Translations> = {
       article5Title: 'Original vs kompatible Ersatzteile: Was sind die Unterschiede?',
       article5Desc: 'Vollständiger Leitfaden zur richtigen Wahl zwischen Qualität, Preis und Garantien.',
       readArticle: 'Mehr erfahren',
+    },
+    sustainabilitySection: {
+      slide1Title: 'Reparieren statt ersetzen',
+      slide1Description: 'Jede erfolgreiche Reparatur vermeidet die Herstellung eines neuen Geräts und reduziert so den CO₂-Fußabdruck.',
+      slide1Cta: 'Entdecken Sie unsere Ersatzteile',
+      slide2Title: 'Nachhaltige Ersatzteile',
+      slide2Description: 'Wir bevorzugen lokale Kreisläufe und langlebige Materialien für einen reduzierten ökologischen Fußabdruck.',
+      slide2Cta: 'Unsere Verpflichtungen',
+      slide3Title: 'Umweltfreundliche Verpackung',
+      slide3Description: 'Unsere Pakete verwenden recyceltes Karton und minimieren Kunststoffe.',
+      slide3Cta: 'Mehr erfahren',
+      slide4Title: 'Wir sammeln Ihr altes Material',
+      slide4Description: 'Senden Sie es uns kostenlos, wir kümmern uns um die konforme Wiederverwertung.',
+      slide4Cta: 'Sammelverfahren',
+      helpTitle: 'Brauchen Sie Hilfe bei der Reparatur?',
+      helpDescription: 'Unsere Experten führen Sie Schritt für Schritt, inklusive Videos.',
+      helpCta: 'Zugang zu Anleitungen',
     },
   },
 };

@@ -41,9 +41,16 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='noreply@jolimont-elec
 # Payment
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY', default='')
 STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY', default='')
+STRIPE_WEBHOOK_SECRET = config('STRIPE_WEBHOOK_SECRET', default='')
+
+# PayPal
+PAYPAL_CLIENT_ID = config('PAYPAL_CLIENT_ID', default='')
+PAYPAL_CLIENT_SECRET = config('PAYPAL_CLIENT_SECRET', default='')
+PAYPAL_MODE = config('PAYPAL_MODE', default='sandbox')
 
 # AI Services
 OPENAI_API_KEY = config('OPENAI_API_KEY', default='')
+GEMINI_API_KEY = config('GEMINI_API_KEY', default='')
 
 # Frontend URL
 FRONTEND_URL = config('FRONTEND_URL', default='http://localhost:5173')
@@ -70,6 +77,7 @@ INSTALLED_APPS = [
     'users',
     'products',
     'orders',
+    'payments',
     'customer_service',
     'content',
     'api',
@@ -187,7 +195,6 @@ REST_FRAMEWORK = {
 
 # Knox Settings
 REST_KNOX = {
-    'SECURE_HASH_ALGORITHM': 'cryptography.hazmat.primitives.hashes.SHA512',
     'AUTH_TOKEN_CHARACTER_LENGTH': 64,
     'TOKEN_TTL': timedelta(days=30),
     'USER_SERIALIZER': 'users.serializers.UserSerializer',

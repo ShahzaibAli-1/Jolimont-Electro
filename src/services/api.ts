@@ -116,6 +116,35 @@ export interface Order {
   items: Array<any>;
 }
 
+export interface Payment {
+  id: number;
+  order: number;
+  order_number: string;
+  payment_method: 'stripe' | 'paypal' | 'card';
+  amount: string;
+  currency: string;
+  status: 'pending' | 'processing' | 'completed' | 'failed' | 'refunded' | 'cancelled';
+  transaction_id: string;
+  card_last4?: string;
+  card_brand?: string;
+  created_at: string;
+  completed_at?: string;
+  error_message?: string;
+}
+
+export interface StripePaymentIntent {
+  clientSecret: string;
+  paymentIntentId: string;
+  publicKey: string;
+  payment_id: number;
+}
+
+export interface PayPalOrder {
+  paypalOrderId: string;
+  approvalUrl: string;
+  payment_id: number;
+}
+
 // Auth API
 export const authAPI = {
   register: (data: any) => apiClient.post('/auth/register/', data),
@@ -139,6 +168,8 @@ export const productsAPI = {
   bestsellers: () => apiClient.get('/products/bestsellers/'),
   newArrivals: () => apiClient.get('/products/new_arrivals/'),
   aiSearch: (query: string) => apiClient.post('/products/ai_search/', { query }),
+  aiDiagnostic: (appliance: string, symptoms: string[]) =>
+    apiClient.post('/products/ai_diagnostic/', { appliance, symptoms }),
   searchByModel: (applianceModel: string, applianceType?: string) =>
     apiClient.post('/products/search_by_model/', {
       appliance_model: applianceModel,
@@ -189,6 +220,48 @@ export const ordersAPI = {
   create: (data: any) => apiClient.post('/orders/orders/', data),
   track: (id: number) => apiClient.get(`/orders/orders/${id}/track/`),
   cancel: (id: number) => apiClient.post(`/orders/orders/${id}/cancel/`),
+};
+
+// Payment API
+export const paymentAPI = {
+  // List user's payments
+  list: () => apiClient.get<Payment[]>('/payments/'),
+  
+  // Get specific payment
+  get: (id: number) => apiClient.get<Payment>(`/payments/${id}/`),
+  
+  // Stripe payment flow
+  stripe: {
+    createIntent: (orderId: number) =>
+      apiClient.post<StripePaymentIntent>('/payments/stripe/create-intent/', {
+        order_id: orderId,
+      }),
+    confirmPayment: (paymentIntentId: string, orderId: number) =>
+      apiClient.post('/payments/stripe/confirm/', {
+        payment_intent_id: paymentIntentId,
+        order_id: orderId,
+      }),
+  },
+  
+  // PayPal payment flow
+  paypal: {
+    createOrder: (orderId: number) =>
+      apiClient.post<PayPalOrder>('/payments/paypal/create-order/', {
+        order_id: orderId,
+      }),
+    capturePayment: (paypalOrderId: string, orderId: number) =>
+      apiClient.post('/payments/paypal/capture/', {
+        paypal_order_id: paypalOrderId,
+        order_id: orderId,
+      }),
+  },
+  
+  // Refund payment
+  refund: (paymentId: number, amount?: number, reason?: string) =>
+    apiClient.post(`/payments/${paymentId}/refund/`, {
+      amount,
+      reason,
+    }),
 };
 
 // Customer Service API

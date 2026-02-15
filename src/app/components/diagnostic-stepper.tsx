@@ -4,6 +4,7 @@ import { ChevronRight, ChevronLeft, Check } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { WasherIcon, DishwasherIcon, DryerIcon, RefrigeratorIcon, RangeIcon, MicrowaveIcon } from './appliance-icons';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface DiagnosticStepperProps {
   onComplete: (data: {
@@ -13,57 +14,58 @@ interface DiagnosticStepperProps {
   }) => void;
 }
 
-const appliances = [
-  { 
-    id: 'washing-machine', 
-    name: 'Machine à laver', 
-    icon: <WasherIcon className="w-12 h-16 mx-auto text-gray-400 group-hover:text-[#305CDE] transition-colors duration-300" />
-  },
-  { 
-    id: 'dishwasher', 
-    name: 'Lave-vaisselle', 
-    icon: <DishwasherIcon className="w-12 h-16 mx-auto text-gray-400 group-hover:text-[#305CDE] transition-colors duration-300" />
-  },
-  { 
-    id: 'dryer', 
-    name: 'Sèche-linge', 
-    icon: <DryerIcon className="w-12 h-16 mx-auto text-gray-400 group-hover:text-[#305CDE] transition-colors duration-300" />
-  },
-  { 
-    id: 'fridge', 
-    name: 'Réfrigérateur', 
-    icon: <RefrigeratorIcon className="w-12 h-16 mx-auto text-gray-400 group-hover:text-[#305CDE] transition-colors duration-300" />
-  },
-  { 
-    id: 'oven', 
-    name: 'Four', 
-    icon: <RangeIcon className="w-12 h-16 mx-auto text-gray-400 group-hover:text-[#305CDE] transition-colors duration-300" />
-  },
-  { 
-    id: 'microwave', 
-    name: 'Micro-ondes', 
-    icon: <MicrowaveIcon className="w-12 h-16 mx-auto text-gray-400 group-hover:text-[#305CDE] transition-colors duration-300" />
-  }
-];
-
-const commonSymptoms = [
-  'Fuite d\'eau',
-  'Bruit anormal',
-  'Ne démarre pas',
-  'Erreur affichée',
-  'Mauvaise odeur',
-  'Ne chauffe pas',
-  'Porte bloquée',
-  'Vibrations excessives'
-];
-
 export function DiagnosticStepper({ onComplete }: DiagnosticStepperProps) {
+  const { t } = useLanguage();
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedAppliance, setSelectedAppliance] = useState('');
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
   const [customSymptom, setCustomSymptom] = useState('');
 
-  const steps = ['Appareil', 'Symptômes', 'Confirmation'];
+  const appliances = [
+    { 
+      id: 'washing-machine', 
+      name: t.diagnosticStepper.appliances.washingMachine,
+      icon: <WasherIcon className="w-12 h-16 mx-auto text-gray-400 group-hover:text-[#305CDE] transition-colors duration-300" />
+    },
+    { 
+      id: 'dishwasher', 
+      name: t.diagnosticStepper.appliances.dishwasher,
+      icon: <DishwasherIcon className="w-12 h-16 mx-auto text-gray-400 group-hover:text-[#305CDE] transition-colors duration-300" />
+    },
+    { 
+      id: 'dryer', 
+      name: t.diagnosticStepper.appliances.dryer,
+      icon: <DryerIcon className="w-12 h-16 mx-auto text-gray-400 group-hover:text-[#305CDE] transition-colors duration-300" />
+    },
+    { 
+      id: 'fridge', 
+      name: t.diagnosticStepper.appliances.fridge,
+      icon: <RefrigeratorIcon className="w-12 h-16 mx-auto text-gray-400 group-hover:text-[#305CDE] transition-colors duration-300" />
+    },
+    { 
+      id: 'oven', 
+      name: t.diagnosticStepper.appliances.oven,
+      icon: <RangeIcon className="w-12 h-16 mx-auto text-gray-400 group-hover:text-[#305CDE] transition-colors duration-300" />
+    },
+    { 
+      id: 'microwave', 
+      name: t.diagnosticStepper.appliances.microwave,
+      icon: <MicrowaveIcon className="w-12 h-16 mx-auto text-gray-400 group-hover:text-[#305CDE] transition-colors duration-300" />
+    }
+  ];
+
+  const commonSymptoms = [
+    t.diagnosticStepper.symptoms.waterLeak,
+    t.diagnosticStepper.symptoms.abnormalNoise,
+    t.diagnosticStepper.symptoms.doesntStart,
+    t.diagnosticStepper.symptoms.errorDisplayed,
+    t.diagnosticStepper.symptoms.badSmell,
+    t.diagnosticStepper.symptoms.doesntHeat,
+    t.diagnosticStepper.symptoms.doorBlocked,
+    t.diagnosticStepper.symptoms.excessiveVibrations
+  ];
+
+  const steps = t.diagnosticStepper.steps;
 
   const handleNext = () => {
     if (currentStep < steps.length - 1) {
@@ -159,9 +161,9 @@ export function DiagnosticStepper({ onComplete }: DiagnosticStepperProps) {
           {/* Step 1: Choose Appliance */}
           {currentStep === 0 && (
             <div>
-              <h3 className="font-semibold mb-2">Quel est votre appareil ?</h3>
+              <h3 className="font-semibold mb-2">{t.diagnosticStepper.applianceQuestion}</h3>
               <p className="text-sm text-muted-foreground mb-6">
-                Sélectionnez le type d'appareil concerné
+                {t.diagnosticStepper.applianceSubtitle}
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {appliances.map((appliance) => (
@@ -188,9 +190,9 @@ export function DiagnosticStepper({ onComplete }: DiagnosticStepperProps) {
           {/* Step 2: Select Symptoms */}
           {currentStep === 1 && (
             <div>
-              <h3 className="font-semibold mb-2">Quels sont les symptômes ?</h3>
+              <h3 className="font-semibold mb-2">{t.diagnosticStepper.symptomsQuestion}</h3>
               <p className="text-sm text-muted-foreground mb-6">
-                Sélectionnez tous les symptômes observés
+                {t.diagnosticStepper.symptomsSubtitle}
               </p>
               
               <div className="space-y-4">
@@ -212,7 +214,7 @@ export function DiagnosticStepper({ onComplete }: DiagnosticStepperProps) {
 
                 <div className="pt-4 border-t border-border">
                   <label className="text-sm font-medium mb-2 block">
-                    Autre symptôme (facultatif)
+                    {t.diagnosticStepper.customSymptomLabel}
                   </label>
                   <div className="flex gap-2">
                     <input
@@ -220,18 +222,18 @@ export function DiagnosticStepper({ onComplete }: DiagnosticStepperProps) {
                       value={customSymptom}
                       onChange={(e) => setCustomSymptom(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && addCustomSymptom()}
-                      placeholder="Décrivez un autre symptôme..."
+                      placeholder={t.diagnosticStepper.customSymptomPlaceholder}
                       className="flex-1 px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                     <Button onClick={addCustomSymptom} variant="outline">
-                      Ajouter
+                      {t.diagnosticStepper.addButton}
                     </Button>
                   </div>
                 </div>
 
                 {selectedSymptoms.length > 0 && (
                   <div className="bg-secondary rounded-xl p-4">
-                    <p className="text-sm font-medium mb-2">Symptômes sélectionnés :</p>
+                    <p className="text-sm font-medium mb-2">{t.diagnosticStepper.selectedSymptomsLabel}</p>
                     <div className="flex flex-wrap gap-2">
                       {selectedSymptoms.map((symptom) => (
                         <Badge key={symptom} variant="secondary">
@@ -254,21 +256,21 @@ export function DiagnosticStepper({ onComplete }: DiagnosticStepperProps) {
           {/* Step 3: Confirmation */}
           {currentStep === 2 && (
             <div>
-              <h3 className="font-semibold mb-2">Récapitulatif</h3>
+              <h3 className="font-semibold mb-2">{t.diagnosticStepper.confirmationTitle}</h3>
               <p className="text-sm text-muted-foreground mb-6">
-                Vérifiez les informations avant de lancer le diagnostic
+                {t.diagnosticStepper.confirmationSubtitle}
               </p>
 
               <div className="space-y-4">
                 <div className="bg-secondary rounded-xl p-4">
-                  <p className="text-sm text-muted-foreground mb-1">Appareil</p>
+                  <p className="text-sm text-muted-foreground mb-1">{t.diagnosticStepper.applianceLabel}</p>
                   <p className="font-medium">
                     {appliances.find(a => a.id === selectedAppliance)?.name}
                   </p>
                 </div>
 
                 <div className="bg-secondary rounded-xl p-4">
-                  <p className="text-sm text-muted-foreground mb-2">Symptômes</p>
+                  <p className="text-sm text-muted-foreground mb-2">{t.diagnosticStepper.symptomsLabel}</p>
                   <div className="flex flex-wrap gap-2">
                     {selectedSymptoms.map((symptom) => (
                       <Badge key={symptom}>{symptom}</Badge>
@@ -278,7 +280,7 @@ export function DiagnosticStepper({ onComplete }: DiagnosticStepperProps) {
 
                 <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
                   <p className="text-sm text-primary font-medium">
-                    ✨ L'IA va analyser ces informations pour identifier la cause du problème et vous recommander la pièce adaptée.
+                    {t.diagnosticStepper.aiMessage}
                   </p>
                 </div>
               </div>
@@ -295,14 +297,14 @@ export function DiagnosticStepper({ onComplete }: DiagnosticStepperProps) {
           disabled={currentStep === 0}
         >
           <ChevronLeft className="w-4 h-4 mr-1" />
-          Retour
+          {t.diagnosticStepper.back}
         </Button>
 
         <Button
           onClick={handleNext}
           disabled={!canProceed()}
         >
-          {currentStep === steps.length - 1 ? 'Lancer le diagnostic' : 'Suivant'}
+          {currentStep === steps.length - 1 ? t.diagnosticStepper.launchDiagnostic : t.diagnosticStepper.next}
           <ChevronRight className="w-4 h-4 ml-1" />
         </Button>
       </div>
